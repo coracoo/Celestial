@@ -1,0 +1,67 @@
+{
+  "id": "guansheng",
+  "number": 5,
+  "name": "关胜",
+  "title": "大刀",
+  "rarity": "SR",
+  "wuxing": "fire",
+  "role": "横扫",
+  "color": "#2f6b4f",
+  "accent": "#8fe0b0",
+  "tagline": "青龙偃月，刀锋所向",
+  "lore": "关羽之后。梁山管她叫大刀，不叫关胜——她自己也觉得姓那个更像个人。她一刀横着过去，拦路的钉自己会碎。",
+  "base": {
+    "hp": 114,
+    "atk": 15,
+    "def": 8,
+    "speed": 12
+  },
+  "skill": {
+    "id": "guansheng_crescent",
+    "name": "青龙偃月",
+    "rule": "横扫沿途钉板，并把球的弹性拉高一档",
+    "desc": "一记横斩清出 3.6 半径内的钉板，6 秒内弹性 ×1.35、落槽 ×1.35、阻尼 ×0.7（球不容易被磨停）。刀走直线，不拐弯。",
+    "trigger": {
+      "on": "heavyImpact",
+      "minIntensity": 0.4,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "bounce",
+        "value": 1.35,
+        "duration": 6
+      },
+      {
+        "key": "slot",
+        "value": 1.35,
+        "duration": 6
+      },
+      {
+        "key": "damping",
+        "value": 0.7,
+        "duration": 6
+      }
+    ],
+    "destroy": {
+      "radius": 3.6,
+      "kinds": [
+        "normal",
+        "armored",
+        "destructible"
+      ],
+      "damage": 180
+    },
+    "fx": "shockRing"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "blade"
+  },
+  "bonds": [
+    "linchong",
+    "qinming"
+  ]
+}

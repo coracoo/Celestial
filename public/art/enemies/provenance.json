@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-05",
+  "generator": "built-in image_gen",
+  "prompt_file": "docs/art/enemy-card-prompts.md",
+  "artwork": "Original generated adult female fantasy enemies. Opaque card-face illustration; not a RuiC holographic Blender export.",
+  "derived": {
+    "script": "scripts/genenemyart.py",
+    "size": "512x768",
+    "quality": 82,
+    "note": "原图是 1024x1536 的 24bpp RGB PNG，五张合计 15.6MB。敌人钉世界半径只有 0.55，在 18 单位宽的盘面上约 89px/单位，实际显示高度仅 90~100px —— 贴图比显示尺寸大 16 倍。已统一压成 512x768 WebP（与原图同为 2:3，纯缩放不裁切），合计 0.5MB。",
+    "provenance_caveat": "assets[].source_filename 曾在 genenemyart.py 的首轮运行中被误覆盖成中间态 PNG 的文件名；下面这 5 个 exec-* 标识是从当时的会话记录里恢复的，未经原始生成器日志核对。若需要精确溯源，请以 image_gen 的历史记录为准。"
+  },
+  "assets": [
+    {
+      "element": "metal",
+      "file": "metal.webp",
+      "source_filename": "exec-3497ef59-d3bd-4e72-9925-436ac65a7f8a.png",
+      "intermediate_png": "metal.png（转换输入，已删除）",
+      "bytes": 112598,
+      "sha256": "c2d5f6d222e770ace2c79c9fc8f63be52183da828766a1685eaee50db72eb282"
+    },
+    {
+      "element": "wood",
+      "file": "wood.webp",
+      "source_filename": "exec-e24eddcc-c2d4-4177-8428-24484633fd58.png",
+      "intermediate_png": "wood.png（转换输入，已删除）",
+      "bytes": 101272,
+      "sha256": "ff3d0833901f1e42f53981d85855e3ee29da97c8109e0af40a2510037d5a6dca"
+    },
+    {
+      "element": "water",
+      "file": "water.webp",
+      "source_filename": "exec-0db301d4-832e-4ed5-82b8-ec78d9b94ade.png",
+      "intermediate_png": "water.png（转换输入，已删除）",
+      "bytes": 127822,
+      "sha256": "478048f59db6bdf8ae7692b8f7efc9299cc0884ac7c2379ac733b7fc914e5e4d"
+    },
+    {
+      "element": "fire",
+      "file": "fire.webp",
+      "source_filename": "exec-c305efc8-4c51-4777-83d6-090413e915c9.png",
+      "intermediate_png": "fire.png（转换输入，已删除）",
+      "bytes": 99198,
+      "sha256": "c30d988643369ff8a38afb608704c77b9ff1b0b8b0b9f9dd9ed512197bb581d1"
+    },
+    {
+      "element": "earth",
+      "file": "earth.webp",
+      "source_filename": "exec-aada2862-1668-4b53-85ca-b95917656554.png",
+      "intermediate_png": "earth.png（转换输入，已删除）",
+      "bytes": 90628,
+      "sha256": "d028692d169cae7cedfe598cc5fe3fcb6e49c9fcf9004010fe258c1948f5b2c9"
+    }
+  ]
+}

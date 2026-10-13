@@ -1,0 +1,80 @@
+.hud .boss-portrait {
+  position: relative; width: 100%; height: 220px; margin: 0; overflow: hidden;
+  border: 1px solid #ae855277; border-radius: 3px; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 32%, #80563355, transparent 75%), linear-gradient(150deg, #2f201b, #120e10);
+  box-shadow: inset 0 0 25px #0b080b99, 0 8px 24px #0004;
+}
+.hud .boss-portrait[hidden] { display: none; }
+.boss-portrait-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; }
+.boss-portrait figcaption { position: absolute; bottom: 0; left: 0; right: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 6px; padding: 30px 10px 9px; background: linear-gradient(transparent, #130d12e8 55%); }
+.boss-portrait-name { color: #fae1b0; font: 16px var(--font-cn); text-shadow: 0 1px 4px #000; }
+.boss-portrait-phase { color: #d9b498; font-size: 10px; text-align: right; }
+.boss-portrait-missing { position: absolute; inset: 0; display: grid; place-items: center; color: #bba281; font-size: 11px; }
+.boss-portrait-missing[hidden] { display: none; }
+.hud .boss-portrait--wounded { border-color: #d07d6488; }
+.boss-portrait--defeated .boss-portrait-image { opacity: .6; filter: saturate(.45); }
+
+@media (min-width: 801px) {
+  .hud .hud-right { gap: 10px; }
+  /* Portrait and stats share the existing right HUD column, away from the board. */
+  .hud .hud-right .p-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "shots time" "state state" "energy mult" "next next" "minions minions" "bounces recovery" "track track" "dash dash" "help help" "buffs buffs"; gap: 8px; padding: 11px 12px; }
+  .hud .hud-right .stat--shots { grid-area: shots; }
+  .hud .hud-right .stat--time { grid-area: time; }
+  .hud .hud-right .stat--energy { grid-area: energy; }
+  .hud .hud-right .stat--mult { grid-area: mult; }
+  .hud .hud-right .stat--next { grid-area: next; }
+  .hud .hud-right .stat--minions { grid-area: minions; }
+  .hud .hud-right .stat--bounces { grid-area: bounces; }
+  .hud .hud-right .stat--recovery { grid-area: recovery; }
+  .hud .hud-right .ball-state { grid-area: state; }
+  .hud .hud-right .recovery-track { grid-area: track; }
+  .hud .hud-right .recovery-help { grid-area: help; }
+  .hud .hud-right .dash-btn { grid-area: dash; }
+  .hud .hud-right .buffs { grid-area: buffs; }
+  .hud .hud-right .stat { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 4px; min-width: 0; padding-bottom: 7px; }
+  .hud .hud-right .stat--next { flex-direction: row; justify-content: space-between; }
+  .hud .hud-right .stat--minions { flex-direction: row; align-items: center; justify-content: space-between; }
+  .hud .hud-right .stat--minions b { font-size: 12px; }
+  .hud .hud-right .stat > span { font-size: 10px; }
+  .hud .hud-right .stat b { font-size: 17px; }
+  .hud .hud-right .stat--shots b, .hud .hud-right .stat--time b { font-size: 26px; }
+  .hud .hud-right .stat--next b { font-size: 12px; }
+  .hud .hud-right .ball-state, .hud .hud-right .dash-btn, .hud .hud-right .recovery-track,
+  .hud .hud-right .recovery-help, .hud .hud-right .buffs { grid-column: 1 / -1; margin: 0; }
+  .hud .hud-right .dash-btn { min-height: 30px; padding: 6px; }
+  .hud .hud-right .recovery-help { font-size: 10px; }
+}
+@media (min-width: 801px) and (max-height: 760px) {
+  .hud .boss-portrait { height: 175px; }
+  .hud .hud-right { gap: 8px; }
+  .hud .hud-right .p-stats { gap: 6px; padding: 9px 10px; }
+  .hud .hud-right .stat { padding-bottom: 5px; gap: 2px; }
+  .hud .hud-right .stat--shots b, .hud .hud-right .stat--time b { font-size: 23px; }
+}
+@media (min-width: 801px) and (max-height: 620px) {
+  .hud .boss-portrait { height: 112px; }
+  .hud .boss-portrait-image { object-position: 50% 0%; }
+  .hud .hud-right .p-stats { gap: 4px; }
+  .hud .hud-right .recovery-help { display: none; }
+}
+@media (max-width: 800px) {
+  .hud .hud-right > .boss-portrait { position: fixed; top: max(8px, env(safe-area-inset-top)); left: max(12px, env(safe-area-inset-left)); width: 64px; height: 84px; }
+  .hud .boss-portrait figcaption { display: none; }
+  .hud .boss-portrait-image { object-position: 50% 0%; }
+  .hud .boss-portrait-missing { padding: 4px; font-size: 9px; text-align: center; }
+  .hud .battle-brand { left: 88px; top: max(12px, env(safe-area-inset-top)); }
+  .hud .boss-bar { top: max(36px, calc(env(safe-area-inset-top) + 28px)); left: 88px; right: 14px; width: auto; transform: none; }
+  .hud .boss-name { font-size: 14px; letter-spacing: .04em; }
+  .hud .boss-hp { font-size: 10px; letter-spacing: 0; }
+  .hud .boss-phase { display: block; margin-top: 3px; font-size: 9px; letter-spacing: .04em; text-align: left; }
+  .hud .hud-right { top: max(98px, calc(env(safe-area-inset-top) + 94px)); }
+  .hud .hud-right .p-stats { gap: 2px; padding: 6px 9px; }
+  .hud .hud-right .stat--minions { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; }
+  .hud .hud-right .stat--minions b { font-size: 12px; }
+  .hud .hud-right .ball-state { font-size: 10px; line-height: 1.3; }
+  .hud .hud-right .dash-btn { height: 21px; min-height: 21px; }
+  .hud .hud-right .recovery-track { height: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boss-portrait-image { transition: none; }
+}

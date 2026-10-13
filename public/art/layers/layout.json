@@ -1,0 +1,61 @@
+{
+  "card": [
+    1024,
+    1536
+  ],
+  "subjectCanvas": [
+    1280,
+    1920
+  ],
+  "bleed": [
+    128,
+    192
+  ],
+  "subjectWidth": 1060,
+  "subjectTop": 120,
+  "defaultPlacement": {
+    "scale": 1.0,
+    "offsetX": 0.0,
+    "offsetY": 0.0,
+    "frame": {
+      "scale": 1.0,
+      "offsetX": 0.0,
+      "offsetY": 0.0
+    }
+  },
+  "defaultFramePlacement": {
+    "scale": 1.0,
+    "offsetX": 0.0,
+    "offsetY": 0.0
+  },
+  "frameOpacity": 0.7,
+  "frameDepth": 0.0,
+  "frameScale": 1.0,
+  "frameLayer": "under-subject",
+  "frameFit": "contain-then-scale",
+  "backgroundDof": 0.85,
+  "cardUvOffset": [
+    0.1,
+    0.1
+  ],
+  "cardUvScale": [
+    0.8,
+    0.8
+  ],
+  "flat": {
+    "card": {
+      "width": 853,
+      "height": 1280,
+      "quality": 88
+    },
+    "portrait": {
+      "height": 1280,
+      "quality": 88
+    },
+    "thumb": {
+      "width": 427,
+      "height": 640,
+      "quality": 80
+    }
+  }
+}

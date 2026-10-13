@@ -1,0 +1,9 @@
+2026-10-04. Generated with the built-in imagegen tool.
+
+lacquer.png: opaque portrait diffuse texture; dark burgundy lacquer over fine walnut grain, restrained engraved brass mountain/cloud outlines near edges, quiet central field; no text, objects, baked highlights, or foil.
+
+walnut.png: square seamless diffuse texture; dark reddish brown walnut, long subtle grain, fine pores and slight patina, flat neutral illumination, no baked shadows/highlights, no ornament or lettering.
+
+Visual target: .dream-loop/target.png, generated as a refinement of shots/audit-2026-10-04-battle.png. Target brief: real in-engine Three.js pachinko screenshot, substantial lacquered wooden cabinet with brass trim, chrome pins, clear steelball and gold rescue ring, sparse teaching board, compact three-skill left panel, shots/time/energy/multiplier right panel, legible five scoring slots. Existing character identity preserved. Target is review-only and never used as a background in the game.
+
+Generated source files remain in the Codex generated_images folder; these project copies are the runtime assets.

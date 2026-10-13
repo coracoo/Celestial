@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <!-- 内联 SVG 图标：省掉一次 /favicon.ico 的 404 请求（浏览器总会去要） -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23241018'/%3E%3Ccircle cx='16' cy='13' r='6' fill='%23ffd24a'/%3E%3Cpath d='M9 21h14l-2 6H11z' fill='%23e0a34a'/%3E%3C/svg%3E"
+    />
+    <title>Celestial Heroes · 3D 柏青哥</title>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="stage"></canvas>
+      <div id="ui"></div>
+      <div id="boot">
+        <div class="boot-mark">娘</div>
+        <div class="boot-text">正在铸造 Celestial 第一阵…</div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

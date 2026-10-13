@@ -1,0 +1,58 @@
+{
+  "id": "yangzhi",
+  "number": 17,
+  "name": "杨志",
+  "title": "青面兽",
+  "rarity": "R",
+  "wuxing": "earth",
+  "role": "稳打",
+  "color": "#2f9a8c",
+  "accent": "#8fe0d4",
+  "tagline": "身扛八十万",
+  "lore": "青面孔的押司，提着一口宝刀赶一条谁也走不通的路。她不喊口号，她只是一刀一刀地把路砍出来。",
+  "base": {
+    "hp": 118,
+    "atk": 12,
+    "def": 9,
+    "speed": 10
+  },
+  "skill": {
+    "id": "yangzhi_saber",
+    "name": "刀口舔血",
+    "rule": "抬高每弹伤害并降低阻尼，让球既越弹越疼又不容易被磨停",
+    "desc": "没有花巧的 6 秒：每弹伤害 ×1.45、落槽 ×1.26、阻尼 ×0.85。她不制造奇迹，她只是让每一次碰撞都比上一次更值。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0,
+      "charges": 7,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "bounceDamage",
+        "value": 1.45,
+        "duration": 6
+      },
+      {
+        "key": "slot",
+        "value": 1.26,
+        "duration": 6
+      },
+      {
+        "key": "damping",
+        "value": 0.85,
+        "duration": 6
+      }
+    ],
+    "fx": "zone_normal"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "saber"
+  },
+  "bonds": [
+    "huyanzhuo",
+    "likui"
+  ]
+}

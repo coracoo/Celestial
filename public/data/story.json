@@ -1,0 +1,510 @@
+[
+  {
+    "stageId": "stage_01",
+    "title": "碎星初醒",
+    "motif": "寻回第一枚星印",
+    "summary": "天上的星图碎了。武松与林冲在 Celestial 遇见失控的镇山灵兽，第一枚星印正困在它的阵心。",
+    "cast": [
+      "wusong",
+      "linchong"
+    ],
+    "before": [
+      {
+        "speaker": "narrator",
+        "text": "昨夜，星图裂成十二道光。今晨，山路上的石钉长出了金、木、水、火、土五色纹路。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "虎啸里有求救声。我去开路，你替我找出困住它的东西。"
+      },
+      {
+        "speaker": "linchong",
+        "text": "它脚下那点星光便是阵心。先辨五行，再让弹珠沿钉阵借力。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "好。先把它救出来，再问这片天到底出了什么事。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "linchong",
+        "text": "灵兽静下来了。这枚星印上有一条路，终点似乎是梁山。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "路上若还有人被困，就一并带走。星图可以慢慢拼，人不能等。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "第一枚星印亮起，映出渭州一座闭门的粮仓。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_02",
+    "title": "粮仓里的火",
+    "motif": "让被困的人先出门",
+    "summary": "渭州粮仓被镇关西的火阵封住。鲁智深要拆掉阵门，也要保住仓中百姓赖以过冬的粮食。",
+    "cast": [
+      "luzhishen",
+      "wusong"
+    ],
+    "before": [
+      {
+        "speaker": "luzhishen",
+        "text": "门后还有孩子。拆门我来，别让火星落到粮袋上。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "那我就把火阵的靶点逐个打掉。它重新聚起来怎么办？"
+      },
+      {
+        "speaker": "luzhishen",
+        "text": "墙边那口池在吞光，吞满了会替靶点补回元气。别把一次击破当成完事。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "记住了。看清它恢复的时机，留下够用的球，一口气穿过阵门。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "wusong",
+        "text": "粮袋还好，孩子也出来了。星印藏在门锁里，难怪火阵不肯停。"
+      },
+      {
+        "speaker": "luzhishen",
+        "text": "拿走锁，粮留给乡亲。下一回若还有这样的门，叫上我。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "第二道星光指向雪中孤庙。一封求援信落在林冲手里。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_03",
+    "title": "雪夜的另一枪",
+    "motif": "辨清镜影与本心",
+    "summary": "山神庙的星阵映出另一个林冲。她必须越过自己不肯回望的旧伤，带走困在雪中的守庙人。",
+    "cast": [
+      "linchong",
+      "luzhishen"
+    ],
+    "before": [
+      {
+        "speaker": "linchong",
+        "text": "庙里那杆枪，与我的一模一样。它把我走过的每一步都记了下来。"
+      },
+      {
+        "speaker": "luzhishen",
+        "text": "像你，不等于就是你。门后有人冻了一夜，先把门打开。"
+      },
+      {
+        "speaker": "linchong",
+        "text": "镜影以金阵守中路，火能破金。我会找回自己的节奏。"
+      },
+      {
+        "speaker": "linchong",
+        "text": "握住枪诀先看那条亮线，等敌人落进范围再松手。枪、刀、禅杖各有自己的距离，别只盯着技能何时亮起。"
+      },
+      {
+        "speaker": "luzhishen",
+        "text": "你向前走，我守住身后。今夜没人再独自留在雪里。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "linchong",
+        "text": "那道影子散了。原来星阵只能照见伤痕，替不了我作选择。"
+      },
+      {
+        "speaker": "luzhishen",
+        "text": "能这样想就好。给守庙人一碗热汤，咱们再上路。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "第三枚星印不再映出孤影，而是七盏会合的灯。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_04",
+    "title": "七灯密约",
+    "motif": "夺回被运走的阵钥",
+    "summary": "一支押运队把星印当作贡物运走。吴用与公孙胜循着七盏暗灯，准备截下开启星图的阵钥。",
+    "cast": [
+      "wuyong",
+      "gongsunsheng"
+    ],
+    "before": [
+      {
+        "speaker": "wuyong",
+        "text": "七盏灯已齐，押运队却多带了一座五行阵。有人知道我们在找星印。"
+      },
+      {
+        "speaker": "gongsunsheng",
+        "text": "池水借地脉养阵，靶点碎了也能复生。阵钥不取走，这条路就断不了。"
+      },
+      {
+        "speaker": "wuyong",
+        "text": "那就让第一轮反弹替我们清出入口，再借落槽直取阵心。每一颗球都得算。"
+      },
+      {
+        "speaker": "gongsunsheng",
+        "text": "我稳住地脉。你算的是胜机，我护的是沿路的人。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "gongsunsheng",
+        "text": "阵钥取到了，但地脉仍在向梁山汇流。有人在那里筑一座更大的阵。"
+      },
+      {
+        "speaker": "wuyong",
+        "text": "我们也该有个落脚处。星印交给宋江，七盏灯留给后来的人认路。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "第四道光铺出一条水路。路的尽头，却悬着拒客的铁链。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_05",
+    "title": "泊口开门",
+    "motif": "把山门变成归处",
+    "summary": "梁山泊口的守阵人不肯接纳流民。宋江与林冲决定让五色星印成为入山的灯，而非拦人的锁。",
+    "cast": [
+      "songjiang",
+      "linchong"
+    ],
+    "before": [
+      {
+        "speaker": "songjiang",
+        "text": "渡口挤满了人。山里有屋有米，这条铁链却只认一封凭据。"
+      },
+      {
+        "speaker": "linchong",
+        "text": "王义借水阵封了航道。土能制水，我会从两侧压住它。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "破阵后，守阵人也留下吃饭。我们要拆的是规矩里的恶，不是所有守门的人。"
+      },
+      {
+        "speaker": "linchong",
+        "text": "明白。今夜我守山门，让愿意归来的人都能走进去。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "linchong",
+        "text": "铁链落下了。那些船终于能靠岸。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "把第五枚星印挂在泊口。以后这盏灯只照归路，不查来处。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "梁山有了第一批同盟，也收到祝家庄扣押药材的消息。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_06",
+    "title": "三重荆门",
+    "motif": "赶在伤者失温之前",
+    "summary": "祝家庄以三重木阵扣下救急药材。武松与花荣要找到同一根阵脉，赶在梁山伤者失温前打开路。",
+    "cast": [
+      "wusong",
+      "huarong"
+    ],
+    "before": [
+      {
+        "speaker": "huarong",
+        "text": "三道门看似各守一方，影子却指向同一棵树。那就是它们共用的阵脉。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "药还在里面，伤者还在等。我没空跟这三道门轮流讲道理。"
+      },
+      {
+        "speaker": "huarong",
+        "text": "金克木。让弹珠连着借力，别在第一道门前耗尽出手机会。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "你替我指路。我会把药和带路的人一起送回去。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "huarong",
+        "text": "三门同落，药车已经过桥。第六枚星印藏在树心，难怪木阵生生不息。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "拿到星印也别磨蹭，先护车回山。等大家醒了，我再讲这一仗。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "一封来自大名府的邀约随药车抵达，署名是卢俊义。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_07",
+    "title": "玉麟问心",
+    "motif": "赢得同盟的信任",
+    "summary": "卢俊义持有一枚星印，却不愿交给另一支只懂夺取的队伍。宋江必须以一场守约的试阵赢得信任。",
+    "cast": [
+      "songjiang",
+      "lujunyi"
+    ],
+    "before": [
+      {
+        "speaker": "lujunyi",
+        "text": "星印给过我力量，也让太多人来索要。你凭什么保证梁山不会变成下一个牢笼？"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "我保证不了一句话就让你信服。你设阵，我应试；你的人由我们一起护。"
+      },
+      {
+        "speaker": "lujunyi",
+        "text": "试阵铺满五行，恢复池会补起破靶。靠莽力走不到尽头，靠同伴才行。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "那便请你亲眼看看：每次有人出手，都有人替她守住退路。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "lujunyi",
+        "text": "你们过了阵，也没有丢下倒下的守阵人。星印交给你，我也一同上山。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "山里再添一盏灯。位置不分先来后到，你来便有你的席。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "第七道星光照出江州水面，一篇求救文字正在被抹去。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_08",
+    "title": "水上无字",
+    "motif": "保住求援的声音",
+    "summary": "江州的星阵正在抹去楼上留下的求救文字。吴用与张顺潜入水路，争取在声音消失前救出留字者。",
+    "cast": [
+      "wuyong",
+      "zhangshun"
+    ],
+    "before": [
+      {
+        "speaker": "zhangshun",
+        "text": "楼下的水不对。每抹掉一行字，就多一片冷光流进阵里。"
+      },
+      {
+        "speaker": "wuyong",
+        "text": "黄文炳把星印当作封口的印章。等字全没了，连谁在求救都无人知道。"
+      },
+      {
+        "speaker": "zhangshun",
+        "text": "水路我熟。你标出土靶的回弹口，我送弹珠绕过它的水阵。"
+      },
+      {
+        "speaker": "wuyong",
+        "text": "好。先破阵，再留证。救回一个人，也要让更多人敢把话写下来。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "zhangshun",
+        "text": "留字者上船了，字也回来了。江面第一次这么安静。"
+      },
+      {
+        "speaker": "wuyong",
+        "text": "把拓本带回梁山。第八枚星印记住的，不该只有发号施令的声音。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "船还未归，沂岭的警钟就响了。那里有人正与星阵一同失控。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_09",
+    "title": "怒潮回岸",
+    "motif": "把同伴从怒意中拉回",
+    "summary": "李逵为追赶劫走乡亲的阵影闯入沂岭，却被火脉缠住。鲁智深要让她停下来，武松则守住撤离的路。",
+    "cast": [
+      "luzhishen",
+      "likui"
+    ],
+    "before": [
+      {
+        "speaker": "likui",
+        "text": "我再砸一次，它们就该散了！为什么我砸得越狠，火越大？"
+      },
+      {
+        "speaker": "luzhishen",
+        "text": "因为那阵在借你的怒气。先听我一句，乡亲已经由武松护着往外走了。"
+      },
+      {
+        "speaker": "likui",
+        "text": "我停下，它们会不会追过去？我不想再眼看着谁被带走。"
+      },
+      {
+        "speaker": "luzhishen",
+        "text": "你不用一个人挡。我们以水制火，把阵拆开，再一起接他们回家。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "likui",
+        "text": "火灭了。我刚才连你的声音都听不清……这一回，是我太急。"
+      },
+      {
+        "speaker": "luzhishen",
+        "text": "知道回头就好。第九枚星印收稳，回山先去看看那些你想保护的人。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "九枚星印聚齐，同盟却为该由谁持有它们起了争执。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_10",
+    "title": "星席不论高低",
+    "motif": "让力量归于同盟",
+    "summary": "梁山议席上，残缺星图引出一场争执。宋江与吴用让每盏星灯都拥有席位，并迎接守山旧阵的考验。",
+    "cast": [
+      "songjiang",
+      "wuyong"
+    ],
+    "before": [
+      {
+        "speaker": "wuyong",
+        "text": "九枚星印已连成环。若由一人握住，确实更容易发令，也更容易重蹈覆辙。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "那就把星印分给各路同伴。席位是承诺，不是压在别人头上的高低。"
+      },
+      {
+        "speaker": "wuyong",
+        "text": "守山旧阵仍认旧主的印记。它要我们证明，五行可以彼此牵制，也能互相借力。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "请每个人把自己的那一盏灯点亮。梁山的门，往后由我们共同守。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "wuyong",
+        "text": "旧阵接受了新约，第十枚星印归位。图上只剩两处暗点。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "一处在陈桥驿。使者说，只要交出星印，就能换一纸平安。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "同盟带着星图赴约，也带着刚刚立下的承诺。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_11",
+    "title": "金纸与归路",
+    "motif": "守住可以离开的权利",
+    "summary": "陈桥驿的金纸许诺安宁，却要求同盟交出星印与归山的路。林冲与宋江须破除契阵，保住众人的选择。",
+    "cast": [
+      "linchong",
+      "songjiang"
+    ],
+    "before": [
+      {
+        "speaker": "linchong",
+        "text": "纸上写着安宁，纸下的金阵却把退路都封了。这种门，我认得。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "若平安要靠人人交出选择来换，那封信就不算约。先让使者和百姓离开。"
+      },
+      {
+        "speaker": "linchong",
+        "text": "我以火破金，你守住东面的落槽。恢复池蓄满后阵靶会回来，别被假缺口骗了。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "归路必须留着。愿意与我们同行的人，不该因为一纸许诺就失去家。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "linchong",
+        "text": "契阵已破，第十一枚星印离开了金纸。那条回山的路还在。"
+      },
+      {
+        "speaker": "songjiang",
+        "text": "最后一枚在昱岭关。我们去结束这场碎星之乱，然后带所有人回家。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "十一道光照向远关。方腊的阵炉里，最后一枚星印仍在燃烧。"
+      }
+    ]
+  },
+  {
+    "stageId": "stage_12",
+    "title": "群星有归处",
+    "motif": "重连星图，停止借命养阵",
+    "summary": "昱岭关的阵炉不断抽取周围生灵的元气。武松与林冲走入最后一阵，要把星图从统御的锁变回指路的灯。",
+    "cast": [
+      "wusong",
+      "linchong"
+    ],
+    "before": [
+      {
+        "speaker": "linchong",
+        "text": "最后的星印就在炉心。五行阵靠恢复池不断续接，山外的人却越来越虚弱。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "那就把炉心打开。一路救下的人都在等我们回去，这一阵，我不让它再借谁的命。"
+      },
+      {
+        "speaker": "linchong",
+        "text": "同伴正在外面稳住五道阵脉。借反弹穿过靶群，趁落槽打通最后的锁。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "你找路，我破阵。等星图亮起来，先照着大家回家。"
+      }
+    ],
+    "after": [
+      {
+        "speaker": "linchong",
+        "text": "十二枚星印连上了。元气回到山川，星图不再只听一个人的命令。"
+      },
+      {
+        "speaker": "wusong",
+        "text": "好。把梁山那盏灯点亮，别让晚归的人摸黑走。下一段路，我们仍一起走。"
+      },
+      {
+        "speaker": "narrator",
+        "text": "群星各守一方，也彼此照亮。星阵归途的故事在这里收束，同盟的生活才刚开始。"
+      }
+    ]
+  }
+]

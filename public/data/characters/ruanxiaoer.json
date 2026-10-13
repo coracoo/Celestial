@@ -1,0 +1,66 @@
+{
+  "id": "ruanxiaoer",
+  "number": 27,
+  "name": "阮小二",
+  "title": "立地太岁",
+  "rarity": "R",
+  "wuxing": "water",
+  "role": "清盘",
+  "color": "#356b7a",
+  "accent": "#88c8d8",
+  "tagline": "立地成桩，桩桩到底",
+  "lore": "阮氏三雄的老大。她话最少，站在那儿就是一堵墙——石碣村那一夜，是她第一个跳出去挡在门口。",
+  "base": {
+    "hp": 118,
+    "atk": 12,
+    "def": 9,
+    "speed": 9
+  },
+  "skill": {
+    "id": "ruanxiaoer_stake",
+    "name": "立地太岁",
+    "rule": "清掉一片钉板，代价是这段时间球速偏慢",
+    "desc": "拔出 4.4 半径内的全部普通钉，5 秒内落槽 ×1.45、弹性 ×1.3。代价是球速 ×0.85——她要盘面空，代价是球走得慢。",
+    "trigger": {
+      "on": "heavyImpact",
+      "minIntensity": 0.4,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "slot",
+        "value": 1.45,
+        "duration": 5
+      },
+      {
+        "key": "bounce",
+        "value": 1.3,
+        "duration": 5
+      },
+      {
+        "key": "speed",
+        "value": 0.85,
+        "duration": 5
+      }
+    ],
+    "destroy": {
+      "radius": 4.4,
+      "kinds": [
+        "normal",
+        "destructible"
+      ],
+      "damage": 210
+    },
+    "fx": "shockRing"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "stake"
+  },
+  "bonds": [
+    "ruanxiaowu",
+    "ruanxiaoqi"
+  ]
+}

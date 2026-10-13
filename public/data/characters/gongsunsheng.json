@@ -1,0 +1,65 @@
+{
+  "id": "gongsunsheng",
+  "number": 4,
+  "name": "公孙胜",
+  "title": "入云龙",
+  "rarity": "SSR",
+  "wuxing": "water",
+  "role": "控场",
+  "color": "#3f7fa8",
+  "accent": "#9fe0ff",
+  "tagline": "呼风唤雨，脚下生云",
+  "lore": "罗真人门下，掌心雷公之在。她不打人，她改天气——把整盘的重力按住，让球在半空多赖一会儿，等它落到她要的位置。",
+  "base": {
+    "hp": 128,
+    "atk": 15,
+    "def": 10,
+    "speed": 10
+  },
+  "skill": {
+    "id": "gongsunsheng_clouds",
+    "name": "呼风唤雨",
+    "rule": "整局按住重力让球飘在空中，同时给一个速度下限防止它半路停死",
+    "desc": "全程重力 ×0.55、球速 ×1.35，并给球设 3.2 bu/s 的速度下限——球在半空飘着，但永远不会飘到停住。落槽 ×1.3。她在那儿，天就一直是这个天气。",
+    "trigger": {
+      "on": "zoneSkill",
+      "minIntensity": 0,
+      "charges": 1,
+      "perHit": 1,
+      "auto": true
+    },
+    "mods": [
+      {
+        "key": "gravity",
+        "value": 0.55,
+        "duration": 0
+      },
+      {
+        "key": "speed",
+        "value": 1.35,
+        "duration": 0
+      },
+      {
+        "key": "speedFloor",
+        "value": 3.2,
+        "duration": 0
+      },
+      {
+        "key": "slot",
+        "value": 1.3,
+        "duration": 0
+      }
+    ],
+    "fx": "berserk"
+  },
+  "card": {
+    "rarity": "SSR",
+    "holo": "auto",
+    "motif": "cloud"
+  },
+  "bonds": [
+    "wuyong",
+    "songjiang",
+    "lujunyi"
+  ]
+}

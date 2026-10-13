@@ -1,0 +1,74 @@
+{
+  "id": "luzhishen",
+  "number": 13,
+  "name": "鲁智深",
+  "title": "花和尚",
+  "rarity": "SSR",
+  "wuxing": "earth",
+  "role": "清盘",
+  "color": "#8a5ad0",
+  "accent": "#c9a6ff",
+  "tagline": "倒拔垂杨柳",
+  "lore": "一百斤禅杖不是用来抡的，是用来把地方砸平的。她不绕路，她把挡路的那一块直接挖掉。",
+  "base": {
+    "hp": 146,
+    "atk": 19,
+    "def": 11,
+    "speed": 10
+  },
+  "skill": {
+    "id": "luzhishen_uproot",
+    "name": "倒拔垂杨柳",
+    "rule": "禅杖圆击伤敌，拔去环境钉并把球托回上方",
+    "desc": "按住预览6.8半径棍圈，松开对范围内敌人各造成150点基础伤害，按鲁智深的土属性与共享爆伤修正；同时清除范围内普通 / 可破坏 / 破绽钉。随后4秒Boss承伤×1.8、弹性×1.35、持续上托弹珠。只有击破敌人才结算击坠奖励，空放不扣Boss血。",
+    "trigger": {
+      "on": "heavyImpact",
+      "minIntensity": 0.35,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "bounce",
+        "value": 1.35,
+        "duration": 4
+      }
+    ],
+    "destroy": {
+      "radius": 6.8,
+      "kinds": [
+        "normal",
+        "destructible",
+        "weak"
+      ],
+      "damage": 0
+    },
+    "force": {
+      "ax": 0,
+      "ay": 26
+    },
+    "bossVuln": {
+      "factor": 1.8,
+      "duration": 4
+    },
+    "fx": "shockRing",
+    "strike": {
+      "shape": "circle",
+      "radius": 6.8,
+      "damage": 150,
+      "origin": "ball",
+      "kinds": [
+        "enemy"
+      ]
+    }
+  },
+  "card": {
+    "rarity": "SSR",
+    "holo": "auto",
+    "motif": "monk"
+  },
+  "bonds": [
+    "wusong",
+    "songjiang"
+  ]
+}

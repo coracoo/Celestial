@@ -1,0 +1,58 @@
+{
+  "id": "xuning",
+  "number": 18,
+  "name": "徐宁",
+  "title": "金枪手",
+  "rarity": "R",
+  "wuxing": "metal",
+  "role": "连击",
+  "color": "#6b6b7a",
+  "accent": "#c0c8d8",
+  "tagline": "钩镰枪法，绊住就走不掉",
+  "lore": "金枪班教师傅。她那杆钩镰枪不为杀人，为绊人——球被她一钩，就再也回不到原来的路上。",
+  "base": {
+    "hp": 106,
+    "atk": 12,
+    "def": 7,
+    "speed": 12
+  },
+  "skill": {
+    "id": "xuning_goulin",
+    "name": "钩镰绊索",
+    "rule": "给球的每次反弹额外挂一份伤害",
+    "desc": "6 秒内每次反弹额外结算 26 点反弹伤害并叠 0.05 落槽加成；阻尼 ×0.75，弹速 ×1.2。球撞得越勤，她拿得越多。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0.1,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "bounceDamage",
+        "value": 1.45,
+        "duration": 6
+      },
+      {
+        "key": "damping",
+        "value": 0.75,
+        "duration": 6
+      },
+      {
+        "key": "speed",
+        "value": 1.2,
+        "duration": 6
+      }
+    ],
+    "fx": "bounceMilestone"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "hook"
+  },
+  "bonds": [
+    "huyanzhuo",
+    "dongping"
+  ]
+}

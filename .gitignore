@@ -1,0 +1,39 @@
+# 依赖与构建产物
+/node_modules/
+/dist/
+
+# 素材生成的工作区与原料（最终产物在 public/art/，已入库）
+/cards/
+/立绘/
+/shots/
+
+# Agent 脚手架与开发过程记录
+/.acceptance/
+/.data/
+/.agents/
+/.claude/
+/agent/
+/prompts/
+/canvas/
+/docs/
+/tools/
+/.artcache/
+/.repair-backup/
+/.dream-loop/
+/skills-lock.json
+/.vite.log
+/.vite.err
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+*.local
+
+# Python 字节码
+__pycache__/
+*.py[cod]
+# �� git ����
+/.git.bak-old/
+
+# ���츽��
+/assets/

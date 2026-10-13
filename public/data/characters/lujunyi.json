@@ -1,0 +1,72 @@
+{
+  "id": "lujunyi",
+  "number": 2,
+  "name": "卢俊义",
+  "title": "玉麒麟",
+  "rarity": "UR",
+  "wuxing": "metal",
+  "role": "破阵",
+  "color": "#c9a227",
+  "accent": "#ffe9a8",
+  "tagline": "棍棒天下，谁是我对手",
+  "lore": "河北玉麒麟。梁山把他排在第二位，不是因为他最会带人——是因为论一个人能打到什么程度，满座无人能及。她练的不是招式，是「一下就够」。",
+  "base": {
+    "hp": 152,
+    "atk": 17,
+    "def": 12,
+    "speed": 12
+  },
+  "skill": {
+    "id": "lujunyi_rodsky",
+    "name": "棍棒天下",
+    "rule": "棍圈横扫范围内敌人，同时把落槽伤害抬到全场最高",
+    "desc": "她不靠次数靠单次。按住预览棍圈（半径 7.2），松开对范围内敌人各造成 190 点基础伤害，按她的金属性与共享爆伤修正；随后 7 秒内落槽 ×2.05、即时伤害 ×1.4、弹性 ×1.25，Boss 承伤 ×1.4（8 秒）。这一发下去，盘上其余人都得让路。",
+    "trigger": {
+      "on": "heavyImpact",
+      "minIntensity": 0.5,
+      "charges": 8,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "slot",
+        "value": 2.05,
+        "duration": 7
+      },
+      {
+        "key": "burst",
+        "value": 1.4,
+        "duration": 7
+      },
+      {
+        "key": "bounce",
+        "value": 1.25,
+        "duration": 7
+      }
+    ],
+    "bossVuln": {
+      "factor": 1.4,
+      "duration": 8
+    },
+    "fx": "shockRing",
+    "strike": {
+      "shape": "circle",
+      "radius": 7.2,
+      "damage": 190,
+      "origin": "ball",
+      "kinds": [
+        "enemy"
+      ]
+    }
+  },
+  "card": {
+    "rarity": "UR",
+    "holo": "gold",
+    "motif": "jade"
+  },
+  "bonds": [
+    "songjiang",
+    "wusong",
+    "linchong"
+  ]
+}

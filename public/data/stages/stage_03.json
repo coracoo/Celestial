@@ -1,0 +1,774 @@
+{
+  "id": "stage_03",
+  "name": "汴梁 · 风雪山神庙",
+  "subtitle": "那一夜风雪，大到看不见人",
+  "story": "林冲发配沧州，止不住脚步要回东京。风雪山神庙里，他才知道自己已经被逼到了哪一步。",
+  "layoutNote": "宽盘 18 + 低重力。蜂窝密排 + 一条螺线：蜂窝决定路难选，螺线负责把球一路搅到底。",
+  "board": {
+    "width": 18,
+    "height": 32,
+    "gravity": -62,
+    "walls": [],
+    "deflectors": [
+      {
+        "id": "trk_roof_l",
+        "x": -4.443,
+        "y": 30.155,
+        "w": 3.611,
+        "h": 0.2,
+        "rotDeg": -20,
+        "role": "deflector"
+      },
+      {
+        "id": "trk_roof_r",
+        "x": 4.443,
+        "y": 30.155,
+        "w": 3.611,
+        "h": 0.2,
+        "rotDeg": 20,
+        "role": "deflector"
+      },
+      {
+        "id": "d_mid_l",
+        "x": -4.972,
+        "y": 22.736464758633275,
+        "w": 1.3,
+        "h": 0.16,
+        "rotDeg": -15,
+        "role": "deflector"
+      },
+      {
+        "id": "d_mid_r",
+        "x": 4.972,
+        "y": 22.736464758633275,
+        "w": 1.3,
+        "h": 0.16,
+        "rotDeg": 15,
+        "role": "deflector"
+      },
+      {
+        "id": "d_low_l",
+        "x": -4.982,
+        "y": 14.257260187900247,
+        "w": 1.4,
+        "h": 0.16,
+        "rotDeg": -28,
+        "role": "deflector"
+      },
+      {
+        "id": "d_low_r",
+        "x": 4.982,
+        "y": 14.257260187900247,
+        "w": 1.4,
+        "h": 0.16,
+        "rotDeg": 28,
+        "role": "deflector"
+      },
+      {
+        "id": "flip_left",
+        "x": -2.202,
+        "y": 5.505718901111481,
+        "w": 1.3499999999999999,
+        "h": 0.16,
+        "rotDeg": -22,
+        "role": "deflector",
+        "flip": "left"
+      },
+      {
+        "id": "guide_left",
+        "x": -3.528,
+        "y": 4.380718901111481,
+        "w": 0.07499999999999996,
+        "h": 0.16,
+        "rotDeg": 0,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_left",
+        "x": -6.227,
+        "y": 3.45480376936294,
+        "w": 2.7916594621556654,
+        "h": 0.16,
+        "rotDeg": -20,
+        "role": "deflector"
+      },
+      {
+        "id": "flip_right",
+        "x": 2.202,
+        "y": 5.505718901111481,
+        "w": 1.3499999999999999,
+        "h": 0.16,
+        "rotDeg": 22,
+        "role": "deflector",
+        "flip": "right"
+      },
+      {
+        "id": "guide_right",
+        "x": 3.528,
+        "y": 4.380718901111481,
+        "w": 0.07499999999999996,
+        "h": 0.16,
+        "rotDeg": 0,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_right",
+        "x": 6.227,
+        "y": 3.45480376936294,
+        "w": 2.7916594621556654,
+        "h": 0.16,
+        "rotDeg": 20,
+        "role": "deflector"
+      }
+    ],
+    "pegRows": [
+      {
+        "y": 27,
+        "step": 3,
+        "fromX": -7.4,
+        "toX": 7.4,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 1.9
+          }
+        ]
+      },
+      {
+        "y": 22.4,
+        "step": 2.7,
+        "fromX": -7.6,
+        "toX": 7.6,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": true,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 2.2
+          }
+        ]
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 6.37,
+        "toX": 7.4,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 5.34,
+        "toX": 6.37,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 4.31,
+        "toX": 5.34,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 3.2799999999999994,
+        "toX": 4.31,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 2.249999999999999,
+        "toX": 3.2799999999999994,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 1.2199999999999989,
+        "toX": 2.249999999999999,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 0.18999999999999861,
+        "toX": 1.2199999999999989,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -0.8400000000000016,
+        "toX": 0.18999999999999861,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -1.8700000000000019,
+        "toX": -0.8400000000000016,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -2.900000000000002,
+        "toX": -1.8700000000000019,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -3.9300000000000024,
+        "toX": -2.900000000000002,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -4.960000000000003,
+        "toX": -3.9300000000000024,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -5.990000000000003,
+        "toX": -4.960000000000003,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -7.020000000000003,
+        "toX": -5.990000000000003,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -8.050000000000004,
+        "toX": -7.020000000000004,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 4.6,
+        "toX": 5.63,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 5.63,
+        "toX": 6.66,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 6.66,
+        "toX": 7.69,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 7.69,
+        "toX": 8.72,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      }
+    ],
+    "pegFormations": [
+      {
+        "id": "hex_a",
+        "shape": "hex",
+        "cx": -5.8,
+        "cy": 19.4,
+        "r": 0.25,
+        "kind": "normal",
+        "count": 3,
+        "rows": 3,
+        "label": "hex_a"
+      },
+      {
+        "id": "hex_b",
+        "shape": "hex",
+        "cx": 5.8,
+        "cy": 19.4,
+        "r": 0.25,
+        "kind": "normal",
+        "count": 3,
+        "rows": 3,
+        "label": "hex_b"
+      },
+      {
+        "id": "spir_m",
+        "shape": "spiral",
+        "cx": 0,
+        "cy": 14.6,
+        "r": 0.26,
+        "kind": "spear",
+        "turns": 2,
+        "phase": 0.5,
+        "label": "spir_m"
+      },
+      {
+        "id": "hex_c",
+        "shape": "hex",
+        "cx": -4.6,
+        "cy": 11.6,
+        "r": 0.25,
+        "kind": "normal",
+        "count": 3,
+        "rows": 2,
+        "label": "hex_c"
+      },
+      {
+        "id": "hex_d",
+        "shape": "hex",
+        "cx": 4.6,
+        "cy": 11.6,
+        "r": 0.25,
+        "kind": "normal",
+        "count": 3,
+        "rows": 2,
+        "label": "hex_d"
+      },
+      {
+        "id": "gold_m",
+        "shape": "cross",
+        "cx": 0,
+        "cy": 13.4,
+        "r": 0.27,
+        "kind": "golden",
+        "arms": 4,
+        "label": "gold_m"
+      },
+      {
+        "id": "en_water_0",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 0.245,
+        "cy": 21.8,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 176,
+        "wuxing": "water",
+        "score": 298,
+        "label": "water"
+      },
+      {
+        "id": "en_fire_1",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 2.695,
+        "cy": 21.4,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 199,
+        "wuxing": "fire",
+        "score": 338,
+        "label": "fire"
+      },
+      {
+        "id": "en_wood_2",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -2.905,
+        "cy": 21,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 140,
+        "wuxing": "wood",
+        "score": 239,
+        "label": "wood"
+      },
+      {
+        "id": "en_metal_3",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -1.155,
+        "cy": 20.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 222,
+        "wuxing": "metal",
+        "score": 378,
+        "label": "metal"
+      },
+      {
+        "id": "en_earth_4",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 1.295,
+        "cy": 20.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 187,
+        "wuxing": "earth",
+        "score": 318,
+        "label": "earth"
+      },
+      {
+        "id": "en_water_5",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 2.695,
+        "cy": 19,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 176,
+        "wuxing": "water",
+        "score": 298,
+        "label": "water"
+      },
+      {
+        "id": "en_fire_6",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 5.845,
+        "cy": 15.8,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 199,
+        "wuxing": "fire",
+        "score": 338,
+        "label": "fire"
+      },
+      {
+        "id": "en_wood_7",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -5.705,
+        "cy": 15.4,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 140,
+        "wuxing": "wood",
+        "score": 239,
+        "label": "wood"
+      },
+      {
+        "id": "en_metal_8",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -6.755,
+        "cy": 13.8,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 222,
+        "wuxing": "metal",
+        "score": 378,
+        "label": "metal"
+      },
+      {
+        "id": "en_earth_9",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 7.245,
+        "cy": 11,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 187,
+        "wuxing": "earth",
+        "score": 318,
+        "label": "earth"
+      },
+      {
+        "id": "en_water_10",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -7.105,
+        "cy": 10.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 176,
+        "wuxing": "water",
+        "score": 298,
+        "label": "water"
+      },
+      {
+        "id": "en_fire_11",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -1.855,
+        "cy": 10.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 199,
+        "wuxing": "fire",
+        "score": 338,
+        "label": "fire"
+      }
+    ],
+    "zones": [
+      {
+        "id": "z_energy",
+        "x": -5.625,
+        "y": 14.2,
+        "w": 3,
+        "h": 1.5,
+        "kind": "energy",
+        "label": "路过 · 充能 +26"
+      },
+      {
+        "id": "z_boss",
+        "x": 5.625,
+        "y": 14.2,
+        "w": 3,
+        "h": 1.5,
+        "kind": "boss",
+        "label": "路过 · 破绽标记 ×1.5"
+      },
+      {
+        "id": "z_combo",
+        "x": 0,
+        "y": 14.2,
+        "w": 3.4,
+        "h": 1.5,
+        "kind": "combo",
+        "label": "路过 · 连击 +4"
+      },
+      {
+        "id": "z_skill",
+        "x": -2.7,
+        "y": 16,
+        "w": 3.4,
+        "h": 1.6,
+        "kind": "skill",
+        "label": "路过 · 技能充能 +1"
+      },
+      {
+        "id": "z_multiplier",
+        "x": 5.513,
+        "y": 17.6,
+        "w": 3,
+        "h": 1.6,
+        "kind": "multiplier",
+        "label": "路过 · 落槽 ×1.6"
+      }
+    ],
+    "slots": [
+      {
+        "id": "slot_coin",
+        "x": -4.464,
+        "y": 1.65,
+        "w": 1.98,
+        "h": 1.7,
+        "kind": "normal",
+        "label": "铜钱",
+        "value": 70,
+        "role": "加分 70"
+      },
+      {
+        "id": "slot_energy",
+        "x": -2.232,
+        "y": 1.65,
+        "w": 1.98,
+        "h": 1.7,
+        "kind": "energy",
+        "label": "聚气",
+        "value": 0,
+        "role": "充能量 +32"
+      },
+      {
+        "id": "slot_weak",
+        "x": 0,
+        "y": 1.65,
+        "w": 1.98,
+        "h": 1.7,
+        "kind": "boss",
+        "label": "破绽",
+        "value": 210,
+        "role": "扣 Boss 血 · 正中 ×2　带标记 ×1.5"
+      },
+      {
+        "id": "slot_combo",
+        "x": 2.232,
+        "y": 1.65,
+        "w": 1.98,
+        "h": 1.7,
+        "kind": "combo",
+        "label": "连斩",
+        "value": 120,
+        "role": "连击不中断"
+      },
+      {
+        "id": "slot_gold",
+        "x": 4.464,
+        "y": 1.65,
+        "w": 1.98,
+        "h": 1.7,
+        "kind": "multiplier",
+        "label": "万金",
+        "value": 95,
+        "role": "下颗球 ×2.5"
+      }
+    ]
+  },
+  "boss": {
+    "id": "boss_linjiao",
+    "name": "林教头",
+    "title": "汴梁 · 禁军教头",
+    "maxHp": 6400,
+    "armor": 0.12,
+    "weakPoint": {
+      "x": 0,
+      "y": 3.1,
+      "r": 1.3
+    },
+    "phases": [
+      {
+        "at": 1,
+        "name": "识破",
+        "deprive": [
+          "aim"
+        ],
+        "desc": "一眼看穿来路，盘上的钉子开始自己挪位。落槽整排漂移加倍，破绽口跟着它跑。"
+      },
+      {
+        "at": 0.65,
+        "name": "风雪",
+        "deprive": [
+          "aim"
+        ],
+        "desc": "风雪掩面，落槽整排顺着风往一边跑。落槽整排漂移加倍，破绽口跟着它跑。"
+      },
+      {
+        "at": 0.3,
+        "name": "逼上梁山",
+        "deprive": [
+          "aim"
+        ],
+        "desc": "雪压塌了山神庙，落槽跑得比人跑得还快。落槽整排漂移加倍，破绽口跟着它跑。"
+      }
+    ],
+    "colors": {
+      "body": "#26364f",
+      "trim": "#8fd6ff",
+      "glow": "#c9ecff"
+    }
+  },
+  "rules": {
+    "balls": 22,
+    "comboWindow": 2,
+    "startingEnergy": 20,
+    "fever": {
+      "triggerSlot": "slot_weak",
+      "duration": 16,
+      "bonusBalls": 4,
+      "slotFactor": 1.2,
+      "chainStep": 0.24,
+      "chainMax": 6,
+      "gate": {
+        "w": 6.4,
+        "h": 1.1,
+        "y": 4.6
+      },
+      "armorRelief": 0.28,
+      "palette": {
+        "led": "#ffd24a",
+        "yakumono": "#ff9a2e",
+        "accent": "#fff0b8"
+      },
+      "glyph": "確"
+    },
+    "enemy": {
+      "baseDamage": 62,
+      "perBounce": 22,
+      "bounceMax": 12,
+      "attrWin": 1.5,
+      "attrGen": 1.2,
+      "attrLose": 0.7,
+      "critChance": 0.22,
+      "critMult": 2.2,
+      "killBoost": 4.4,
+      "perSweep": 0.1,
+      "fullSweepDamage": 320,
+      "leftoverPenalty": 0.06
+    },
+    "reward": {
+      "silver": 400,
+      "stones": 110,
+      "shards": 2
+    },
+    "ballSeconds": 15.7
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "costStones": 100,
+  "pity": 20,
+  "rates": { "R": 0.5, "SR": 0.3, "SSR": 0.17, "UR": 0.03 },
+  "firstOfKind": true,
+  "melt": {
+    "shardsByRarity": { "R": 3, "SR": 9, "SSR": 30, "UR": 120 },
+    "exchange": [
+      { "id": "ex_r", "shards": 24, "rarities": ["R"], "label": "换一名 R 将" },
+      { "id": "ex_sr", "shards": 70, "rarities": ["SR"], "label": "换一名 SR 将" },
+      { "id": "ex_ssr", "shards": 220, "rarities": ["SSR", "UR"], "label": "换一名 SSR 将" }
+    ]
+  }
+}

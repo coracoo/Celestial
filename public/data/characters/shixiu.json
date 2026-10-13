@@ -1,0 +1,62 @@
+{
+  "id": "shixiu",
+  "number": 33,
+  "name": "石秀",
+  "title": "拼命三郎",
+  "rarity": "SR",
+  "wuxing": "earth",
+  "role": "连锁",
+  "color": "#7a5a2a",
+  "accent": "#e0c078",
+  "tagline": "路口救下一个人，自己跳崖",
+  "lore": "拼命三郎。卢俊义落难时是他一个人跳下狮子楼去的——这个人不要命，只认一件事：认下的，就得护到底。",
+  "base": {
+    "hp": 112,
+    "atk": 15,
+    "def": 8,
+    "speed": 14
+  },
+  "skill": {
+    "id": "shixiu_desperate",
+    "name": "拼命三郎",
+    "rule": "连锁引爆，并在连锁命中的同时给 Boss 开破防",
+    "desc": "6 秒内每次碰撞在 3.2 半径内引发土属性连锁伤害 70；期间即时伤害 ×1.35、弹性 ×1.3，Boss 承伤 ×1.3（6 秒）。他从来不一个人打。",
+    "trigger": {
+      "on": "enemyKill",
+      "minIntensity": 0,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "burst",
+        "value": 1.35,
+        "duration": 6
+      },
+      {
+        "key": "bounce",
+        "value": 1.3,
+        "duration": 6
+      }
+    ],
+    "chain": {
+      "radius": 3.2,
+      "damage": 70,
+      "wuxing": "earth"
+    },
+    "bossVuln": {
+      "factor": 1.3,
+      "duration": 6
+    },
+    "fx": "detonate"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "cliff"
+  },
+  "bonds": [
+    "yangxiong",
+    "lujunyi"
+  ]
+}

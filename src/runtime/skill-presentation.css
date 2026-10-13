@@ -1,0 +1,21 @@
+.skill-presentation { position: fixed; inset: 0; z-index: 72; pointer-events: none; overflow: hidden; --skill-color: #ffd28a; }
+.skill-presentation[hidden] { display: none; }
+.skill-presentation-flare { position: absolute; left: -5vw; top: 12vh; width: 37vw; height: 80vh; background: radial-gradient(ellipse at 40% 60%, color-mix(in srgb,var(--skill-color) 35%,transparent),transparent 68%); animation: skill-flare 1.3s ease both; }
+/*
+ * 框负责摆位置 + 裁掉角色层四周的出血（125% / -12.5%，倍数见 core/figureLayer.ts），
+ * <img> 只负责演——入场动画的 keyframes 已经在动 transform，再叠一个静态 scale
+ * 会被动画整个覆盖掉，所以裁切必须落在外层框上。
+ */
+.skill-presentation-figure { position: absolute; left: -3vw; bottom: 3vh; width: min(410px,33vw); height: 86vh; }
+.skill-presentation-portrait { position: absolute; left: -12.5%; top: -12.5%; width: 125%; height: 125%; object-fit: contain; object-position: bottom; filter: drop-shadow(0 0 20px color-mix(in srgb,var(--skill-color) 45%,transparent)); animation: skill-portrait-in 1.3s cubic-bezier(.16,.8,.3,1) both; }
+.skill-presentation-copy { position: absolute; left: 5vw; top: 29vh; max-width: 29vw; transform: rotate(-7deg); text-shadow: 2px 3px 2px #100609,0 0 20px #000; }
+.skill-presentation-actor { display: block; font: 600 16px var(--font-cn); letter-spacing: .2em; color: #fff0d2; margin-bottom: 8px; }
+.skill-presentation-title { display: flex; flex-wrap: wrap; font: 700 clamp(30px,4vw,66px) KaiTi,var(--font-cn); line-height: 1.08; color: #fff1c9; -webkit-text-fill-color: #fff1c9; text-shadow: 1px 2px 2px #351217,-1px -1px 1px #351217,0 0 12px var(--skill-color); }
+.skill-presentation-title span { display: inline-block; animation: skill-letter .65s calc(var(--letter)*.035s) cubic-bezier(.16,.8,.3,1) both; }
+.skill-presentation-spark { position: absolute; left: 17vw; top: 53vh; width: 3px; height: 20px; background: var(--skill-color); box-shadow: 0 0 12px var(--skill-color); transform: rotate(calc(var(--spark)*40deg)); animation: skill-spark 1.05s ease-out both; }
+@keyframes skill-portrait-in { 0% { opacity: 0; transform: translateX(-40%) scale(1.05); } 18%,72% { opacity: 1; transform: translateX(0) scale(1); } 100% { opacity: 0; transform: translateX(-8%) scale(1); } }
+@keyframes skill-flare { 0%,100% { opacity: 0; } 15%,65% { opacity: 1; } }
+@keyframes skill-letter { 0% { opacity: 0; transform: translateY(30px) scale(1.45); } 30%,85% { opacity: 1; transform: none; } 100% { opacity: .9; } }
+@keyframes skill-spark { 0% { opacity: 1; transform: rotate(calc(var(--spark)*40deg)) translateY(10px); } 100% { opacity: 0; transform: rotate(calc(var(--spark)*40deg)) translateY(220px) scale(.3); } }
+@media (max-width:800px) { .skill-presentation-portrait { width: 58vw; height: 65vh; bottom: 9vh; left:-8vw; } .skill-presentation-copy { top:29vh; left:5vw; max-width:48vw; } .skill-presentation-title { font-size:32px; } .skill-presentation-actor { font-size:12px; } .skill-presentation-flare { width:66vw; } }
+@media (prefers-reduced-motion:reduce) { .skill-presentation * { animation: none !important; } .skill-presentation-spark { display:none; } .skill-presentation-portrait { opacity:.85; } }

@@ -1,0 +1,79 @@
+﻿{
+  "title": "鏉ㄥ織",
+  "subtitle": "闈掗潰鍏?,
+  "technique": "鍒€鍙ｈ垟琛€",
+  "tagline": "R 路 绋虫墦",
+  "edition": "No.017 / 108",
+  "collection": "濞樺北 108 灏?,
+  "description": "闈掗潰瀛旂殑鎶煎徃锛屾彁鐫€涓€鍙ｅ疂鍒€璧朵竴鏉¤皝涔熻蛋涓嶉€氱殑璺€傚ス涓嶅枈鍙ｅ彿锛屽ス鍙槸涓€鍒€涓€鍒€鍦版妸璺爫鍑烘潵銆?,
+  "font": "C:/Windows/Fonts/simkai.ttf",
+  "assets": {
+    "subject": "./assets/subject.png",
+    "background": "./assets/background.png",
+    "lineart": "./assets/lineart.png",
+    "text": "./assets/text.png",
+    "frame": "./assets/frame.png",
+    "subject-bleed": "./assets/subject-bleed.png"
+  },
+  "parameters": {
+    "subjectScale": 1.0,
+    "subjectDepth": 0.4,
+    "backgroundDepth": -0.25,
+    "frameDepth": 0.0,
+    "backgroundDof": 0.85,
+    "foil": 0
+  },
+  "safeArea": {
+    "scale": 1,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "subjectLayout": {
+    "fit": "proportional-width",
+    "width": 1060,
+    "top": 120,
+    "sourceSize": [
+      941,
+      1672
+    ],
+    "topFeather": 64,
+    "bleed": [
+      128,
+      192
+    ],
+    "canvas": [
+      1280,
+      1920
+    ],
+    "placement": {
+      "scale": 0.9434,
+      "offsetX": 0.0,
+      "offsetY": -240.0,
+      "frame": {
+        "scale": 1.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0
+      }
+    }
+  },
+  "frameLayout": {
+    "ornamentScale": 1.0,
+    "ornamentOpacity": 0.7,
+    "canvasFit": "contain-then-scale",
+    "anchor": "card-center",
+    "depth": 0.0,
+    "layer": "under-subject",
+    "sourceSize": [
+      941,
+      1672
+    ],
+    "placement": [
+      80,
+      0,
+      864,
+      1536
+    ]
+  }
+}

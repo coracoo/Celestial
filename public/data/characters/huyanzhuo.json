@@ -1,0 +1,58 @@
+{
+  "id": "huyanzhuo",
+  "number": 8,
+  "name": "呼延灼",
+  "title": "双鞭",
+  "rarity": "SR",
+  "wuxing": "metal",
+  "role": "连击",
+  "color": "#b8925a",
+  "accent": "#f0dcae",
+  "tagline": "两条铁鞭，一口气抽完",
+  "lore": "连环马上的将军，两条鞭子抡起来不留空隙。她不追求一鞭致命，她追求让你连一秒都停不下来。",
+  "base": {
+    "hp": 114,
+    "atk": 13,
+    "def": 8,
+    "speed": 12
+  },
+  "skill": {
+    "id": "huyanzhuo_flurry",
+    "name": "双鞭连环",
+    "rule": "把球的恢复系数接近翻倍——反弹次数是伤害的主变量",
+    "desc": "本作的伤害是撞击次数的函数，不是初速度的函数。所以呼延灼不去加速球，她去改球弹不弹得起来：5 秒内恢复系数 ×1.95、每弹伤害 ×1.55、球速 ×1.08。鞭子越抽越密。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "bounce",
+        "value": 1.95,
+        "duration": 5
+      },
+      {
+        "key": "bounceDamage",
+        "value": 1.55,
+        "duration": 5
+      },
+      {
+        "key": "speed",
+        "value": 1.08,
+        "duration": 5
+      }
+    ],
+    "fx": "zone_combo"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "whip"
+  },
+  "bonds": [
+    "qinming",
+    "yangzhi"
+  ]
+}

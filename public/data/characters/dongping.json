@@ -1,0 +1,61 @@
+{
+  "id": "dongping",
+  "number": 15,
+  "name": "董平",
+  "title": "双枪将",
+  "rarity": "SSR",
+  "wuxing": "metal",
+  "role": "贯穿",
+  "color": "#4a5fa8",
+  "accent": "#a8c0ff",
+  "tagline": "双枪并进，来回贯穿",
+  "lore": "风流双枪，一对镔铁。梁山公认她最难缠——不是因为她伤害最高，是因为她防不住：两杆枪同时扎进来，你只能被穿过去。",
+  "base": {
+    "hp": 124,
+    "atk": 17,
+    "def": 8,
+    "speed": 14
+  },
+  "skill": {
+    "id": "dongping_twinpierce",
+    "name": "双枪贯穿",
+    "rule": "给球开贯穿，且贯穿按目标自身五行结算",
+    "desc": "5 秒内弹珠贯穿钉板不再减速，每穿过一枚即时结算 86 点贯穿伤害；期间球速 ×1.4、即时伤害 ×1.3。挡在她前面的东西会连着一起穿。",
+    "trigger": {
+      "on": "spearHit",
+      "minIntensity": 0.3,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "speed",
+        "value": 1.4,
+        "duration": 5
+      },
+      {
+        "key": "burst",
+        "value": 1.3,
+        "duration": 5
+      }
+    ],
+    "pierce": {
+      "kinds": [
+        "normal",
+        "armored",
+        "destructible"
+      ],
+      "damagePerPeg": 86
+    },
+    "fx": "pierceHit"
+  },
+  "card": {
+    "rarity": "SSR",
+    "holo": "auto",
+    "motif": "twin"
+  },
+  "bonds": [
+    "linchong",
+    "lujunyi"
+  ]
+}

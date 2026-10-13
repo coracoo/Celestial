@@ -1,0 +1,354 @@
+{
+  "minions": [
+    {
+      "id": "metal_sentry",
+      "name": "金甲哨卫",
+      "wuxing": "metal",
+      "weapon": "长枪 · 六角盾",
+      "description": "金甲哨卫以长枪与六角盾守护金行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": "metal"
+    },
+    {
+      "id": "metal_swordswoman",
+      "name": "银刃游侠",
+      "wuxing": "metal",
+      "weapon": "双剑 · 白披风",
+      "description": "银刃游侠以双剑与白披风守护金行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "metal_halberd",
+      "name": "铁戟先锋",
+      "wuxing": "metal",
+      "weapon": "重戟 · 护肩",
+      "description": "铁戟先锋以重戟与护肩守护金行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "metal_crossbow",
+      "name": "玄弩机卫",
+      "wuxing": "metal",
+      "weapon": "机弩 · 臂甲",
+      "description": "玄弩机卫以机弩与臂甲守护金行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "metal_chain",
+      "name": "锁魂镰卫",
+      "wuxing": "metal",
+      "weapon": "锁链 · 钩镰",
+      "description": "锁魂镰卫以锁链与钩镰守护金行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "metal_banner",
+      "name": "破军旗使",
+      "wuxing": "metal",
+      "weapon": "战旗 · 铁枪",
+      "description": "破军旗使以战旗与铁枪守护金行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "wood_archer",
+      "name": "青藤弓侍",
+      "wuxing": "wood",
+      "weapon": "藤纹弓 · 羽箭",
+      "description": "青藤弓侍以藤纹弓与羽箭守护木行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": "wood"
+    },
+    {
+      "id": "wood_healer",
+      "name": "灵芝药姬",
+      "wuxing": "wood",
+      "weapon": "竹杖 · 药囊",
+      "description": "灵芝药姬以竹杖与药囊守护木行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "wood_thorn",
+      "name": "荆棘鞭侍",
+      "wuxing": "wood",
+      "weapon": "棘鞭 · 护手",
+      "description": "荆棘鞭侍以棘鞭与护手守护木行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "wood_dancer",
+      "name": "竹影剑伶",
+      "wuxing": "wood",
+      "weapon": "竹剑 · 长袖",
+      "description": "竹影剑伶以竹剑与长袖守护木行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "wood_scout",
+      "name": "森影斥候",
+      "wuxing": "wood",
+      "weapon": "短矛 · 猎刃",
+      "description": "森影斥候以短矛与猎刃守护木行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "wood_summoner",
+      "name": "花魇巫女",
+      "wuxing": "wood",
+      "weapon": "花扇 · 灵铃",
+      "description": "花魇巫女以花扇与灵铃守护木行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "water_raider",
+      "name": "寒潮女盗",
+      "wuxing": "water",
+      "weapon": "弯月钩 · 绳索",
+      "description": "寒潮女盗以弯月钩与绳索守护水行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": "water"
+    },
+    {
+      "id": "water_mage",
+      "name": "霜镜术士",
+      "wuxing": "water",
+      "weapon": "冰镜 · 法杖",
+      "description": "霜镜术士以冰镜与法杖守护水行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "water_assassin",
+      "name": "雾隐刺姬",
+      "wuxing": "water",
+      "weapon": "双刃 · 薄纱",
+      "description": "雾隐刺姬以双刃与薄纱守护水行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "water_oarswoman",
+      "name": "逐浪舟卫",
+      "wuxing": "water",
+      "weapon": "铁桨 · 索钩",
+      "description": "逐浪舟卫以铁桨与索钩守护水行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "water_lancer",
+      "name": "玄鳞枪卫",
+      "wuxing": "water",
+      "weapon": "三叉戟 · 鳞甲",
+      "description": "玄鳞枪卫以三叉戟与鳞甲守护水行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "water_siren",
+      "name": "月汐歌姬",
+      "wuxing": "water",
+      "weapon": "月杖 · 贝铃",
+      "description": "月汐歌姬以月杖与贝铃守护水行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "fire_blade",
+      "name": "赤焰刀姬",
+      "wuxing": "fire",
+      "weapon": "阔刃刀 · 赤巾",
+      "description": "赤焰刀姬以阔刃刀与赤巾守护火行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": "fire"
+    },
+    {
+      "id": "fire_hammer",
+      "name": "烈炉锤卫",
+      "wuxing": "fire",
+      "weapon": "锻锤 · 铁臂",
+      "description": "烈炉锤卫以锻锤与铁臂守护火行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "fire_dancer",
+      "name": "烬羽舞姬",
+      "wuxing": "fire",
+      "weapon": "双扇 · 焰绫",
+      "description": "烬羽舞姬以双扇与焰绫守护火行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "fire_archer",
+      "name": "赤羽弩姬",
+      "wuxing": "fire",
+      "weapon": "焰弩 · 箭匣",
+      "description": "赤羽弩姬以焰弩与箭匣守护火行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "fire_lancer",
+      "name": "烽火枪使",
+      "wuxing": "fire",
+      "weapon": "红缨枪 · 战鼓",
+      "description": "烽火枪使以红缨枪与战鼓守护火行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "fire_cultist",
+      "name": "焚星祭姬",
+      "wuxing": "fire",
+      "weapon": "日轮 · 火炬",
+      "description": "焚星祭姬以日轮与火炬守护火行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "earth_guard",
+      "name": "岩关女卫",
+      "wuxing": "earth",
+      "weapon": "岩锤 · 方盾",
+      "description": "岩关女卫以岩锤与方盾守护土行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": "earth"
+    },
+    {
+      "id": "earth_monk",
+      "name": "镇岳女僧",
+      "wuxing": "earth",
+      "weapon": "禅杖 · 石珠",
+      "description": "镇岳女僧以禅杖与石珠守护土行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "earth_sand",
+      "name": "沙棘刀客",
+      "wuxing": "earth",
+      "weapon": "弯刀 · 沙巾",
+      "description": "沙棘刀客以弯刀与沙巾守护土行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "earth_shield",
+      "name": "玄岩盾姬",
+      "wuxing": "earth",
+      "weapon": "双盾 · 重甲",
+      "description": "玄岩盾姬以双盾与重甲守护土行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "earth_mason",
+      "name": "石阵符师",
+      "wuxing": "earth",
+      "weapon": "石简 · 罗盘",
+      "description": "石阵符师以石简与罗盘守护土行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    },
+    {
+      "id": "earth_cavalry",
+      "name": "褐甲骑卫",
+      "wuxing": "earth",
+      "weapon": "骑枪 · 棕甲",
+      "description": "褐甲骑卫以骑枪与棕甲守护土行阵位。击破后让出球路，恢复池蓄满时会重新归阵。",
+      "legacy": null
+    }
+  ],
+  "bosses": [
+    {
+      "id": "boss_jingyang",
+      "name": "镇山母虎",
+      "stageId": "stage_01",
+      "weapon": "虎爪 · 镇山印",
+      "description": "镇山星印唤醒了虎魂。她披着白虎大氅守在山口，金色兽瞳紧盯每一个靠近阵心的人。",
+      "hero": null,
+      "title": "第一阵 · 守将"
+    },
+    {
+      "id": "boss_zhengtu",
+      "name": "镇关西",
+      "stageId": "stage_02",
+      "weapon": "屠刀 · 铁钩",
+      "description": "渭州的粮仓被她当作关隘。屠刀与铁钩横在门前，只有破开重甲下的阵眼，才能让被困的人出门。",
+      "hero": null,
+      "title": "渭州 · 屠户"
+    },
+    {
+      "id": "boss_linjiao",
+      "name": "林教头",
+      "stageId": "stage_03",
+      "weapon": "丈八蛇矛 · 镜影",
+      "description": "风雪把林冲的旧影映在阵中。同样的蛇矛，同样的枪路，这一道镜影却只记得如何守住孤庙。",
+      "hero": "linchong",
+      "title": "汴梁 · 禁军教头"
+    },
+    {
+      "id": "boss_shengchengang",
+      "name": "生辰纲护卫",
+      "stageId": "stage_04",
+      "weapon": "押运令 · 长槊",
+      "description": "她统领押禁守护生辰纲，长槊与金印寸步不离。封存在贡箱中的星光，让这趟押运变成了一座移动的牢笼。",
+      "hero": null,
+      "title": "东平府 · 八名押禁"
+    },
+    {
+      "id": "boss_chongyi",
+      "name": "王义",
+      "stageId": "stage_05",
+      "weapon": "铁笔 · 封关牒",
+      "description": "水路上的每一道关牒都由她签下。铁笔点向哪里，泊口的星阵便封向哪里，温文的仪表掩不住冷硬的目光。",
+      "hero": null,
+      "title": "济州 · 刀笔小吏"
+    },
+    {
+      "id": "boss_zhujiazhuang",
+      "name": "祝家庄三雄",
+      "stageId": "stage_06",
+      "weapon": "双刀 · 枪 · 弓",
+      "description": "枪、刀、弓同守庄前的三重阵门。三人的衣甲与步调各不相同，目光却始终指向同一枚阵钥。",
+      "hero": null,
+      "title": "一打 · 二打 · 三打"
+    },
+    {
+      "id": "boss_lujunyi",
+      "name": "卢俊义",
+      "stageId": "stage_07",
+      "weapon": "麒麟棍 · 重甲",
+      "description": "大名府长阶尽头，麒麟甲映着重重灯火。她手中的棍影铺满阵路，只有越过这道威严的星相，才能继续寻印。",
+      "hero": "lujunyi",
+      "title": "大名府 · 玉麒麟"
+    },
+    {
+      "id": "boss_huangwenbing",
+      "name": "黄文炳",
+      "stageId": "stage_08",
+      "weapon": "密卷 · 判官笔",
+      "description": "她从密卷的缝隙观察来客，一笔便能把清白写成罪名。江州的星阵藏在案牍之间，等着有人撕开封条。",
+      "hero": null,
+      "title": "江州 · 军城观察"
+    },
+    {
+      "id": "boss_likui",
+      "name": "李逵",
+      "stageId": "stage_09",
+      "weapon": "双斧 · 黑风",
+      "description": "黑风缠上双斧，使她暂时辨不清敌我。怒意越盛，阵纹越亮；伙伴要做的是让那双熟悉的眼睛重新清醒。",
+      "hero": "likui",
+      "title": "沂岭 · 黑旋风"
+    },
+    {
+      "id": "boss_chongge",
+      "name": "晁盖",
+      "stageId": "stage_10",
+      "weapon": "镇塔印 · 重剑",
+      "description": "托塔金印压住梁山阵心，她以重剑守着通往山顶的阶道。旧誓与新局都汇在这一战，谁也不能轻易退后。",
+      "hero": null,
+      "title": "梁山 · 托塔天王"
+    },
+    {
+      "id": "boss_caijing",
+      "name": "蔡京",
+      "stageId": "stage_11",
+      "weapon": "权杖 · 太师印",
+      "description": "太师金印悬在朝服之上，紫袍的褶皱里藏着层层诏令。她要把散落的星光重新收进一只只盖好印的匣子。",
+      "hero": null,
+      "title": "陈桥驿 · 殿前太师"
+    },
+    {
+      "id": "boss_fangla",
+      "name": "方腊",
+      "stageId": "stage_12",
+      "weapon": "日冕轮 · 教主杖",
+      "description": "她以日冕为冠，握住星图最后一道裂隙。十二阵汇来的光在教主杖上燃起，归途要从这轮炽日之下打开。",
+      "hero": null,
+      "title": "昱岭关 · 摩教教主"
+    }
+  ]
+}

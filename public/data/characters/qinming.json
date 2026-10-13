@@ -1,0 +1,63 @@
+{
+  "id": "qinming",
+  "number": 7,
+  "name": "秦明",
+  "title": "霹雳火",
+  "rarity": "SSR",
+  "wuxing": "fire",
+  "role": "连锁",
+  "color": "#e0562a",
+  "accent": "#ffb36a",
+  "tagline": "人称霹雳火",
+  "lore": "性如烈火的急性子，点着的东西从来不需要第二遍。她打的从来不是一颗钉，是一整片。",
+  "base": {
+    "hp": 130,
+    "atk": 16,
+    "def": 9,
+    "speed": 11
+  },
+  "skill": {
+    "id": "qinming_blaze",
+    "name": "烈焰燎原",
+    "rule": "命中即点燃半径内其它敌人，并按火属性结算连锁伤害",
+    "desc": "火一旦烧起来就不必再点。6 秒内每次碰撞都会在 3.4 半径内引爆其它敌人，连锁伤害走火属性吃五行相生相克；期间弹性 ×1.3、会心率 +18%、爆伤 ×1.25。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0.1,
+      "charges": 7,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "bounce",
+        "value": 1.3,
+        "duration": 6
+      },
+      {
+        "key": "critChance",
+        "value": 0.18,
+        "duration": 6
+      },
+      {
+        "key": "burst",
+        "value": 1.25,
+        "duration": 6
+      }
+    ],
+    "chain": {
+      "radius": 3.4,
+      "damage": 64,
+      "wuxing": "fire"
+    },
+    "fx": "detonate"
+  },
+  "card": {
+    "rarity": "SSR",
+    "holo": "auto",
+    "motif": "flame"
+  },
+  "bonds": [
+    "huarong",
+    "huyanzhuo"
+  ]
+}

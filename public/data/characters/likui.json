@@ -1,0 +1,70 @@
+{
+  "id": "likui",
+  "number": 22,
+  "name": "李逵",
+  "title": "黑旋风",
+  "rarity": "SR",
+  "wuxing": "water",
+  "role": "蛮力",
+  "color": "#4a3a6a",
+  "accent": "#b09ada",
+  "tagline": "管他黑不黑，砍就完了",
+  "lore": "不讲道理，也不吃亏。规矩在她这里从来没生效过，但她替梁山的规矩挡过不少刀。",
+  "base": {
+    "hp": 138,
+    "atk": 16,
+    "def": 9,
+    "speed": 9
+  },
+  "skill": {
+    "id": "likui_axes",
+    "name": "两斧清盘",
+    "rule": "清掉身边的钉板、爆伤翻倍，再把球整个轰上去",
+    "desc": "两把板斧，不分敌我。释放时清掉 3.6 半径内的普通 / 可破坏钉板并结算 150 点伤害，4 秒内爆伤 ×1.9、弹性 ×1.28，Boss 破防 3 秒（受伤 ×1.55），同时给球一记向上的冲量。管用，但是乱。",
+    "trigger": {
+      "on": "heavyImpact",
+      "minIntensity": 0.3,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "burst",
+        "value": 1.9,
+        "duration": 4
+      },
+      {
+        "key": "bounce",
+        "value": 1.28,
+        "duration": 4
+      }
+    ],
+    "destroy": {
+      "radius": 3.6,
+      "kinds": [
+        "normal",
+        "destructible"
+      ],
+      "damage": 150
+    },
+    "impulse": {
+      "dx": 0,
+      "dy": 1,
+      "power": 14
+    },
+    "bossVuln": {
+      "factor": 1.55,
+      "duration": 3
+    },
+    "fx": "shockRing"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "none",
+    "motif": "axes"
+  },
+  "bonds": [
+    "yangzhi",
+    "luzhishen"
+  ]
+}

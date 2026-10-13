@@ -1,0 +1,64 @@
+{
+  "id": "songjiang",
+  "number": 1,
+  "name": "宋江",
+  "title": "及时雨",
+  "rarity": "UR",
+  "wuxing": "water",
+  "role": "统帅",
+  "color": "#2f6fd0",
+  "accent": "#7fc4ff",
+  "tagline": "但愿天下人，无有不得志",
+  "lore": "她是那个让所有人都觉得「这里有你一个位置」的人。不是最强的，却是最会带着人走的那一个。",
+  "base": {
+    "hp": 150,
+    "atk": 15,
+    "def": 12,
+    "speed": 13
+  },
+  "skill": {
+    "id": "songjiang_rain",
+    "name": "八方共济",
+    "rule": "把五行相生收益拉满，并当场追加弹珠",
+    "desc": "「及时雨」不是只落在自己头上。释放后 9 秒内全场敌人五行相生收益 ×1.45，落槽伤害 ×1.28，并立刻追加 2 颗弹珠。雨泽万物——这一手补的不是伤害，是弹药。",
+    "trigger": {
+      "on": "slotEnter",
+      "minIntensity": 0,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "attrGen",
+        "value": 1.45,
+        "duration": 9
+      },
+      {
+        "key": "slot",
+        "value": 1.28,
+        "duration": 9
+      },
+      {
+        "key": "energy",
+        "value": 30,
+        "duration": 0
+      }
+    ],
+    "bonusBalls": 2,
+    "bossVuln": {
+      "factor": 1.22,
+      "duration": 8
+    },
+    "fx": "bossPhase_frenzy"
+  },
+  "card": {
+    "rarity": "UR",
+    "holo": "gold",
+    "motif": "rain"
+  },
+  "bonds": [
+    "wuyong",
+    "linchong",
+    "luzhishen"
+  ]
+}

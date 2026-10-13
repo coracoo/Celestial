@@ -1,0 +1,19 @@
+# 二进制资产必须显式标 binary，否则 git 会尝试做行尾归一化，
+# 既污染 diff 也可能损坏 250MB 的立绘/模型文件。
+*.png   binary
+*.webp  binary
+*.jpg   binary
+*.jpeg  binary
+*.glb   binary
+*.gltf  binary
+*.woff2 binary
+
+# 文本：交给 git 的自动探测（Windows 检出 CRLF，仓库内存 LF）
+*.ts    text
+*.mts   text
+*.css   text
+*.html  text
+*.json  text
+*.py    text
+*.md    text
+*.svg   text

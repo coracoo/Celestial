@@ -1,0 +1,549 @@
+{
+  "id": "stage_01",
+  "name": "Celestial · 第一阵",
+  "subtitle": "先学蓄力，再看金环",
+  "story": "镇山母虎守住中央破绽口。三将同行，先摸清这一盘的发射、救球与技能。",
+  "layoutNote": "教学关。六排疏钉、五个独立敌人、三枚万金钉；瞄准中央破绽口，金环亮时有限救球。",
+  "board": {
+    "width": 28,
+    "height": 32,
+    "gravity": -74,
+    "walls": [],
+    "deflectors": [
+      {
+        "id": "trk_roof_l",
+        "x": -6.126,
+        "y": 30.195,
+        "w": 4.892,
+        "h": 0.2,
+        "rotDeg": -20,
+        "role": "deflector"
+      },
+      {
+        "id": "trk_roof_r",
+        "x": 6.126,
+        "y": 30.195,
+        "w": 4.892,
+        "h": 0.2,
+        "rotDeg": 20,
+        "role": "deflector"
+      },
+      {
+        "id": "trk_mid_l",
+        "x": -6.882,
+        "y": 5.628,
+        "w": 5.697,
+        "h": 0.2,
+        "rotDeg": -20,
+        "role": "deflector"
+      },
+      {
+        "id": "trk_mid_r",
+        "x": 6.882,
+        "y": 5.628,
+        "w": 5.697,
+        "h": 0.2,
+        "rotDeg": 20,
+        "role": "deflector"
+      },
+      {
+        "id": "flip_left",
+        "x": -2.248,
+        "y": 5.524449230782277,
+        "w": 1.4,
+        "h": 0.16,
+        "rotDeg": -22,
+        "role": "deflector",
+        "flip": "left"
+      },
+      {
+        "id": "guide_left",
+        "x": -4.455,
+        "y": 4.399449230782277,
+        "w": 0.9089426036064983,
+        "h": 0.16,
+        "rotDeg": 0,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_left",
+        "x": -9.607,
+        "y": 4.044325703991497,
+        "w": 4.515306288615294,
+        "h": 0.16,
+        "rotDeg": -20,
+        "role": "deflector"
+      },
+      {
+        "id": "flip_right",
+        "x": 2.248,
+        "y": 5.524449230782277,
+        "w": 1.4,
+        "h": 0.16,
+        "rotDeg": 22,
+        "role": "deflector",
+        "flip": "right"
+      },
+      {
+        "id": "guide_right",
+        "x": 4.455,
+        "y": 4.399449230782277,
+        "w": 0.9089426036064983,
+        "h": 0.16,
+        "rotDeg": 0,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_right",
+        "x": 9.607,
+        "y": 4.044325703991497,
+        "w": 4.515306288615294,
+        "h": 0.16,
+        "rotDeg": 20,
+        "role": "deflector"
+      },
+      {
+        "id": "d_mid_l",
+        "x": -8.361,
+        "y": 22.736464758633275,
+        "w": 1.82,
+        "h": 0.16,
+        "rotDeg": -15,
+        "role": "deflector"
+      },
+      {
+        "id": "d_mid_r",
+        "x": 8.361,
+        "y": 22.736464758633275,
+        "w": 1.82,
+        "h": 0.16,
+        "rotDeg": 15,
+        "role": "deflector"
+      },
+      {
+        "id": "d_low_l",
+        "x": -8.375,
+        "y": 14.257260187900247,
+        "w": 1.96,
+        "h": 0.16,
+        "rotDeg": -28,
+        "role": "deflector"
+      },
+      {
+        "id": "d_low_r",
+        "x": 8.375,
+        "y": 14.257260187900247,
+        "w": 1.96,
+        "h": 0.16,
+        "rotDeg": 28,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_left",
+        "x": -9.482,
+        "y": 3.6199155202583153,
+        "w": 4.584,
+        "h": 0.16,
+        "rotDeg": -19.999999999999996,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_right",
+        "x": 9.482,
+        "y": 3.6199155202583153,
+        "w": 4.584,
+        "h": 0.16,
+        "rotDeg": 19.999999999999996,
+        "role": "deflector"
+      }
+    ],
+    "pegRows": [
+      {
+        "y": 28.6,
+        "step": 3.6399999999999997,
+        "fromX": -10.92,
+        "toX": 10.92,
+        "r": 0.32,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 1.8199999999999998
+          }
+        ]
+      },
+      {
+        "y": 24,
+        "step": 3.6399999999999997,
+        "fromX": -10.92,
+        "toX": 10.92,
+        "r": 0.32,
+        "kind": "normal",
+        "stagger": true,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 1.54
+          }
+        ]
+      },
+      {
+        "y": 20,
+        "step": 3.6399999999999997,
+        "fromX": -10.92,
+        "toX": 10.92,
+        "r": 0.32,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": [
+          {
+            "x": 3.36,
+            "r": 1.68
+          }
+        ]
+      },
+      {
+        "y": 15.6,
+        "step": 3.6399999999999997,
+        "fromX": -10.92,
+        "toX": 10.92,
+        "r": 0.32,
+        "kind": "normal",
+        "stagger": true,
+        "gaps": []
+      },
+      {
+        "y": 12.4,
+        "step": 3.6399999999999997,
+        "fromX": -10.92,
+        "toX": 10.92,
+        "r": 0.32,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 8.28,
+        "step": 3.6399999999999997,
+        "fromX": -10.92,
+        "toX": 10.92,
+        "r": 0.32,
+        "kind": "destructible",
+        "stagger": true,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 1.68
+          }
+        ]
+      }
+    ],
+    "pegFormations": [
+      {
+        "id": "en_water",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -7,
+        "cy": 17,
+        "r": 0.95,
+        "kind": "enemy",
+        "hp": 127,
+        "wuxing": "water",
+        "score": 180,
+        "label": "水兽"
+      },
+      {
+        "id": "en_fire",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 7,
+        "cy": 17,
+        "r": 0.95,
+        "kind": "enemy",
+        "hp": 144,
+        "wuxing": "fire",
+        "score": 180,
+        "label": "火鸦"
+      },
+      {
+        "id": "en_wood",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -5.04,
+        "cy": 11,
+        "r": 0.95,
+        "kind": "enemy",
+        "hp": 101,
+        "wuxing": "wood",
+        "score": 180,
+        "label": "木灵"
+      },
+      {
+        "id": "en_metal",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 5.04,
+        "cy": 11,
+        "r": 0.95,
+        "kind": "enemy",
+        "hp": 161,
+        "wuxing": "metal",
+        "score": 180,
+        "label": "金甲卫"
+      },
+      {
+        "id": "en_earth",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 3.36,
+        "cy": 20.6,
+        "r": 0.95,
+        "kind": "enemy",
+        "hp": 135,
+        "wuxing": "earth",
+        "score": 180,
+        "label": "镇岳使"
+      },
+      {
+        "id": "gold_l",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -8.68,
+        "cy": 13.9,
+        "r": 0.32,
+        "kind": "golden",
+        "label": "万金钉"
+      },
+      {
+        "id": "gold_r",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 8.68,
+        "cy": 13.9,
+        "r": 0.32,
+        "kind": "golden",
+        "label": "万金钉"
+      },
+      {
+        "id": "gold_m",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 0.84,
+        "cy": 8.32,
+        "r": 0.32,
+        "kind": "golden",
+        "label": "万金钉"
+      },
+      {
+        "id": "spear_l",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -3.6399999999999997,
+        "cy": 22,
+        "r": 0.34,
+        "kind": "spear",
+        "label": "枪阵"
+      },
+      {
+        "id": "spear_r",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 6.72,
+        "cy": 22,
+        "r": 0.34,
+        "kind": "spear",
+        "label": "枪阵"
+      },
+      {
+        "id": "spear_ml",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -5.6,
+        "cy": 19,
+        "r": 0.34,
+        "kind": "spear",
+        "label": "枪阵"
+      },
+      {
+        "id": "spear_mr",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 5.6,
+        "cy": 19,
+        "r": 0.34,
+        "kind": "spear",
+        "label": "枪阵"
+      }
+    ],
+    "zones": [
+      {
+        "id": "z_energy",
+        "x": -8.75,
+        "y": 14.2,
+        "w": 3,
+        "h": 1.5,
+        "kind": "energy",
+        "label": "路过 · 充能 +26"
+      },
+      {
+        "id": "z_boss",
+        "x": 8.75,
+        "y": 14.2,
+        "w": 3,
+        "h": 1.5,
+        "kind": "boss",
+        "label": "路过 · 破绽标记 ×1.5"
+      },
+      {
+        "id": "z_skill",
+        "x": 8.96,
+        "y": 26.3,
+        "w": 3.4,
+        "h": 1.6,
+        "kind": "skill",
+        "label": "路过 · 技能充能 +1"
+      }
+    ],
+    "slots": [
+      {
+        "id": "slot_coin",
+        "x": -6.944,
+        "y": 1.65,
+        "w": 3.08,
+        "h": 1.7,
+        "kind": "normal",
+        "label": "铜钱",
+        "value": 70,
+        "role": "加分 70"
+      },
+      {
+        "id": "slot_energy",
+        "x": -3.472,
+        "y": 1.65,
+        "w": 3.08,
+        "h": 1.7,
+        "kind": "energy",
+        "label": "聚气",
+        "value": 0,
+        "role": "充能量 +32"
+      },
+      {
+        "id": "slot_weak",
+        "x": 0,
+        "y": 1.65,
+        "w": 3.08,
+        "h": 1.7,
+        "kind": "boss",
+        "label": "破绽",
+        "value": 210,
+        "role": "扣 Boss 血 · 正中 ×2　带标记 ×1.5"
+      },
+      {
+        "id": "slot_combo",
+        "x": 3.472,
+        "y": 1.65,
+        "w": 3.08,
+        "h": 1.7,
+        "kind": "combo",
+        "label": "连斩",
+        "value": 120,
+        "role": "连击不中断"
+      },
+      {
+        "id": "slot_gold",
+        "x": 6.944,
+        "y": 1.65,
+        "w": 3.08,
+        "h": 1.7,
+        "kind": "multiplier",
+        "label": "万金",
+        "value": 95,
+        "role": "下颗球 ×2.5"
+      }
+    ]
+  },
+  "boss": {
+    "id": "boss_jingyang",
+    "name": "镇山母虎",
+    "title": "第一阵 · 守将",
+    "maxHp": 4350,
+    "armor": 0,
+    "weakPoint": {
+      "x": 0,
+      "y": 3.1,
+      "r": 1.25
+    },
+    "phases": [
+      {
+        "at": 1,
+        "name": "镇守",
+        "desc": "瞄准破绽，学会蓄力与救球。",
+        "deprive": []
+      }
+    ],
+    "colors": {
+      "body": "#2b3550",
+      "trim": "#ff5470",
+      "glow": "#ff8a5c"
+    }
+  },
+  "rules": {
+    "balls": 14,
+    "comboWindow": 1.7,
+    "startingEnergy": 40,
+    "fever": {
+      "triggerSlot": "slot_weak",
+      "duration": 14,
+      "bonusBalls": 3,
+      "slotFactor": 1.2,
+      "chainStep": 0.2,
+      "chainMax": 6,
+      "gate": {
+        "w": 6.4,
+        "h": 1.1,
+        "y": 4.6
+      },
+      "armorRelief": 0.28,
+      "palette": {
+        "led": "#ffd24a",
+        "yakumono": "#ff9a2e",
+        "accent": "#fff0b8"
+      },
+      "glyph": "確"
+    },
+    "enemy": {
+      "baseDamage": 62,
+      "perBounce": 22,
+      "bounceMax": 12,
+      "attrWin": 1.5,
+      "attrGen": 1.2,
+      "attrLose": 0.7,
+      "critChance": 0.22,
+      "critMult": 2.2,
+      "killBoost": 4.4,
+      "perSweep": 0.24,
+      "fullSweepDamage": 218,
+      "leftoverPenalty": 0.06
+    },
+    "reward": {
+      "silver": 320,
+      "stones": 90,
+      "shards": 2
+    },
+    "skillChargeScale": 0.4,
+    "ballSeconds": 12.6
+  }
+}

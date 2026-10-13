@@ -1,0 +1,58 @@
+{
+  "id": "muhong",
+  "number": 24,
+  "name": "穆弘",
+  "title": "没遮拦",
+  "rarity": "R",
+  "wuxing": "earth",
+  "role": "挡拆",
+  "color": "#6d5a3f",
+  "accent": "#c8b088",
+  "tagline": "一庄之主，从不落单",
+  "lore": "揭阳镇穆家庄。她没什么花招，就是站在那里——你想过去，得先把她挪开，而她不太挪得动。",
+  "base": {
+    "hp": 120,
+    "atk": 11,
+    "def": 9,
+    "speed": 9
+  },
+  "skill": {
+    "id": "muhong_holder",
+    "name": "没遮拦",
+    "rule": "给球加一条速度下限，并减缓它被磨停的速度",
+    "desc": "7 秒内给球 2.8 bu/s 的速度下限、阻尼 ×0.65、落槽 ×1.22。她不制造机会，她保证机会来的时候你还有球可打。",
+    "trigger": {
+      "on": "slotEnter",
+      "minIntensity": 0,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "speedFloor",
+        "value": 2.8,
+        "duration": 7
+      },
+      {
+        "key": "damping",
+        "value": 0.65,
+        "duration": 7
+      },
+      {
+        "key": "slot",
+        "value": 1.22,
+        "duration": 7
+      }
+    ],
+    "fx": "skillCast"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "shield"
+  },
+  "bonds": [
+    "zhutong",
+    "leiheng"
+  ]
+}

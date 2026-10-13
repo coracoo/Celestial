@@ -1,0 +1,758 @@
+{
+  "id": "stage_05",
+  "name": "济州 · 怒闯梁山泊",
+  "subtitle": "一刀一个，血溅鸳鸯楼",
+  "story": "宋江怒杀阎婆惜、张文远，提头出逃，投奔梁山泊。盘上一级级台阶往下走，没有回头路。",
+  "layoutNote": "双阶梯 + 中场一道双环。台阶把球一级级往下递，环在中间再横着搅一道。",
+  "board": {
+    "width": 16,
+    "height": 32,
+    "gravity": -74,
+    "walls": [],
+    "deflectors": [
+      {
+        "id": "trk_mid_l",
+        "x": -3.308,
+        "y": 7.966,
+        "w": 2.402,
+        "h": 0.2,
+        "rotDeg": -20,
+        "role": "deflector"
+      },
+      {
+        "id": "trk_mid_r",
+        "x": 3.308,
+        "y": 7.966,
+        "w": 2.402,
+        "h": 0.2,
+        "rotDeg": 20,
+        "role": "deflector"
+      },
+      {
+        "id": "d_mid_l",
+        "x": -3.972,
+        "y": 22.736464758633275,
+        "w": 1.3,
+        "h": 0.16,
+        "rotDeg": -15,
+        "role": "deflector"
+      },
+      {
+        "id": "d_mid_r",
+        "x": 3.972,
+        "y": 22.736464758633275,
+        "w": 1.3,
+        "h": 0.16,
+        "rotDeg": 15,
+        "role": "deflector"
+      },
+      {
+        "id": "d_low_l",
+        "x": -3.982,
+        "y": 14.257260187900247,
+        "w": 1.4,
+        "h": 0.16,
+        "rotDeg": -28,
+        "role": "deflector"
+      },
+      {
+        "id": "d_low_r",
+        "x": 3.982,
+        "y": 14.257260187900247,
+        "w": 1.4,
+        "h": 0.16,
+        "rotDeg": 28,
+        "role": "deflector"
+      },
+      {
+        "id": "flip_left",
+        "x": -2.063,
+        "y": 5.449527912099094,
+        "w": 1.2,
+        "h": 0.16,
+        "rotDeg": -22,
+        "role": "deflector",
+        "flip": "left"
+      },
+      {
+        "id": "guide_left",
+        "x": -3.25,
+        "y": 4.324527912099095,
+        "w": 0.07499999999999996,
+        "h": 0.16,
+        "rotDeg": 0,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_left",
+        "x": -5.588,
+        "y": 3.323438750943016,
+        "w": 2.4075738432719866,
+        "h": 0.16,
+        "rotDeg": -20,
+        "role": "deflector"
+      },
+      {
+        "id": "flip_right",
+        "x": 2.063,
+        "y": 5.449527912099094,
+        "w": 1.2,
+        "h": 0.16,
+        "rotDeg": 22,
+        "role": "deflector",
+        "flip": "right"
+      },
+      {
+        "id": "guide_right",
+        "x": 3.25,
+        "y": 4.324527912099095,
+        "w": 0.07499999999999996,
+        "h": 0.16,
+        "rotDeg": 0,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_right",
+        "x": 5.588,
+        "y": 3.323438750943016,
+        "w": 2.4075738432719866,
+        "h": 0.16,
+        "rotDeg": 20,
+        "role": "deflector"
+      }
+    ],
+    "pegRows": [
+      {
+        "y": 27,
+        "step": 2.6,
+        "fromX": -6.2,
+        "toX": 6.2,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 1.8
+          }
+        ]
+      },
+      {
+        "y": 22.6,
+        "step": 2.3,
+        "fromX": -6.6,
+        "toX": 6.6,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": true,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 1.6
+          }
+        ]
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 5.17,
+        "toX": 6.2,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 4.14,
+        "toX": 5.17,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 3.1099999999999994,
+        "toX": 4.14,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 2.079999999999999,
+        "toX": 3.1099999999999994,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 1.049999999999999,
+        "toX": 2.079999999999999,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 0.019999999999998685,
+        "toX": 1.049999999999999,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -1.0100000000000016,
+        "toX": 0.019999999999998685,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -2.040000000000002,
+        "toX": -1.0100000000000016,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -3.070000000000002,
+        "toX": -2.040000000000002,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -4.100000000000002,
+        "toX": -3.070000000000002,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -5.130000000000003,
+        "toX": -4.100000000000002,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -6.160000000000003,
+        "toX": -5.130000000000003,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": -7.190000000000003,
+        "toX": -6.160000000000003,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 4.2,
+        "toX": 5.23,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 5.23,
+        "toX": 6.260000000000001,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 27,
+        "step": 1.0300000000000002,
+        "fromX": 6.260000000000001,
+        "toX": 7.290000000000001,
+        "r": 0.26,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      }
+    ],
+    "pegFormations": [
+      {
+        "id": "stair_a",
+        "shape": "stair",
+        "cx": -4.2,
+        "cy": 20.6,
+        "r": 0.26,
+        "kind": "spear",
+        "count": 3,
+        "perStep": 4,
+        "label": "stair_a"
+      },
+      {
+        "id": "stair_b",
+        "shape": "stair",
+        "cx": 4.2,
+        "cy": 20.6,
+        "r": 0.26,
+        "kind": "spear",
+        "count": 3,
+        "perStep": 4,
+        "label": "stair_b"
+      },
+      {
+        "id": "ring_m",
+        "shape": "ring",
+        "cx": 0,
+        "cy": 14,
+        "r": 0.28,
+        "kind": "armored",
+        "rings": 2,
+        "phase": 0.3,
+        "label": "ring_m"
+      },
+      {
+        "id": "rail_l",
+        "shape": "wall",
+        "cx": -5.4,
+        "cy": 10.2,
+        "r": 0.26,
+        "kind": "normal",
+        "count": 3,
+        "label": "rail_l"
+      },
+      {
+        "id": "rail_r",
+        "shape": "wall",
+        "cx": 5.4,
+        "cy": 10.2,
+        "r": 0.26,
+        "kind": "normal",
+        "count": 3,
+        "label": "rail_r"
+      },
+      {
+        "id": "gold_m",
+        "shape": "cross",
+        "cx": 0,
+        "cy": 13.4,
+        "r": 0.27,
+        "kind": "golden",
+        "arms": 4,
+        "label": "gold_m"
+      },
+      {
+        "id": "en_water_0",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -4.355,
+        "cy": 24.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 195,
+        "wuxing": "water",
+        "score": 332,
+        "label": "water"
+      },
+      {
+        "id": "en_fire_1",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -1.555,
+        "cy": 24.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 221,
+        "wuxing": "fire",
+        "score": 376,
+        "label": "fire"
+      },
+      {
+        "id": "en_wood_2",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 2.645,
+        "cy": 24.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 156,
+        "wuxing": "wood",
+        "score": 265,
+        "label": "wood"
+      },
+      {
+        "id": "en_metal_3",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 0.545,
+        "cy": 23.8,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 247,
+        "wuxing": "metal",
+        "score": 420,
+        "label": "metal"
+      },
+      {
+        "id": "en_earth_4",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -0.505,
+        "cy": 22.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 208,
+        "wuxing": "earth",
+        "score": 354,
+        "label": "earth"
+      },
+      {
+        "id": "en_water_5",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 1.945,
+        "cy": 22.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 195,
+        "wuxing": "water",
+        "score": 332,
+        "label": "water"
+      },
+      {
+        "id": "en_fire_6",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 0.195,
+        "cy": 19.4,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 221,
+        "wuxing": "fire",
+        "score": 376,
+        "label": "fire"
+      },
+      {
+        "id": "en_wood_7",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -5.755,
+        "cy": 15,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 156,
+        "wuxing": "wood",
+        "score": 265,
+        "label": "wood"
+      },
+      {
+        "id": "en_metal_8",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -4.705,
+        "cy": 13.4,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 247,
+        "wuxing": "metal",
+        "score": 420,
+        "label": "metal"
+      },
+      {
+        "id": "en_earth_9",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 4.745,
+        "cy": 13.4,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 208,
+        "wuxing": "earth",
+        "score": 354,
+        "label": "earth"
+      },
+      {
+        "id": "en_water_10",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 3.345,
+        "cy": 12.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 195,
+        "wuxing": "water",
+        "score": 332,
+        "label": "water"
+      },
+      {
+        "id": "en_fire_11",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -2.255,
+        "cy": 10.6,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 221,
+        "wuxing": "fire",
+        "score": 376,
+        "label": "fire"
+      },
+      {
+        "id": "en_wood_12",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 2.295,
+        "cy": 10.6,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 156,
+        "wuxing": "wood",
+        "score": 265,
+        "label": "wood"
+      }
+    ],
+    "zones": [
+      {
+        "id": "z_energy",
+        "x": -5,
+        "y": 14.2,
+        "w": 3,
+        "h": 1.5,
+        "kind": "energy",
+        "label": "路过 · 充能 +26"
+      },
+      {
+        "id": "z_boss",
+        "x": 5,
+        "y": 14.2,
+        "w": 3,
+        "h": 1.5,
+        "kind": "boss",
+        "label": "路过 · 破绽标记 ×1.5"
+      },
+      {
+        "id": "z_combo",
+        "x": 0,
+        "y": 14.2,
+        "w": 3.4,
+        "h": 1.5,
+        "kind": "combo",
+        "label": "路过 · 连击 +4"
+      },
+      {
+        "id": "z_skill",
+        "x": -2.4,
+        "y": 16,
+        "w": 3.4,
+        "h": 1.6,
+        "kind": "skill",
+        "label": "路过 · 技能充能 +1"
+      },
+      {
+        "id": "z_multiplier",
+        "x": 4.9,
+        "y": 17.6,
+        "w": 3,
+        "h": 1.6,
+        "kind": "multiplier",
+        "label": "路过 · 落槽 ×1.6"
+      }
+    ],
+    "slots": [
+      {
+        "id": "slot_coin",
+        "x": -3.968,
+        "y": 1.65,
+        "w": 1.76,
+        "h": 1.7,
+        "kind": "normal",
+        "label": "铜钱",
+        "value": 70,
+        "role": "加分 70"
+      },
+      {
+        "id": "slot_energy",
+        "x": -1.984,
+        "y": 1.65,
+        "w": 1.76,
+        "h": 1.7,
+        "kind": "energy",
+        "label": "聚气",
+        "value": 0,
+        "role": "充能量 +32"
+      },
+      {
+        "id": "slot_weak",
+        "x": 0,
+        "y": 1.65,
+        "w": 1.76,
+        "h": 1.7,
+        "kind": "boss",
+        "label": "破绽",
+        "value": 210,
+        "role": "扣 Boss 血 · 正中 ×2　带标记 ×1.5"
+      },
+      {
+        "id": "slot_combo",
+        "x": 1.984,
+        "y": 1.65,
+        "w": 1.76,
+        "h": 1.7,
+        "kind": "combo",
+        "label": "连斩",
+        "value": 120,
+        "role": "连击不中断"
+      },
+      {
+        "id": "slot_gold",
+        "x": 3.968,
+        "y": 1.65,
+        "w": 1.76,
+        "h": 1.7,
+        "kind": "multiplier",
+        "label": "万金",
+        "value": 95,
+        "role": "下颗球 ×2.5"
+      }
+    ]
+  },
+  "boss": {
+    "id": "boss_chongyi",
+    "name": "王义",
+    "title": "济州 · 刀笔小吏",
+    "maxHp": 8950,
+    "armor": 0.12,
+    "weakPoint": {
+      "x": 0,
+      "y": 3.1,
+      "r": 1.25
+    },
+    "phases": [
+      {
+        "at": 1,
+        "name": "笔架",
+        "deprive": [
+          "aim"
+        ],
+        "desc": "一支笔一支架，球撞上就往回弹。落槽整排漂移加倍，破绽口跟着它跑。"
+      },
+      {
+        "at": 0.6,
+        "name": "泼墨",
+        "deprive": [
+          "aim",
+          "ammo"
+        ],
+        "desc": "墨汁泼满盘面，落槽开始乱摆。落槽整排漂移加倍，破绽口跟着它跑；本球时间压到三分之二，救球窗口关闭。"
+      },
+      {
+        "at": 0.3,
+        "name": "狗头",
+        "deprive": [
+          "aim",
+          "ammo"
+        ],
+        "desc": "一万条人命换来的刀，这颗球的时间被砍去一截。落槽整排漂移加倍，破绽口跟着它跑；本球时间压到三分之二，救球窗口关闭。"
+      }
+    ],
+    "colors": {
+      "body": "#1f2a33",
+      "trim": "#6fb7d6",
+      "glow": "#a8e4ff"
+    }
+  },
+  "rules": {
+    "balls": 17,
+    "comboWindow": 1.7,
+    "startingEnergy": 20,
+    "fever": {
+      "triggerSlot": "slot_weak",
+      "duration": 14,
+      "bonusBalls": 6,
+      "slotFactor": 1.2,
+      "chainStep": 0.2,
+      "chainMax": 6,
+      "gate": {
+        "w": 6.4,
+        "h": 1.1,
+        "y": 4.6
+      },
+      "armorRelief": 0.28,
+      "palette": {
+        "led": "#ffd24a",
+        "yakumono": "#ff9a2e",
+        "accent": "#fff0b8"
+      },
+      "glyph": "確"
+    },
+    "enemy": {
+      "baseDamage": 62,
+      "perBounce": 22,
+      "bounceMax": 12,
+      "attrWin": 1.5,
+      "attrGen": 1.2,
+      "attrLose": 0.7,
+      "critChance": 0.22,
+      "critMult": 2.2,
+      "killBoost": 4.4,
+      "perSweep": 0.0923,
+      "fullSweepDamage": 448,
+      "leftoverPenalty": 0.06
+    },
+    "reward": {
+      "silver": 480,
+      "stones": 130,
+      "shards": 3
+    },
+    "ballSeconds": 14.4
+  }
+}

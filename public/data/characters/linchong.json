@@ -1,0 +1,72 @@
+{
+  "id": "linchong",
+  "number": 6,
+  "name": "林冲",
+  "title": "豹子头",
+  "rarity": "SSR",
+  "wuxing": "water",
+  "role": "贯穿",
+  "color": "#3d8fd6",
+  "accent": "#9fd4ff",
+  "tagline": "风雪夜归人",
+  "lore": "八十万禁军教头的枪法，讲究的是一条线——不绕，不偏，一枪穿过去，谁拦都没用。",
+  "base": {
+    "hp": 126,
+    "atk": 17,
+    "def": 9,
+    "speed": 12
+  },
+  "skill": {
+    "id": "linchong_snowlance",
+    "name": "雪拥枪法",
+    "rule": "从球位置扫出可旋转枪线，同时获得短暂穿透",
+    "desc": "按住预览枪线，松开对范围内敌人各造成120点基础伤害，按林冲的水属性与共享爆伤修正。随后4.5秒穿过普通 / 可破坏 / 破绽钉，穿钉得48分（破绽额外扣Boss血96），球速×1.16、落槽×1.22。普通撞钉即可充能。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0,
+      "charges": 7,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "speed",
+        "value": 1.16,
+        "duration": 4.5
+      },
+      {
+        "key": "slot",
+        "value": 1.22,
+        "duration": 4.5
+      }
+    ],
+    "pierce": {
+      "kinds": [
+        "normal",
+        "destructible",
+        "weak"
+      ],
+      "damagePerPeg": 48
+    },
+    "fx": "pierceHit",
+    "strike": {
+      "shape": "line",
+      "radius": 9,
+      "halfWidth": 0.65,
+      "angleDeg": 90,
+      "damage": 120,
+      "origin": "ball",
+      "kinds": [
+        "enemy"
+      ]
+    }
+  },
+  "card": {
+    "rarity": "SSR",
+    "holo": "auto",
+    "motif": "spear"
+  },
+  "bonds": [
+    "songjiang",
+    "wusong"
+  ]
+}

@@ -1,0 +1,2948 @@
+:root {
+  --ink: #05070d;
+  --panel: rgba(14, 19, 33, 0.82);
+  --panel-solid: #0e1321;
+  --line: rgba(140, 165, 220, 0.18);
+  --line-strong: rgba(150, 180, 240, 0.42);
+  --text: #e8eeff;
+  --text-dim: #93a2c4;
+  --gold: #ffd76a;
+  --cyan: #49e6ff;
+  --violet: #b184ff;
+  --red: #ff5470;
+  --green: #49e6a0;
+  --orange: #ffb454;
+  --font-cn: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --font-ui: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  /* 机台铭板：战斗 HUD 压在暖红机身上，面板再用冷调深蓝会读成「贴上去的网页卡片」。
+     这组变量专供战斗 HUD，抽卡/图鉴那两块 .sheet 仍走 --panel。 */
+  --plate: linear-gradient(180deg, rgba(34,16,24, 0.9), rgba(11,6,13, 0.92));
+  --plate-line: rgba(255, 206, 128, 0.2);
+  --plate-inner: inset 0 1px 0 rgba(255, 226, 180, 0.16);
+  --plate-drop: 0 6px 22px -10px rgba(0, 0, 0, 0.9);
+  /* 抽卡 / 图鉴左栏宽度。控制条要贴着这块面板的右缘摆，
+     两处各写一份 min() 迟早会对不上，所以收成一个变量。 */
+  --sheet-w: min(430px, 40vw);
+
+  /* ── 整屏内容面板的统一样式 ──────────────────────────────────
+     自由选关、剧情选关、出征、敌方图鉴这四屏以前各写各的：
+     自由选关 1240px 带边框、剧情选关 1320px 不带框、敌方图鉴干脆是个
+     1478px 的全屏 dialog、标题 26px 和 38px 混用。玩家来回切两屏，
+     面板边缘会在视线里跳一下。
+     宽度、边框、圆角、底色、标题全部收在这里，谁要用取谁，不再各写一份。 */
+  --screen-w: min(1180px, 94vw);
+  --screen-line: rgba(255, 206, 128, 0.2);
+  --screen-radius: 4px;
+  --screen-pad: 30px 28px;
+  --screen-bg:
+    radial-gradient(120% 80% at 50% 0%, rgba(120, 38, 30, 0.5), transparent 62%),
+    linear-gradient(180deg, rgba(16, 9, 14, 0.97), rgba(8, 5, 9, 0.99));
+  --screen-shadow: 0 24px 70px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 206, 128, 0.12);
+  --screen-title-size: 26px;
+  --screen-title-track: 0.22em;
+
+  /* 屏内主行动键（「返 回」「出 征」那类）的定宽。之前 268px 只写在 .menu 上，
+     剧情选关的返回键只能按文字自适应，于是同一条命令在两屏一个 268 一个 103，
+     底边一比就是两颗按钮。收成变量，两处取同一个数。 */
+  --action-w: 268px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-ui);
+  user-select: none;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#ui {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#ui > * {
+  pointer-events: auto;
+}
+
+/* 飘字层与闪屏层必须保持穿透：#ui > * 的选择器权重更高，这里需要同等 ID 权重覆盖 */
+#ui > .floats,
+#ui > .flash {
+  pointer-events: none;
+}
+
+#boot {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 18px;
+  justify-items: center;
+  background: radial-gradient(circle at 50% 42%, #16203a 0%, #05070d 70%);
+  z-index: 90;
+  transition: opacity 0.5s ease;
+}
+
+#boot.gone {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.boot-mark {
+  font-family: var(--font-cn);
+  font-size: 92px;
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(255, 215, 106, 0.45);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.boot-text {
+  color: var(--text-dim);
+  letter-spacing: 0.3em;
+  font-size: 13px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* ------------------------------------------------------------ 屏幕切换 */
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  /* 建立层叠上下文：遮罩固定在最底层，交互元素永远在遮罩之上 */
+  isolation: isolate;
+  animation: fadeIn 0.32s ease;
+}
+
+/*
+ * 只提层叠顺序，不要在这里写 position。
+ * .screen 是 flex 容器，flex 子项本身就能吃 z-index，
+ * 而 position: relative 的特异性 (0,2,0) 会压过 .sheet 的 position: absolute (0,1,0)，
+ * 把抽卡/图鉴的左右双栏面板变成纵向堆叠。
+ */
+.screen > *:not(.veil) {
+  z-index: 1;
+}
+
+.screen.on {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* 暖紫红：战斗屏的机身已经是暖红机台底色了，三屏还压冷蓝遮罩会割裂成两个游戏 */
+  background: radial-gradient(circle at 50% 40%, rgba(58, 22, 30, 0.72) 0%, rgba(8, 5, 10, 0.95) 72%);
+  backdrop-filter: blur(3px);
+}
+
+/*
+ * 图鉴页现在是左列表 / 右 3D 大图两栏，右侧整片都要透亮。
+ * 原来的遮罩是「左列表 / 中 showcase / 右详情」三栏时代的写法，
+ * 中间的空洞只开在 38%~62%，新布局下 62% 之后又被压暗——就是右侧那条暗边。
+ * 抽卡页那套（只压左边 34%）才是现在该用的形状。
+ */
+/* 图鉴右侧要留出一整片不压暗的 3D 展示区，所以遮罩只在左边 34% 里压暗，
+   右边整条让出来。 */
+.screen[data-screen='collection'] .veil {
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 34%, transparent 42%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 34%, transparent 42%, transparent 100%);
+}
+
+/* ---------------------------------------------------------------- 通用 */
+
+.btn {
+  appearance: none;
+  border: 1px solid rgba(255, 206, 128, 0.34);
+  background: linear-gradient(180deg, rgba(60, 27, 35, 0.92), rgba(20, 10, 16, 0.92));
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  padding: 13px 30px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform 0.14s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.14) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.5s ease;
+}
+
+.btn:hover::after {
+  transform: translateX(120%);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: 0 6px 26px rgba(255, 215, 106, 0.18);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background: linear-gradient(180deg, rgba(190, 140, 40, 0.95), rgba(120, 78, 14, 0.95));
+  border-color: var(--gold);
+  color: #1a1204;
+  font-weight: 700;
+}
+
+.btn--ghost {
+  background: rgba(22, 11, 17, 0.72);
+  border-color: rgba(255, 206, 128, 0.18);
+  color: #c9ae92;
+}
+
+.btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none;
+}
+
+.res {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.res b {
+  color: var(--text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.res .i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  margin-right: 6px;
+  transform: rotate(45deg);
+}
+
+.title-h {
+  font-family: var(--font-cn);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+/* ------------------------------------------------------------ 标题页 */
+
+.s-title {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.brand {
+  font-family: var(--font-cn);
+  font-size: clamp(46px, 8vw, 96px);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin: 0;
+  color: #ffe9b8;
+  text-shadow:
+    0 2px 0 #9c6c15,
+    0 0 26px rgba(255, 215, 106, 0.55),
+    0 0 80px rgba(255, 150, 60, 0.28);
+}
+
+.brand-sub {
+  font-family: var(--font-cn);
+  font-size: clamp(14px, 1.6vw, 19px);
+  letter-spacing: 0.42em;
+  color: var(--text-dim);
+  margin: 0 0 6px;
+}
+
+.brand-tag {
+  font-size: 13px;
+  color: #6f7d9c;
+  letter-spacing: 0.2em;
+  margin: 0 0 30px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: var(--action-w);
+}
+
+.menu .btn {
+  width: 100%;
+}
+
+.s-title .res {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+}
+
+.corner-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #5d6a88;
+  letter-spacing: 0.14em;
+}
+
+/* ------------------------------------------------------- 抽卡 / 图鉴 */
+
+.sheet {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--sheet-w);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: linear-gradient(90deg, rgba(12, 7, 13, 0.96), rgba(12, 7, 13, 0.74));
+  border-right: 1px solid rgba(255, 206, 128, 0.14);
+  overflow-y: auto;
+}
+
+.sheet--right {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid rgba(255, 206, 128, 0.14);
+  background: linear-gradient(270deg, rgba(12, 7, 13, 0.96), rgba(12, 7, 13, 0.74));
+}
+
+.sheet h2 {
+  font-family: var(--font-cn);
+  font-size: 26px;
+  letter-spacing: 0.22em;
+  margin: 0;
+  color: var(--gold);
+}
+
+.sheet p.note {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--text-dim);
+}
+
+/* ------------------------------------------------------------ 卡牌列表 */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.link-hint {
+  border: 1px solid rgba(255, 206, 128, 0.16);
+  border-left: 3px solid var(--c);
+  border-radius: 2px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background: linear-gradient(180deg, rgba(46, 20, 29, 0.8), rgba(14, 8, 14, 0.84));
+}
+
+.link-hint h4 {
+  margin: 0 0 5px;
+  font-family: var(--font-cn);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  color: var(--c);
+}
+
+.link-hint p {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.tag-tier {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  padding: 1px 6px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  margin-left: 8px;
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------- 战斗 */
+
+.hud {
+  position: absolute;
+  inset: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.hud.on {
+  display: block;
+}
+
+.hud > * {
+  pointer-events: auto;
+}
+
+/* 压扁到顶部一条：盘面上沿要给机台的 LED 数字显示灯让位，
+   血条一旦做厚就会横穿那块显示器。 */
+.boss-bar {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(560px, 54vw);
+  text-align: center;
+}
+
+.boss-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.boss-name {
+  font-family: var(--font-cn);
+  font-size: 16px;
+  letter-spacing: 0.18em;
+  color: #ffd9de;
+  text-shadow: 0 0 18px rgba(255, 84, 112, 0.5);
+}
+
+.boss-phase {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--orange);
+}
+
+/* Boss 进入剥夺相位：这行字从“说明”变成“当前限制”，颜色提亮并常驻。 */
+.boss-phase.is-active {
+  color: #ff9a7a;
+  text-shadow: 0 0 14px rgba(255, 106, 92, 0.35);
+}
+
+.boss-track {
+  position: relative;
+  height: 16px;
+  background: rgba(10, 14, 26, 0.85);
+  border: 1px solid rgba(255, 84, 112, 0.4);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.boss-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, #ff2f52, #ff7a5c 70%, #ffc46b);
+  transition: width 0.28s cubic-bezier(0.2, 0.9, 0.3, 1);
+  box-shadow: 0 0 22px rgba(255, 90, 110, 0.5);
+}
+
+.boss-ghost {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: rgba(255, 255, 255, 0.22);
+  transition: width 0.9s ease 0.18s;
+}
+
+.boss-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.boss-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.boss-hp {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.panel {
+  position: absolute;
+  background: var(--plate);
+  border: 1px solid var(--plate-line);
+  border-radius: 3px;
+  padding: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: var(--plate-inner), var(--plate-drop);
+}
+
+/* 左栏竖列：確変条 + 三张武将卡 + 落槽/路过说明条。
+   这三块原本各自绝对定位，谁一改高度就会盖住别人（实机里先后盖过两次：
+   说明条加高盖住第三张武将卡的技能条，武将卡改顶锚又切掉確変条的「連打 / 倍率」）。
+   流式竖列让它们不可能再互撞；说明条放最后，多出来的内容往下长。 */
+.hud-left {
+  position: absolute;
+  left: 18px;
+  top: 42px;
+  bottom: 112px;
+  width: 216px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.hud-left > * {
+  position: static;
+  inset: auto;
+  transform: none;
+  width: 100%;
+  /* 武将卡和確変条按内容定高（0 0 auto），说明条改成 0 1 auto：
+     它是唯一允许被压缩的一块——内容装不下时在面板内部滚，
+     而不是把上面的武将卡挤出这列定高的容器。 */
+  flex: 0 0 auto;
+}
+
+.hud-left > .p-slots {
+  flex: 0 1 auto;
+}
+
+/* 锚顶部而不是垂直居中：见 .hud-left 的说明。 */
+.p-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.skill {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 9px;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid rgba(255, 206, 128, 0.16);
+  border-left: 3px solid var(--c);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(44, 20, 30, 0.72), rgba(14, 8, 16, 0.8));
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.12s ease;
+}
+
+.skill:hover {
+  transform: translateX(3px);
+}
+
+.skill.ready {
+  border-color: var(--c);
+  background: linear-gradient(180deg, rgba(72, 38, 26, 0.8), rgba(24, 12, 14, 0.84));
+  box-shadow: 0 0 18px -4px var(--c);
+  animation: breathe 1.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 14px -6px var(--c); }
+  50% { box-shadow: 0 0 26px -2px var(--c); }
+}
+
+.skill-key {
+  display: grid;
+  place-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--c);
+  border-radius: 3px;
+  color: var(--c);
+  font-size: 12px;
+  font-weight: 700;
+  grid-row: span 2;
+}
+
+.skill-name {
+  font-family: var(--font-cn);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
+/* 技能卡正文现在印的是 `rule`（改了哪条物理规则），不是技能名。
+   这句话是玩家判断「什么时候该按 1/2/3」的唯一依据，必须读得清，
+   所以行高放松、颜色提到可读档——技能名已经降级并进 skill-name 行。 */
+.skill-rule {
+  font-size: 10.5px;
+  color: #b79a86;
+  line-height: 1.62;
+  margin-top: 3px;
+}
+
+.gauge {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.gauge span {
+  display: block;
+  height: 100%;
+  background: var(--c);
+  transition: width 0.2s ease;
+}
+
+/* 右侧数字面板改成竖列容器：统计在上、五行相性对照条接在下面。
+   两块合成一列就不会互相压——之前它们各自绝对定位，加内容就撞。 */
+.p-stats {
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hud-right {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.hud-right > * {
+  position: static;
+  inset: auto;
+  transform: none;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.p-wuxing {
+  padding: 10px 12px 11px;
+}
+
+.wuxing-legend-title {
+  margin-bottom: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 206, 128, 0.14);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 206, 128, 0.62);
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12px;
+  color: var(--text-dim);
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 206, 128, 0.12);
+}
+
+.stat b {
+  font-size: 19px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.stat--combo b {
+  color: var(--orange);
+  text-shadow: 0 0 18px rgba(255, 166, 61, 0.5);
+}
+
+.stat--energy b {
+  color: var(--cyan);
+}
+
+.buffs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.buff {
+  font-size: 10.5px;
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  letter-spacing: 0.1em;
+}
+
+/* 贴死底边并压薄：这一条正好压在盘面最下方的落槽上，
+   厚一点就把「铜钱 / 破绽 / 万金」这些球最终落点全挡住了。 */
+.p-bottom {
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 9px;
+}
+
+.link-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 206, 128, 0.18);
+  border-left: 3px solid var(--c);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(40, 18, 28, 0.85), rgba(12, 7, 14, 0.88));
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--text-dim);
+  transition: all 0.18s ease;
+}
+
+.link-chip.armed {
+  color: var(--text);
+  border-color: var(--c);
+  box-shadow: 0 0 16px -6px var(--c);
+}
+
+.link-chip.active {
+  color: #fff;
+  background: linear-gradient(180deg, rgba(96, 52, 26, 0.88), rgba(30, 14, 14, 0.9));
+}
+
+.link-chip.locked {
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.link-chip b {
+  font-family: var(--font-cn);
+  letter-spacing: 0.1em;
+  color: var(--c);
+}
+
+.link-lock {
+  font-size: 10px;
+  padding: 1px 5px;
+  border: 1px solid rgba(255, 206, 128, 0.28);
+  border-radius: 2px;
+  color: var(--text-dim);
+}
+
+/* 落槽说明条。位置由左栏竖列决定，这里不再自己定位。
+   内部允许滚动：钉子图例加进来之后这块面板比三张武将卡加起来还高，
+   硬撑会把武将卡顶出屏（`.hud-left` 是 top:42 bottom:112 的定高列），
+   所以给它 min-height:0 + overflow-y，溢出时自己滚，绝不外溢去压别人。 */
+.p-slots {
+  margin-top: auto;
+  padding: 9px 11px 10px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* 鼠标移上去才允许滚，不挡住发射瞄准的操作 */
+  pointer-events: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 206, 128, 0.3) transparent;
+}
+
+.p-slots::-webkit-scrollbar {
+  width: 4px;
+}
+
+.p-slots::-webkit-scrollbar-thumb {
+  background: rgba(255, 206, 128, 0.3);
+  border-radius: 2px;
+}
+
+.slot-legend-title {
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: #b79a86;
+  margin-bottom: 7px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 206, 128, 0.14);
+}
+
+.slot-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 11px;
+  line-height: 1.75;
+  color: var(--text-dim);
+}
+
+.slot-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 6px var(--c);
+  transform: translateY(-1px);
+}
+
+.slot-row b {
+  color: #e6d6c4;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  flex: 0 0 auto;
+}
+
+.slot-role {
+  color: #a2917f;
+}
+
+/* 目标槽：整行描红加亮。「往哪打」不该让玩家自己在五个口里找 */
+.slot-row--target {
+  margin: 3px -5px;
+  padding: 2px 5px;
+  border-radius: 2px;
+  background: rgba(255, 84, 112, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 84, 112, 0.3);
+}
+
+.slot-row--target b,
+.slot-row--target .slot-role {
+  color: #ff8ea3;
+}
+
+/* 「路过」段：和上面「落槽」用同一块面板，但视觉上明显另起一组。
+   中区色带是飞过就吃、不用瞄的，它和底部槽口是两套机制，混在一列里玩家会当成同一个东西。 */
+.zone-legend-title {
+  margin: 9px 0 5px;
+  padding-top: 7px;
+  border-top: 1px dashed rgba(255, 206, 128, 0.2);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 206, 128, 0.5);
+}
+
+.zone-legend-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 5px;
+}
+
+.zone-chip {
+  padding: 2px 6px;
+  border: 1px solid color-mix(in srgb, var(--c) 55%, transparent);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+  font-size: 10px;
+  line-height: 1.5;
+  color: #d8c8b6;
+  white-space: nowrap;
+}
+
+/* 钉子图例。盘面上的钉头不到 15px，玩家能认出「这颗不一样」但认不出「不一样在哪」，
+   这张表补的就是后半句。色点和 BoardView.PEG_STYLE[kind].led 取同一份值，
+   所以表里的点就是盘上那颗钉的本色。 */
+.peg-legend-title {
+  margin: 9px 0 5px;
+  padding-top: 7px;
+  border-top: 1px dashed rgba(255, 206, 128, 0.2);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 206, 128, 0.5);
+}
+
+.peg-legend-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.peg-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.peg-legend-dot {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--c) 70%, transparent);
+}
+
+.peg-legend-row b {
+  flex: 0 0 auto;
+  color: #e6d3ba;
+  font-weight: 600;
+}
+
+.peg-legend-role {
+  flex: 1 1 auto;
+  color: #a99a8c;
+}
+
+/* 五行相性对照条。盘面上敌人钉靠本色认属性，所以这里也必须用同一套五行色，
+   玩家才能把「这块×1.5」和盘面上那坨宝石对上号。 */
+.wuxing-none {
+  font-size: 10px;
+  color: #6b7897;
+}
+
+.wuxing-ball {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+  font-size: 11px;
+  color: #e6d6c4;
+}
+
+.wuxing-ball b {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.wuxing-ball-dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 9px var(--c);
+}
+
+.wuxing-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wuxing-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* 四档用「边框 + 底色」区分，不靠文字：玩家要能一眼扫出该撞哪色 */
+.wuxing-cell--win {
+  border-color: rgba(255, 215, 106, 0.55);
+  background: rgba(255, 215, 106, 0.1);
+}
+
+.wuxing-cell--gen {
+  border-color: rgba(120, 220, 190, 0.4);
+  background: rgba(120, 220, 190, 0.07);
+}
+
+.wuxing-cell--same {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.wuxing-cell--lose {
+  border-color: rgba(255, 106, 106, 0.4);
+  background: rgba(255, 106, 106, 0.06);
+}
+
+.wuxing-cell-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 6px var(--c);
+}
+
+.wuxing-cell-name {
+  flex: 1 1 auto;
+  color: #d8c8b6;
+}
+
+.wuxing-cell-mult {
+  color: #f0e2ce;
+  font-variant-numeric: tabular-nums;
+}
+
+.wuxing-cell-tag {
+  width: 12px;
+  text-align: right;
+  opacity: 0.65;
+}
+
+.p-hint {
+  left: 18px;
+  bottom: 18px;
+  font-size: 11px;
+  line-height: 1.9;
+  color: #b79a86;
+  background: linear-gradient(180deg, rgba(28, 13, 21, 0.82), rgba(10, 6, 12, 0.86));
+  border: 1px solid rgba(255, 206, 128, 0.14);
+  border-radius: 3px;
+  box-shadow: var(--plate-inner), var(--plate-drop);
+}
+
+.p-hint kbd {
+  display: inline-block;
+  min-width: 17px;
+  padding: 0 4px;
+  text-align: center;
+  border: 1px solid rgba(255, 206, 128, 0.3);
+  border-radius: 2px;
+  background: rgba(255, 226, 180, 0.07);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  color: #f0dcb4;
+  margin: 0 1px;
+}
+
+/* 操作提示的第一行：整个游戏唯一的操作，必须写得比其他两行更醒目。
+   之前三行等权等色地排在一起，玩家扫过去只会记住「1 2 3 Q」，
+   完全错过「球在盘上还能再打」——那才是这个游戏的核心动词。 */
+.hint-main {
+  color: #f4e2c0;
+  font-size: 12.5px;
+  line-height: 2.1;
+  padding-bottom: 3px;
+  margin-bottom: 2px;
+  border-bottom: 1px dashed rgba(255, 206, 128, 0.2);
+}
+
+.hint-key {
+  color: #ffd24a;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 210, 74, 0.6);
+}
+
+/*
+ * 底部翻板触屏键。
+ *
+ * 键位字母（Z / X）用大号刻在左侧，因为它必须**在不看键盘的情况下可读**——
+ * 触屏玩家根本没有物理键盘，让他们记住「左板是 Z」的唯一办法就是一直显示它。
+ *
+ * 宽度用 `min(30vw, 240px)` 而不是固定像素：太宽会盖住盘面下方的底槽，
+ * 而底槽正是球落下去时玩家要看的地方。
+ */
+.flipper-bar {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(20px, 6vw, 90px);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.flip-btn {
+  pointer-events: auto;
+  width: min(30vw, 240px);
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #8e663b;
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(64, 38, 24, 0.92), rgba(28, 16, 12, 0.94));
+  color: #e8d3b4;
+  font-family: var(--font-cn);
+  cursor: pointer;
+  box-shadow: var(--plate-inner), var(--plate-drop);
+  transition: transform 0.06s ease, box-shadow 0.12s ease, background 0.12s ease;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* 提示条抬到横条上方。两条都在正下方，不抬的话提示文字会被横条压掉一半
+   （实机截图：「Z / X 按住打底部翻板」只剩「X 按住打底部翻」露在按钮缝里）。 */
+
+.flip-key {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #b98d51;
+  border-radius: 3px;
+  background: #1a0f0a;
+  color: #ffd76a;
+  font: 700 16px/1 ui-monospace, "Consolas", monospace;
+}
+
+.flip-name {
+  font-size: 14px;
+  letter-spacing: 0.2em;
+}
+
+/* 按下态：金边打亮 + 整体下沉一格，模拟真的把板踩下去了 */
+.flip-btn.down {
+  background: linear-gradient(180deg, rgba(150, 96, 30, 0.95), rgba(70, 38, 12, 0.96));
+  color: #fff3d6;
+  transform: translateY(2px) scale(0.985);
+  box-shadow: 0 0 24px -6px #ffd76a, var(--plate-inner);
+}
+
+.flip-btn.down .flip-key {
+  background: #ffd76a;
+  color: #2a1608;
+  border-color: #fff0c0;
+}
+
+.flip-btn:focus-visible {
+  outline: 2px solid #ffd76a;
+  outline-offset: 2px;
+}
+
+/* 窄屏：两块板贴住左右下角，中间留给盘面 */
+@media (max-width: 800px) {
+  .flipper-bar { left: auto; right: 10px; left: 10px; transform: none; bottom: 8px; gap: 14px; }
+  .flip-btn { flex: 1; width: auto; min-height: 54px; }
+  .flip-name { display: none; }
+}
+
+/* 確変条：只有確変进行中才出现，所以可以尽管做得很吵。
+   位置由左栏竖列（.hud-left）决定，这里不再自己定位。 */
+.fever-bar {
+  flex: 0 0 auto;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 7px 10px 8px;
+  border: 1px solid rgba(255, 210, 74, 0.55);
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(96, 52, 12, 0.9), rgba(28, 12, 8, 0.92));
+  box-shadow: 0 0 26px -8px rgba(255, 210, 74, 0.7), inset 0 1px 0 rgba(255, 236, 190, 0.24);
+  animation: feverIn 0.28s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+
+.fever-bar.on {
+  display: flex;
+}
+
+/* 最后三秒开始频闪，逼玩家在倒计时里做决定 */
+.fever-bar.hot {
+  animation: feverHot 0.32s steps(2, jump-none) infinite;
+}
+
+@keyframes feverIn {
+  from { opacity: 0; transform: translateX(-24px) scale(0.9); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes feverHot {
+  0%, 100% { box-shadow: 0 0 26px -8px rgba(255, 210, 74, 0.7), inset 0 1px 0 rgba(255, 236, 190, 0.24); }
+  50% { box-shadow: 0 0 40px -4px rgba(255, 240, 180, 0.95), inset 0 1px 0 rgba(255, 236, 190, 0.24); }
+}
+
+.fever-name {
+  font-family: var(--font-cn);
+  font-size: 15px;
+  letter-spacing: 0.3em;
+  color: #ffe98a;
+  text-shadow: 0 0 16px rgba(255, 200, 70, 0.85);
+}
+
+.fever-meter {
+  height: 6px;
+  border: 1px solid rgba(255, 236, 190, 0.4);
+  border-radius: 3px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.fever-meter span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #ff8a3c, #ffd24a 60%, #fff0b8);
+  box-shadow: 0 0 12px rgba(255, 210, 74, 0.8);
+}
+
+.fever-renda {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #ffdca8;
+  font-variant-numeric: tabular-nums;
+}
+
+.fever-mult {
+  font-size: 19px;
+  font-weight: 700;
+  color: #fff0b8;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 18px rgba(255, 210, 74, 0.8);
+}
+
+.balls {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+/* 剩余球数的小钢珠：跟盘面里那颗镀铬弹珠同一套材质语言，
+   不要再用金色发光电球——那是上一版「发光球」时代的残留。 */
+.ball-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #23202c, #120e16 70%);
+  box-shadow: inset 0 0 0 1px rgba(255, 206, 128, 0.18);
+}
+
+.ball-dot.on {
+  background: radial-gradient(circle at 34% 28%, #f4f8ff, #9fb0c8 52%, #5a6478 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 226, 180, 0.5), 0 0 8px rgba(255, 196, 132, 0.35);
+}
+
+/* 「击射」标签。这一排点数的语义已经从「还剩几颗球」变成「还剩几次击射」，
+   差别是决定性的——前者像弹药，后者像「还能救这颗球几次」，
+   玩家会因为这个差别做出完全不同的决策，所以标签必须一直在。 */
+.ball-label {
+  margin-right: 4px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 206, 128, 0.72);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.charge-ui {
+  position: absolute;
+  left: 50%;
+  bottom: 86px;
+  transform: translateX(-50%);
+  width: 240px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.charge-ui.on {
+  opacity: 1;
+}
+
+.charge-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 206, 128, 0.28);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.charge-track span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--gold), var(--red));
+}
+
+.charge-txt {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-top: 5px;
+  letter-spacing: 0.16em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------- 结算 */
+
+.s-result {
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  text-align: center;
+}
+
+.result-title {
+  font-family: var(--font-cn);
+  font-size: clamp(38px, 6vw, 66px);
+  letter-spacing: 0.28em;
+  margin: 0;
+}
+
+.result-title.win {
+  color: #ffe9b8;
+  text-shadow:
+    0 2px 0 #9c6c15,
+    0 0 26px rgba(255, 215, 106, 0.5),
+    0 0 70px rgba(255, 150, 60, 0.25);
+}
+
+.result-title.lose {
+  color: #6b7794;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 12px;
+  width: min(720px, 86vw);
+}
+
+.result-cell {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 14px 10px;
+  background: var(--panel);
+}
+
+.result-cell span {
+  display: block;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.14em;
+  margin-bottom: 6px;
+}
+
+.result-cell b {
+  font-size: 23px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.reward {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: var(--gold);
+}
+
+.result-menu {
+  display: flex;
+  gap: 12px;
+}
+
+/* --------------------------------------------------------- 飘字 / 闪屏 */
+
+.floats {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.float {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-cn);
+  font-weight: 700;
+  font-size: 26px;
+  white-space: nowrap;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+  animation: floatUp 1.05s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+.float--major { font-family: KaiTi,var(--font-cn); letter-spacing: .06em; text-shadow: 1px 2px 1px #150a12,-1px -1px 1px #150a12,0 0 12px var(--float-color),0 5px 16px #000; animation: battleWord 1.05s cubic-bezier(.16,.8,.3,1) forwards; }
+@keyframes battleWord { 0% { opacity:0; transform:translate(-50%,-20%) scale(1.65) rotate(-5deg); filter:blur(5px); } 16%,55% { opacity:1; transform:translate(-50%,-65%) scale(1) rotate(-3deg); filter:blur(0); } 100% { opacity:0; transform:translate(-50%,-160%) scale(.94); } }
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  18% { opacity: 1; transform: translate(-50%, -60%) scale(1.12); }
+  100% { opacity: 0; transform: translate(-50%, -150%) scale(0.95); }
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.flash.go {
+  animation: flashOut 0.42s ease-out forwards;
+}
+
+@keyframes flashOut {
+  0% { opacity: 0.55; }
+  100% { opacity: 0; }
+}
+
+/* --------------------------------------------------------------- 教程 */
+
+.modal {
+  position: absolute;
+  inset: 0;
+  display: none;
+  place-content: center;
+  background: rgba(3, 5, 10, 0.82);
+  backdrop-filter: blur(4px);
+  z-index: 40;
+}
+
+.modal.on {
+  display: grid;
+}
+
+.modal-box {
+  width: min(560px, 88vw);
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 5px;
+  background: linear-gradient(170deg, rgba(20, 28, 50, 0.98), rgba(8, 11, 20, 0.98));
+  padding: 30px 32px;
+}
+
+.modal-box h3 {
+  font-family: var(--font-cn);
+  font-size: 24px;
+  letter-spacing: 0.2em;
+  margin: 0 0 16px;
+  color: var(--gold);
+}
+
+.modal-box h4 {
+  font-family: var(--font-cn);
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  margin: 18px 0 6px;
+  color: var(--text);
+}
+
+.modal-box p,
+.modal-box li {
+  font-size: 12.5px;
+  line-height: 1.95;
+  color: var(--text-dim);
+  margin: 0 0 6px;
+}
+
+/* 弹窗正文里的强调（存档导入的「覆盖」这类会毁掉当前进度的动作） */
+.modal-box p b {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.modal-box ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.modal-foot {
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ── 存档弹窗 ──────────────────────────────────────────────
+存档码很长（base64 之后几百个字符），必须给一块能滚动的等宽区域，
+行高放宽到能逐行核对——复制少一个字符会被校验和挡下来，
+玩家需要能**肉眼看出**自己少粘了哪一段。 */
+.save-code {
+  display: block;
+  width: 100%;
+  min-height: 92px;
+  resize: vertical;
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: rgba(4, 7, 14, 0.9);
+  color: var(--text);
+  font-family: ui-monospace, 'Cascadia Mono', 'Consolas', monospace;
+  font-size: 11.5px;
+  line-height: 1.7;
+  word-break: break-all;
+}
+
+.save-code:focus {
+  outline: 1px solid var(--gold);
+}
+
+.save-status {
+  min-height: 18px;
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.save-status--ok { color: var(--gold); }
+.save-status--warn { color: #ffb454; }
+.save-status--bad { color: #ff7a6b; }
+
+.modal-foot--tight {
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+@media (max-width: 900px) {
+  .p-skills { width: 176px; left: 10px; }
+  .p-stats { width: 150px; right: 10px; }
+  .skill-rule { display: none; }
+  :root { --sheet-w: min(340px, 52vw); }
+}
+
+@media (max-width: 700px) {
+  .p-skills { width: 128px; padding: 8px; gap: 6px; }
+  .p-stats { width: 112px; padding: 8px; }
+  .skill-key { width: 22px; height: 22px; font-size: 10px; }
+  .skill-name { font-size: 12px; }
+  .stat b { font-size: 15px; }
+  .boss-bar { width: 88vw; }
+  .p-hint { display: none; }
+  .link-chip { font-size: 10px; padding: 4px 7px; }
+  .link-chip b { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   出征屏：卡面选择 + 关卡属性 / 队伍技能 / 羁绊技能 / 属性克制
+   沿用暖红机台铭板语言（--plate 系列），和战斗 HUD 同一套材质。
+   ══════════════════════════════════════════════════════════════════ */
+
+/* -------------------------------------------------- 关卡选择（Celestial 十二阵） */
+
+/*
+ * 这一屏是「一本关卡谱」，不是网页卡片列表——所以照 .sheet--deploy 的机台铭板
+ * 语言做：铜边、暖红底、编号用等宽数字压在左边，像一台机器上十二个阵位的铭牌。
+ */
+.sheet--stages {
+  width: var(--screen-w);
+  /* .sheet 默认 top:0;bottom:0 会把面板钉满整屏，底部菜单被 12 张卡顶出视口。
+     改成按高度居中 + 自身滚动，标题和「返 回」永远看得见。 */
+  top: 50%;
+  bottom: auto;
+  left: 50%;
+  max-height: 92vh;
+  transform: translate(-50%, -50%);
+  border-right: none;
+  border: 1px solid var(--screen-line);
+  border-radius: var(--screen-radius);
+  background: var(--screen-bg);
+  box-shadow: var(--screen-shadow);
+  gap: 12px;
+}
+
+.stage-list {
+  display: grid;
+  /* 236px 是为了让 12 张卡在统一宽度的面板里排成 4 列 3 行：
+     排成 3 列 4 行会把底部菜单顶出视口。 */
+  grid-template-columns: repeat(auto-fill, minmax(236px, 1fr));
+  gap: 9px;
+}
+
+.stage-card {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid rgba(255, 206, 128, 0.16);
+  border-left: 3px solid rgba(255, 154, 46, 0.35);
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(46, 18, 16, 0.6), rgba(20, 10, 12, 0.7));
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.stage-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 206, 128, 0.4);
+  border-left-color: var(--gold);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+}
+
+.stage-card.cur {
+  border-color: rgba(255, 154, 46, 0.6);
+  border-left-color: var(--orange);
+  box-shadow: 0 0 0 1px rgba(255, 154, 46, 0.28), 0 10px 26px rgba(0, 0, 0, 0.5);
+}
+
+/* 未通关的阵：铜色编号还亮着，一眼能数出十二个阵位 */
+.stage-card.locked {
+  cursor: default;
+  opacity: 0.5;
+  filter: grayscale(0.6);
+  border-left-color: rgba(120, 120, 130, 0.35);
+}
+
+.stage-card.locked:hover { transform: none; box-shadow: none; border-color: rgba(255, 206, 128, 0.16); }
+
+.stage-no {
+  flex: 0 0 auto;
+  font-family: var(--font-num);
+  font-size: 22px;
+  line-height: 1;
+  padding-top: 2px;
+  color: var(--gold);
+  opacity: 0.85;
+  text-shadow: 0 1px 6px rgba(255, 154, 46, 0.4);
+}
+
+.stage-card.locked .stage-no { color: #8a8496; text-shadow: none; }
+
+.stage-main { flex: 1; min-width: 0; }
+
+.stage-name {
+  display: block;
+  font-family: var(--font-cn);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: #ffe6c2;
+}
+
+.stage-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--orange);
+  opacity: 0.9;
+}
+
+.stage-card p.story {
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  line-height: 1.75;
+  color: var(--text-dim);
+}
+
+.stage-card p.story.dim { opacity: 0.65; }
+
+.stage-card p.layout-note {
+  margin: 6px 0 0;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(255, 206, 128, 0.14);
+  font-size: 11px;
+  line-height: 1.7;
+  color: #b9a98f;
+}
+
+.stage-tag {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.stage-tag i {
+  font-style: normal;
+  font-family: var(--font-num);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  color: #d8c39a;
+  background: rgba(255, 206, 128, 0.08);
+  border: 1px solid rgba(255, 206, 128, 0.12);
+}
+
+.stage-state {
+  margin: 8px 0 0;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--text-dim);
+}
+
+.stage-card.cleared .stage-state { color: #7de08a; }
+.stage-card.cur:not(.cleared) .stage-state { color: var(--orange); }
+
+.sheet--stages .menu { justify-content: center; }
+
+/* -------------------------------------------------- 出征 */
+
+.sheet--deploy {
+  width: var(--screen-w);
+  left: 50%;
+  transform: translateX(-50%);
+  border-right: none;
+  border: 1px solid var(--screen-line);
+  border-radius: var(--screen-radius);
+  background: var(--screen-bg);
+  box-shadow: var(--screen-shadow);
+  padding: var(--screen-pad);
+  gap: 14px;
+  /* 这一屏**自己不再滚**：滚的是里面左右两栏。整屏滚动会把「出征」按钮顶走，
+     而选人列表和详情哪个长都不该影响按钮还在不在。 */
+  overflow: hidden;
+}
+
+/* 左选人 / 右详情。两栏等高，各自内部滚动。 */
+.deploy-body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(320px, 400px) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.deploy-pane {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.deploy-pane--pick {
+  padding-right: 14px;
+  border-right: 1px solid rgba(255, 206, 128, 0.14);
+}
+
+/* 详情栏自己滚：关卡信息 + 三块详情一起，天然比一屏高。 */
+.deploy-pane--info {
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* 窄屏放弃两栏。上下堆不是首选，但 36 张卡挤进 300px 会比原来更糟。 */
+@media (max-width: 1000px) {
+  .deploy-body { grid-template-columns: minmax(0, 1fr); }
+  .deploy-pane--pick { padding-right: 0; border-right: none; }
+}
+
+.sheet--deploy h3 {
+  font-family: var(--font-cn);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  margin: 0 0 8px;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sheet--deploy h3::before {
+  content: '';
+  width: 3px;
+  height: 13px;
+  background: linear-gradient(180deg, var(--gold), rgba(255, 154, 46, 0.3));
+  border-radius: 2px;
+}
+
+/* ── 卡面选择 ────────────────────────────────────────────────── */
+
+.pick-row {
+  /*
+   * 名册有 36 张，列在一行里 flex-wrap 会把左栏撑成一米多高的墙。
+   * 改成定列数的网格 + 整栏滚动：左栏高度恒定，滚的是它自己。
+   */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 10px;
+  align-content: start;
+  padding: 4px 4px 4px 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.pick {
+  position: relative;
+  /* 宽度交给上面的网格，固定 150px 会让 auto-fill 永远只排得下一列 */
+  width: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  border-radius: 3px;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.pick:hover { transform: translateY(-4px); }
+.pick.locked { cursor: not-allowed; }
+.pick.locked .pick-art { filter: grayscale(0.85) brightness(0.42); }
+.pick.locked .pick-face { opacity: 0.62; }
+
+.pick-face {
+  position: relative;
+  /* 和 2D 卡面素材同一个比例（BLEED_CANVAS 1280x1920 = 卡面 1024x1536）。
+     原来是 1024/1440 = 0.711：容器比素材宽，object-fit:cover 会按宽度铺满再把
+     上下裁掉——而上下正好是角色探出卡面的那 10% 出血带，一裁就没了。 */
+  aspect-ratio: 1024 / 1536;
+  overflow: hidden;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #241119, #0d070b);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+}
+
+/* 稀有度底板：用和 3D 卡面同一张图，selection 看起来才像同一套东西 */
+.pick-plate {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.92;
+}
+
+/* 素材比例已经和容器一致，cover 不再裁任何东西，所以：
+   - clip-path 的内缩边去掉：它本来是 cover 时代留给铬边的，现在只会削掉出血带
+   - object-position 的 18% 偏移去掉：那是为了把 0.6 裁切图的脸往上提，
+     现在整张卡面完整落位，再提一次就是把构图提歪了
+   - transparent 的卡面矩形之外交给 .pick-face 的深色渐变，角色正好浮在上面 */
+.pick-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: filter 0.2s ease;
+}
+
+/* 明确的选择框：常态是暗铬细框，选中才亮成角色色 + 金内框 + 角标 */
+.pick-frame {
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  border: 1px solid rgba(206, 216, 236, 0.24);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.55);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  pointer-events: none;
+}
+
+.pick.sel .pick-frame {
+  border-color: var(--c);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 206, 128, 0.9),
+    inset 0 0 26px color-mix(in srgb, var(--c) 45%, transparent),
+    0 0 16px color-mix(in srgb, var(--c) 55%, transparent);
+}
+
+.pick.sel .pick-art { filter: saturate(1.12) brightness(1.06); }
+
+/* 四角铬制卡爪：选中时亮出来，框的形状要一眼读得出「卡住了」 */
+.pick-frame::before,
+.pick-frame::after {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--c);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.pick-frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.pick-frame::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+.pick.sel .pick-frame::before,
+.pick.sel .pick-frame::after { opacity: 1; }
+
+.pick-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  padding: 2px 7px;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  color: #f0e2c8;
+  background: rgba(10, 6, 10, 0.78);
+  border: 1px solid rgba(255, 206, 128, 0.26);
+}
+
+.pick-slot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 52px;
+  padding: 3px 7px;
+  text-align: center;
+  font-family: var(--font-cn);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #1a0d08;
+  background: linear-gradient(180deg, #ffe2a0, var(--gold));
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.pick.sel .pick-slot { opacity: 1; transform: none; }
+.pick-slot:empty { display: none; }
+
+.pick-foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 16px 9px 7px;
+  background: linear-gradient(180deg, transparent, rgba(8, 4, 8, 0.92) 46%);
+}
+
+.pick-name {
+  font-family: var(--font-cn);
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  color: #fff2dc;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.pick-rar {
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* ── 三栏信息 ───────────────────────────────────────────────── */
+
+.deploy-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  /* 各栏贴合自己的内容高度。默认 stretch 会把「属性克制」那种短栏
+     拉成和「队伍技能」一样高，框里一大片空白看着像内容没加载出来。 */
+  align-items: start;
+}
+
+/* 各栏内容天然比一屏高。滚动归右栏一整条管（.deploy-pane--info），
+   这里不再套一层 max-height/overflow——两层滚动会出现「滚轮到底还有一截」的套娃手感。 */
+.deploy-col {
+  min-width: 0;
+  /* 原来给 290px 上限让三块各自内部滚。现在滚动归右栏一整条管，
+     这里再套一层滚动会出现「滚轮到底还有一截」的套娃手感。 */
+  padding: 12px 13px 13px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(52, 22, 20, 0.62), rgba(22, 11, 14, 0.72));
+  border: 1px solid rgba(255, 206, 128, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 206, 128, 0.1);
+}
+
+.deploy-col p {
+  margin: 0 0 5px;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+.deploy-col p:last-child { margin-bottom: 0; }
+
+/* 队伍技能 */
+.skill-row {
+  display: flex;
+  gap: 9px;
+  padding: 8px 0;
+  border-top: 1px solid rgba(255, 206, 128, 0.1);
+}
+.skill-row:first-child { border-top: none; padding-top: 0; }
+
+.skill-ord {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: #1a0d08;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #ffe2a0, var(--gold));
+}
+
+.skill-row .skill-body { min-width: 0; }
+.skill-row .skill-body h4 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 3px;
+  font-family: var(--font-cn);
+  font-size: 13.5px;
+  letter-spacing: 0.08em;
+  color: var(--c);
+}
+/* 作用域收到 .skill-row 下面：这条 !important 是给出征屏技能列表调色用的，
+   不收的话会把战斗 HUD 技能卡里刚提亮的那句 rule 又压回暗灰。 */
+.skill-row .skill-rule { color: #e8d7bb !important; }
+.skill-row .skill-desc {
+  opacity: 0.78;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 羁绊技能：解锁的亮、未达成的灰并点名缺谁 */
+.link-list .link-hint {
+  position: relative;
+  margin: 0 0 7px;
+  padding: 8px 10px 9px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(46, 20, 20, 0.6), rgba(20, 10, 13, 0.66));
+  border: 1px solid rgba(255, 206, 128, 0.12);
+  border-left: 2px solid var(--c);
+  opacity: 0.5;
+  filter: saturate(0.3);
+}
+.link-list .link-hint.on {
+  opacity: 1;
+  filter: none;
+  border-color: rgba(255, 206, 128, 0.26);
+  border-left-color: var(--c);
+  box-shadow: inset 0 0 18px color-mix(in srgb, var(--c) 18%, transparent);
+}
+.link-list .link-hint p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.link-list .link-hint h4 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 3px;
+  font-family: var(--font-cn);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: #f6e3c2;
+}
+.link-state {
+  margin-left: auto;
+  font-family: var(--font-cn);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  padding: 1px 6px;
+  border-radius: 2px;
+  color: #1a0d08;
+  background: linear-gradient(180deg, #ffe2a0, var(--gold));
+}
+.link-hint.off .link-state {
+  color: #b9a88f;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(255, 206, 128, 0.2);
+}
+
+/* 属性克制 */
+.attr-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+.attr-ball {
+  font-family: var(--font-cn);
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+.attr-lead { font-size: 11px; color: var(--text-dim); }
+
+.attr-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-top: 1px solid rgba(255, 206, 128, 0.1);
+  font-size: 12px;
+}
+.attr-row:first-of-type { border-top: none; }
+
+.attr-dot {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--a);
+  box-shadow: 0 0 9px var(--a), inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+}
+.attr-name { flex: 1; color: #e8d7bb; font-family: var(--font-cn); letter-spacing: 0.06em; }
+.attr-verdict { font-family: var(--font-cn); letter-spacing: 0.1em; font-size: 11.5px; }
+.attr-mult { font-variant-numeric: tabular-nums; color: var(--text-dim); min-width: 34px; text-align: right; }
+
+.attr-foot {
+  margin-top: 8px !important;
+  padding-top: 7px;
+  border-top: 1px dashed rgba(255, 206, 128, 0.16);
+  font-size: 10.5px !important;
+  line-height: 1.65 !important;
+  opacity: 0.75;
+}
+
+/* ── 关卡属性铭板 ───────────────────────────────────────────── */
+
+.stage-plate {
+  padding: 12px 14px 13px;
+  border-radius: 3px;
+  background:
+    radial-gradient(90% 140% at 8% 0%, rgba(140, 46, 30, 0.34), transparent 58%),
+    linear-gradient(180deg, rgba(44, 19, 18, 0.72), rgba(18, 9, 12, 0.8));
+  border: 1px solid rgba(255, 206, 128, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 206, 128, 0.12);
+}
+
+.st-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.st-head h3 {
+  font-family: var(--font-cn);
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  margin: 0;
+}
+.st-head p { margin: 0; font-size: 11.5px; color: var(--text-dim); }
+
+.st-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.st-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 7px 9px;
+  border-radius: 2px;
+  background: rgba(10, 5, 8, 0.5);
+  border: 1px solid rgba(255, 206, 128, 0.12);
+}
+.st-k { font-size: 10px; letter-spacing: 0.12em; color: rgba(201, 174, 146, 0.8); }
+.st-v { font-family: var(--font-cn); font-size: 14px; color: #f6e3c2; letter-spacing: 0.04em; }
+
+.st-phases {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 206, 128, 0.16);
+}
+.st-phase {
+  padding: 2px 8px;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: #e8d7bb;
+  border-radius: 2px;
+  background: rgba(255, 154, 46, 0.12);
+  border: 1px solid rgba(255, 154, 46, 0.3);
+}
+
+.st-fever {
+  display: flex;
+  gap: 9px;
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--text-dim);
+}
+.st-fever .st-k { flex: none; min-width: 58px; }
+
+.deploy-actions {
+  /* 整屏不再滚，sticky 也就没有意义了；它是普通 flex 项，常驻在两栏下方。 */
+  flex: none;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 2px 0 0;
+  border-top: 1px solid rgba(255, 206, 128, 0.12);
+  padding-top: 12px;
+}
+/* ══════════════════════════════════════════════════════════════════
+   图鉴：卡面网格 + 碎卡 / 灵宝兑换
+   ══════════════════════════════════════════════════════════════════ */
+
+/*
+ * 十二张卡以后不用瀑布流，改 4 列网格。
+ * columns 的列序是「先下后右」，三张卡时看不出问题，十二张一排下来
+ * 座次就跟读者预期的对不上；而且定高瓦片的宽高比不等于卡面比例，
+ * object-fit: cover 会把人物的脸裁掉。统一卡面比例 + 行优先网格。
+ */
+/* 图鉴要放下 36 张卡。通用 --sheet-w 是 430px，那只放得下 4 列 × 9 行，
+   滚半天看不到座次后段。这一屏单独放宽：6 列 × 6 行一屏读完，
+   右侧 3D 台座仍然留得够宽（它只要放 1~3 张卡）。 */
+.screen[data-screen='collection'] {
+  /* 左栏宽度。卡阵、右半屏展台位、底部控制条都从这一个数取 ——
+     之前 .card-stage-ctl 用的是通用 --sheet-w(430px)，而这一屏的 sheet 是 620px，
+     控制条就从栏里往右挪了 190px，「林冲·SSR」那行字居中的位置也是错的。 */
+  --collection-rail: min(620px, 50vw);
+}
+.screen[data-screen='collection'] .sheet {
+  width: var(--collection-rail);
+  padding: 22px 26px;
+}
+
+.screen[data-screen='collection'] .cards {
+  display: grid;
+  /* 36 张 = 6 × 6。宽度是按「6 行尽量一屏读完」倒推的：内容区 568px，
+     扣掉 5 道 7px 缝剩 533，单格约 89px / 高 148px。
+     1080p 全屏（视口约 1052px）下还差一点、需要滚一小段——这是有意的取舍：
+     再压窄格子虽然能一屏塞下，但缩略图小到认不出脸，图鉴就只剩「一排小方块」的意义。
+     面板是 overflow-y:auto，放不下就滚，返回键始终可达。 */
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 7px;
+  overflow: visible;
+  align-content: start;
+}
+
+.screen[data-screen='collection'] .cards > * {
+  width: 100%;
+}
+
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  /* 2D 卡面比例。art/cards 与 art/thumbs 都按这个比例出，跟 3D 卡面同一套
+     数字（scripts/card_layout.py 的 CARD 1024x1536 = 0.667），发布在
+     public/art/layers/layout.json 的 flat 段。
+     以前这里是 0.6、素材由 genportraits.py 按 CARD_ASPECT=0.6 裁，两者自洽
+     但和 3D 卡面不是一回事——同一张卡在网格和大图里两个比例，就是「高度不一样」。
+     改成跟卡面走之后，网格缩略图和大卡看到的是同一张构图。 */
+  aspect-ratio: 0.667;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(180deg, #241119, #0d070b);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  /* 稀有度边框。原设计里这条框是运行时按稀有度程序化画的（CardFactory 的
+     RARITY_STYLE），DOM 这条路径没有那一层，就用 --rar 补上同一条规则。
+     画在 inset box-shadow 上而不是 border 上：border 会挤占卡面内容框，
+     36 张排在一起时每张都窄一截，裁切位置对不齐。 */
+  box-shadow:
+    inset 0 0 0 1px var(--edge),
+    inset 0 0 14px -4px var(--edge),
+    0 8px 20px rgba(0, 0, 0, 0.55);
+}
+
+/* UR：彩虹边。--rar 是单色，彩虹没法用一个色值表达，inset box-shadow 换成 conic-gradient
+   单独画一圈。普通档位沿用 .tile 上的 inset box-shadow，不走这条。 */
+.tile--ur { --edge: transparent; }
+.tile--ur { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55); }
+.tile--ur::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 3px;
+  padding: 2px;
+  background: conic-gradient(from 210deg, #ff5a6e, #ffa63d, #ffe14d, #54e08a, #4d9bff, #9b6bff, #ff7ad9, #ff5a6e);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--rar);
+}
+
+.tile-plate {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  /* plates/ 目前只有 SSR / SR 两张，R 和 UR 取不到图。
+     垫一层 --rar 当底色，缺图时至少是稀有度自己的颜色，而不是透明。 */
+  background-color: color-mix(in srgb, var(--rar) 22%, #0d070b);
+}
+
+.tile-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* 素材比例与 .tile 一致，cover 不再裁东西，所以去掉 object-position：
+     那行是 cover 时代为了把 0.6 裁切图的脸往上提，现在整张卡面完整落位，
+     再提就是提歪。卡面矩形之外的透明区露出 .tile 的深色底，角色浮在上面。 */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* 未获得的角色压暗去色，但**必须还能认出是谁**。
+   原来是 grayscale(0.95) brightness(0.2)，在 430px 宽的格子里几乎全黑——
+   36 张里有 24 张是黑的，这屏就失去了「图鉴」的意义：它是来看 36 张立绘的，
+   不是来看 24 个黑块。现在压到还能读脸，只是不抢已获得卡的风头。 */
+.tile.locked .tile-art { filter: grayscale(0.82) brightness(0.62) contrast(0.95); }
+.tile.locked {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--edge) 34%, transparent),
+    0 8px 20px rgba(0, 0, 0, 0.5);
+}
+.tile.locked:hover {
+  transform: none;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--edge) 60%, transparent),
+    0 8px 20px rgba(0, 0, 0, 0.5);
+}
+.tile.locked .tile-foot b { color: #cdbfae; }
+
+/* 左上角文字块。原来的 .tile-veil 是一层「下半部分压黑」的渐变，
+   专门给底部那行字垫底；文字搬到左上之后这层没用了，遮在人物脸上反而发灰。 */
+.tile-foot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  max-width: 100%;
+  /* 只留姓名 + 稀有度座次两行。格子在 6 列布局下只有 ~110px 宽，
+     原来三行（姓名 / 稀有度 / 座次·五行）会把三字名挤到换行，
+     换行之后下面两行又顶出格子，看着就是一团糊。
+     五行/定位这些留到详情和出征屏读，图鉴只负责「谁、第几、什么档」。 */
+  padding: 6px 8px 18px 7px;
+  /* 文字压在卡面上，左上角要有可读性：只给文字背后这一小块铺一层由透明到实的斜切底，
+     不遮人物主体，也不做整条横幅 */
+  background: linear-gradient(148deg, rgba(8, 4, 10, 0.88) 0%, rgba(8, 4, 10, 0.64) 54%, rgba(8, 4, 10, 0) 100%);
+}
+.tile-foot b {
+  font-family: var(--font-cn);
+  font-size: 13.5px;
+  line-height: 1.18;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: #fff2dc;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+.tile-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 9.5px;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  color: var(--rar);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+.tile-meta::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rar);
+  transform: translateY(-1px);
+}
+
+/* 重复卡角标：能碎的信号就在这里 */
+.tile-dup {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  min-width: 26px;
+  padding: 2px 6px;
+  text-align: center;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: #1a0d08;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #ffe2a0, var(--gold));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* 未获得徽标：挪到**右下角**。
+   原来压在 42% 高度正中，正好盖在人物脸上；挪到右上又会和左上角的姓名挤成
+   「宋江未获得」连成一片。右下角这块地是空的，「×N」在右上，两者互不打架。 */
+.tile-lock {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  padding: 2px 6px;
+  font-family: var(--font-cn);
+  font-size: 9.5px;
+  line-height: 1.3;
+  letter-spacing: 0.16em;
+  color: #d8c8b0;
+  border-radius: 2px;
+  background: rgba(10, 6, 12, 0.8);
+  box-shadow: inset 0 0 0 1px rgba(255, 206, 128, 0.2);
+  pointer-events: none;
+}
+
+/* ── 分解 / 兑换 ────────────────────────────────────────────── */
+
+.melt-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 206, 128, 0.16);
+}
+.melt-head h2 { margin: 0 !important; }
+.melt-own {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.melt-acts { display: flex; gap: 8px; margin: 8px 0 4px; }
+
+.melt-btn {
+  flex: 1;
+  padding: 8px 6px;
+  font-family: var(--font-cn);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #f0e2c8;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 206, 128, 0.28);
+  background: linear-gradient(180deg, rgba(92, 34, 28, 0.85), rgba(44, 16, 18, 0.9));
+  cursor: pointer;
+  transition: filter 0.16s ease, transform 0.16s ease;
+}
+.melt-btn:hover:not(:disabled) { filter: brightness(1.35); transform: translateY(-1px); }
+.melt-btn:disabled { opacity: 0.34; cursor: not-allowed; }
+
+.ex-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+
+.ex-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 11px;
+  text-align: left;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 206, 128, 0.16);
+  background: rgba(20, 10, 13, 0.6);
+  color: #b9a88f;
+  cursor: not-allowed;
+}
+.ex-btn b { font-family: var(--font-cn); font-size: 12.5px; font-weight: 500; letter-spacing: 0.06em; }
+.ex-btn span { font-size: 11px; font-variant-numeric: tabular-nums; }
+.ex-btn.can {
+  cursor: pointer;
+  color: #f6e3c2;
+  border-color: rgba(255, 206, 128, 0.42);
+  background: linear-gradient(90deg, rgba(120, 42, 32, 0.8), rgba(40, 17, 20, 0.8));
+  box-shadow: inset 0 0 16px rgba(255, 154, 46, 0.16);
+}
+.ex-btn.can:hover { filter: brightness(1.3); }
+
+/* ── 顶部回执提示 ───────────────────────────────────────────── */
+
+.toast {
+  position: absolute;
+  left: 50%;
+  top: 76px;
+  transform: translate(-50%, -8px);
+  z-index: 70;
+  padding: 8px 20px;
+  font-family: var(--font-cn);
+  font-size: 12.5px;
+  letter-spacing: 0.1em;
+  color: #fff2dc;
+  border-radius: 3px;
+  background: rgba(24, 10, 12, 0.94);
+  border: 1px solid rgba(255, 206, 128, 0.42);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+/* ── 图鉴右侧：3D 大图舞台 + 详情弹窗 ────────────────────────
+   右侧不再有常驻文字面板，整片留给 3D 卡。文字详情全部收进弹窗，
+   原因和 .sheet--right 一样：常驻面板会把卡挤成一条窄缝。 */
+
+.card-stage-ctl {
+  position: absolute;
+  /* 默认落在通用 .sheet 的右缘；图鉴屏的左栏更宽，那边由
+     `.screen[data-screen='collection'] .card-stage-ctl` 覆盖成 --collection-rail。 */
+  left: var(--sheet-w);
+  right: 0;
+  bottom: 0;
+  height: 108px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  /* 容器不吃指针，只让按钮吃——否则卡面正下方的空白点不到，会点不翻面 */
+  pointer-events: none;
+  background: linear-gradient(0deg, rgba(6, 3, 8, 0.86) 12%, rgba(6, 3, 8, 0) 100%);
+}
+
+/* 图鉴屏的左栏比通用 .sheet 宽，底部控制条和右半屏展台位都得跟着它挪 */
+.screen[data-screen='collection'] .card-stage-ctl { left: var(--collection-rail); }
+
+.card-stage-name {
+  font-family: var(--font-cn);
+  font-size: 21px;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+  transition: color 0.2s ease;
+}
+
+.card-stage-hint {
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: rgba(201, 174, 146, 0.6);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+.card-stage-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.stage-btn {
+  pointer-events: auto;
+  padding: 8px 26px;
+  font-family: var(--font-cn);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: #ffe9c2;
+  cursor: pointer;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 206, 128, 0.42);
+  background: var(--plate);
+  box-shadow: var(--plate-inner), var(--plate-drop);
+  transition: filter 0.16s ease, transform 0.16s ease;
+}
+
+.stage-btn:hover:not(:disabled) { filter: brightness(1.4); transform: translateY(-1px); }
+.stage-btn:active:not(:disabled) { transform: translateY(0); }
+.stage-btn:disabled { opacity: 0.32; cursor: not-allowed; }
+
+.card-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 45;
+  display: none;
+  place-content: center;
+  background: rgba(5, 3, 6, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.card-modal.on { display: grid; }
+
+.card-modal-box {
+  position: relative;
+  width: min(640px, 88vw);
+  max-height: 82vh;
+  overflow-y: auto;
+  padding: 28px 30px 22px;
+  border: 1px solid rgba(255, 206, 128, 0.24);
+  border-radius: 4px;
+  background: linear-gradient(168deg, rgba(32, 16, 20, 0.98), rgba(10, 5, 9, 0.99));
+  box-shadow: 0 30px 70px -24px rgba(0, 0, 0, 0.95), var(--plate-inner);
+  animation: modalIn 0.22s ease;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+.card-modal-x {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  font-size: 19px;
+  line-height: 1;
+  color: rgba(255, 226, 180, 0.62);
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-radius: 2px;
+}
+
+.card-modal-x:hover { color: #fff2dc; background: rgba(255, 206, 128, 0.12); }
+
+/* 弹窗里没有 .sheet 祖先，.sheet p.note 的样式套不到，得自己带一份 */
+.card-modal-body p.note {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--text-dim);
+}
+
+.card-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 16px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 206, 128, 0.14);
+}
+
+.card-modal-face {
+  position: relative;
+  flex: 0 0 auto;
+  /* 详情页看的是**完整立绘**（art/portraits/，不裁），所以这里的框按 2/3 立绘比例
+     取，比网格的卡面矮一截正好——上下留白就是完整立绘的边界，不做裁切。
+     2/3 是兜底值：36 张源图有 0.563 和 0.667 两种比例，而 object-fit: contain
+     会在框内等比缩放，两种都能完整显示，不会切脸。 */
+  width: 176px;
+  height: 264px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #241119, #0d070b);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 206, 128, 0.28);
+  /* 稀有度边框，和图鉴网格同一条规则 */
+  --edge: var(--rar, rgba(255, 206, 128, 0.28));
+}
+.card-modal-face--ur { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 122, 217, 0.5); }
+
+.card-modal-plate {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: color-mix(in srgb, var(--rar, #ffd76a) 20%, #0d070b);
+}
+
+.card-modal-face img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* 完整立绘：contain 而不是 cover。cover 会把 941x1672（0.563）的立绘
+     两侧切掉，2/3 的框装不下 0.563 的整图——那正是「完整显示」要避免的。 */
+  object-fit: contain;
+  object-position: center top;
+  /* 原来这里是 clip-path: inset(3.2% 3.6% 4.5%)，那是 cover 时代的内缩边——
+     图铺满框再往里切。换成 contain 之后图本来就完整落在框内，这道 clip 反而
+     在图和底板之间切出一条浅色缝，看着像又套了道框，所以直接去掉。
+     顺带记一笔：这里**不能**改成 inset + width:auto，absolute 定位的 <img>
+     会直接塌成 0 宽（.pick-art 上踩过同一个坑）。 */
+}
+
+.card-modal-id { min-width: 0; }
+
+/* 卡面左上角的名牌。网格里的 .tile-foot 和这里是同一套位置规则：
+   卡面上只留「谁 / 什么档」两行，称号、定位、技能全在卡外读。 */
+.card-modal-tag-corner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  padding: 8px 12px 20px;
+  background: linear-gradient(148deg, rgba(8, 4, 10, 0.88) 0%, rgba(8, 4, 10, 0.62) 55%, rgba(8, 4, 10, 0) 100%);
+}
+.card-modal-tag-corner b {
+  font-family: var(--font-cn);
+  font-size: 19px;
+  line-height: 1.15;
+  letter-spacing: 0.1em;
+  color: #fff2dc;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.95);
+}
+.card-modal-tag-corner span {
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+  color: var(--rar, var(--gold));
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.95);
+}
+
+.card-modal-id h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-cn);
+  font-size: 26px;
+  letter-spacing: 0.18em;
+}
+.card-modal-tag {
+  margin: 8px 0 0;
+  font-family: var(--font-cn);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: rgba(255, 226, 180, 0.68);
+}
+
+.card-modal-sec {
+  margin: 18px 0 6px;
+  font-family: var(--font-cn);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: #f0e4d0;
+}
+
+/* 分解面板在弹窗里复用，标题字号统一压回正文级 */
+.card-modal-body .melt-head h2 { font-size: 15px; font-weight: 500; letter-spacing: 0.14em; }
+.card-modal-body .melt-head { margin-top: 18px; }
+
+.card-modal-foot {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 206, 128, 0.12);
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 正在展示的武将：瀑布流里给一道常驻的选中环 */
+.tile.sel {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7), inset 0 0 0 2px var(--rar);
+}
+.tile.sel::after {
+  content: '展 示 中';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 2px 7px;
+  font-family: var(--font-cn);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #1a0d08;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #ffe2a0, var(--gold));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}/* Battle cabinet HUD: leave the centre fully visible for aim and ball tracking. */
+.hud .boss-bar { top: 10px; left: 50%; width: min(510px, 42vw); transform: translateX(-50%); }
+.hud .boss-top { align-items: center; margin-bottom: 4px; }
+.hud .boss-name { font-size: 17px; color: #f9e2b5; letter-spacing: .12em; }
+.hud .boss-hp { margin: 0; font-size: 12px; color: #eee3ce; }
+.hud .boss-track { height: 12px; border-color: #b5804b; }
+.hud .boss-phase { display: none; }
+.battle-brand { position: absolute; top: 22px; left: 26px; font: 700 35px "KaiTi", var(--font-cn); color: #eec57c; letter-spacing: .06em; text-shadow: 0 2px 7px #0008; }
+.hud .hud-left, .hud .hud-right { top: 112px; bottom: 90px; width: min(230px, 20vw); transform: none; display: flex; flex-direction: column; gap: 14px; pointer-events: auto; }
+.hud .hud-left { left: 22px; padding: 14px 12px; height: fit-content; max-height: calc(100vh - 204px); overflow-y: auto; }
+.hud .hud-right { right: 22px; }
+.hud .hud-left > *, .hud .hud-right > * { flex: 0 0 auto; }
+.battle-heading { font: 18px var(--font-cn); color: #ecc688; letter-spacing: .14em; margin: 0 0 3px; }
+.hud .panel { background: linear-gradient(145deg, rgba(44,26,22,.95), rgba(12,8,10,.94)); border-color: rgba(201,150,84,.48); box-shadow: inset 0 0 0 3px rgba(20,10,9,.65), 0 12px 24px #0005; backdrop-filter: blur(4px); }
+.hud .p-skills { gap: 10px; padding: 0; }
+.hud .skill { grid-template-columns: 64px minmax(0,1fr); gap: 10px; padding: 5px; min-height: 113px; text-align: left; color: #eee2c8; border-left-width: 1px; position: relative; font-family: inherit; }
+.skill-portrait { position: relative; height: 100%; min-height: 103px; overflow: hidden; border-radius: 2px; }
+.skill-portrait img { position: absolute; left: -12.5%; top: -12.5%; display: block; width: 125%; height: 125%; object-fit: cover; object-position: center 20%; }
+.hud .skill-key { position: absolute; top: 3px; left: 3px; height: 23px; width: 23px; background: #111d; font-size: 12px; }
+/*
+ * 被动技能（公孙胜/燕青/张顺）：开局就生效，没有键位也没有充能条。
+ * 用 <div> 而不是 <button>，所以去掉 pointer 光标与 hover 位移——
+ * 留着「看起来能点」的样子，玩家会去点它，然后什么都不发生。
+ */
+.hud .skill.skill-passive { cursor: default; border-left-color: color-mix(in srgb, var(--c) 55%, transparent); }
+.hud .skill.skill-passive:hover { transform: none; }
+.hud .skill-key-p { width: auto; min-width: 23px; padding: 0 5px; font-size: 10px; letter-spacing: .04em; color: #d8c6a4; border-color: #b6874c66; }
+.skill-rule-passive { color: #c9a86e !important; font-size: 12px; }
+.hud .skill-name { font-size: 15px; color: #faecd5; letter-spacing: .06em; }
+.skill-title { margin-top: 4px; font-size: 11px; color: #dfc39b; }
+.hud .skill-rule { font-size: 13px; line-height: 1.55; color: #c8b8a0; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hud .skill-main { min-width: 0; }
+.hud .gauge { margin-top: 8px; height: 5px; }
+.hud .p-stats { padding: 18px 16px; gap: 13px; }
+.hud .stat { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 13px; border-bottom: 1px solid #b78a4c44; }
+.hud .stat > span { font-size: 12px; color: #d1bb98; letter-spacing: .04em; }
+.hud .stat b { font-size: 24px; color: #f4d59f; font-variant-numeric: tabular-nums; }
+.hud .stat--shots b { font-size: 44px; color: #fff5de; }
+.hud .stat--time b { font-size: 30px; color: #fff5de; }
+/* 球时被相位压缩：倒计时永久变红，不是“还有 3 秒”的那种红。 */
+.hud .stat--time.is-squeezed b { color: #ff8f6a; }
+.hud .stat--time.is-squeezed > span::after { content: ' 短'; color: #ff8f6a; font-size: 10px; letter-spacing: .06em; }
+.hud .stat--energy b { color: #81c8ec; font-size: 21px; }
+.hud .stat--next { border-bottom: none; padding-bottom: 0; }
+/*
+ * Boss 已倒、小怪没清完：整个战斗唯一的“还没完”信号。
+ * 用金色而非红色——这不是失误，是通关条件本身，而且此时还很有希望。
+ */
+.hud .stat.is-pending { border-bottom-color: #ffd76a88; }
+.hud .stat.is-pending > span { color: var(--gold); }
+.hud .stat.is-pending b { color: var(--gold); font-size: 19px; animation: pending-pulse 1.1s ease-in-out infinite; }
+.boss-top.is-pending .boss-hp { color: var(--gold); font-weight: 700; }
+@keyframes pending-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) { .hud .stat.is-pending b { animation: none; } }
+.hud .stat--next b { font-size: 13px; }
+.ball-state { font-size: 11px; color: #b2aa9c; line-height: 1.5; margin-top: -10px; }
+.ball-state.ready { color: #f7d585; }
+.ball-state.warning { color: #ffad8b; }
+/* 救球窗口被关闭：金环不亮而且按不出来，这一句是唯一的解释。 */
+.ball-state.deprived { color: #ff8f6a; }
+.battle-links { display: flex; flex-direction: column; gap: 5px; margin-top: 1px; }
+.battle-link-note { margin: 0; color: #cfb78f; font-size: 12px; line-height: 1.7; }
+.collection-pack { margin: 0 0 12px; width: 100%; font-size: 13px; }
+@media (max-width:800px) {
+  .screen[data-screen='collection'] .sheet { width:100%; height:48vh; top:0; bottom:auto; padding:12px; display:grid; grid-template-rows:auto auto auto minmax(0,1fr) auto; gap:6px; border-bottom:1px solid #a67d4c66; }
+  .screen[data-screen='collection'] .veil { bottom:auto; height:48vh; -webkit-mask-image:none; mask-image:none; }
+  .screen[data-screen='collection'] .sheet h2 { margin:0; font-size:22px; }
+  .screen[data-screen='collection'] .sheet .note { font-size:11px; margin:0; line-height:1.5; }
+  .screen[data-screen='collection'] .collection-pack { margin:0; padding:7px; }
+  .screen[data-screen='collection'] .cards { grid-template-columns:repeat(4,minmax(0,1fr)); grid-auto-rows:calc((100vw - 42px)/2.4); gap:6px; min-height:0; overflow-y:auto; }
+  .screen[data-screen='collection'] .cards .tile { height:100%; min-height:0; }
+  .screen[data-screen='collection'] .sheet > .btn--ghost { padding:5px; }
+  .screen[data-screen='collection'] .card-stage-ctl { left:12px; right:12px; bottom:8px; width:auto; transform:none; }
+  .screen[data-screen='collection'] .card-stage-name { font-size:16px; }
+  .screen[data-screen='collection'] .card-stage-hint { font-size:10px; margin:3px 0; }
+  .screen[data-screen='collection'] .stage-btn { padding:6px 16px; }
+  /* 窄屏一行放不下三格，保底折到下一行独占整宽，而不是把两个按钮挤成两行 */
+  .collection-tools { grid-template-columns:1fr 1fr; }
+  .collection-pity { grid-column:1 / -1; flex-direction:row; justify-content:space-between; align-items:center; gap:10px; }
+  .collection-pity-bar { flex:1; }
+}
+.recovery-track { width:100%; height:7px; margin-top:-6px; border:1px solid #397d70; background:#071d19; border-radius:9px; overflow:hidden; }
+.recovery-track > span { display:block; height:100%; width:0; background:linear-gradient(90deg,#27b9a6,#baffdc); transition:width .24s ease; }
+.recovery-track.pulse { box-shadow:0 0 16px #7dffcc; }
+.recovery-help { margin:-6px 0 0; font-size:11px; line-height:1.6; color:#8bceba; }
+@media (min-width:801px) {
+  .hud .hud-left { width:min(270px,23vw); top:95px; max-height:calc(100vh - 159px); }
+  .hud .skill { grid-template-columns:94px minmax(0,1fr); min-height:132px; }
+  .hud .skill-portrait, .hud .skill-portrait img { width:94px; min-height:124px; height:124px; }
+  .hud .skill-name { font-size:17px; }
+  .hud .skill-title { font-size:13px; }
+  .hud .hud-right { top:95px; bottom:68px; }
+  .hud .p-stats { gap:9px; padding:13px 15px; }
+  .hud .stat { padding-bottom:9px; }
+  .hud .stat--shots b { font-size:37px; }
+  .hud .stat--time b { font-size:27px; }
+  .hud .stat--bounces b, .hud .stat--recovery b { font-size:19px; }
+}
+.hud .skill-portrait { overflow: hidden; background: radial-gradient(ellipse at 50% 35%, #613728, #211016 75%); }
+.hud .skill-portrait img { transform: scale(1.18); transform-origin: 50% 40%; }
+.hud .link-chip { width: 100%; min-width: 0; display: flex; justify-content: space-between; align-items: center; padding: 5px 7px; gap: 6px; text-align: left; font-family: inherit; font-size: 10px; background: #171014; }
+.hud .link-chip b { flex: 0 0 auto; font-size: 11px; }
+.hud .link-lock { font-size: 9px; letter-spacing: 0; line-height: 1.5; color: #c0ab97; }
+.hud .buffs { display: flex; flex-wrap: wrap; gap: 5px; }
+.hud .buff { font-size: 10px; padding: 2px 4px; }
+.hud .fever-bar { padding: 8px; }
+.hud .p-hint { position: absolute; left: 50%; bottom: 98px; /* 抬到底部翻板横条上方，否则提示文字被两块按钮压掉一半 */ transform: translateX(-50%); width: max-content; max-width: calc(100vw - 250px); font-size: 12px; line-height: 1.5; color: #cfb78f; text-align: center; pointer-events: none; }
+.battle-help { position: absolute; left: 22px; bottom: 17px; z-index: 20; color: #d5b782; font-size: 12px; }
+.battle-help summary { cursor: pointer; padding: 7px 10px; border: 1px solid #b6874c66; border-radius: 3px; background: #191014; }
+.battle-help .help-body { position: absolute; bottom: 44px; left: 0; width: 300px; max-height: min(70vh,580px); overflow-y: auto; padding: 16px; }
+.battle-help .slot-legend { max-height: none; overflow: visible; }
+.battle-help .battle-links { display: flex; }
+.battle-exit { position: absolute; right: 22px; bottom: 17px; padding: 7px 12px; color: #c8b08d; border: 1px solid #b6874c66; background: #191014; border-radius: 3px; font: 12px var(--font-cn); cursor: pointer; }
+.hud .charge-ui { bottom: 52px; width: 220px; }
+.hud .skill.selected { border-color: var(--c); box-shadow: 0 0 0 2px var(--c), inset 0 0 24px #ffe2a51a; }
+.hud .skill { touch-action: manipulation; user-select: none; }
+.skill-aim-hint { position: absolute; left: 50%; bottom: 57px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; max-width: min(650px, calc(100vw - 32px)); width: max-content; padding: 7px 10px; border: 1px solid #dab77899; border-radius: 4px; background: #17111bea; color: #ffe5b5; font-size: 12px; line-height: 1.6; z-index: 25; pointer-events: auto; }
+.skill-aim-hint[hidden] { display: none; }
+.skill-cancel { flex: 0 0 auto; min-height: 32px; padding: 4px 10px; background: #412731; border: 1px solid #e3b78688; border-radius: 3px; color: #ffe9c9; font: inherit; cursor: pointer; }
+@media (max-width: 800px) { .skill-aim-hint { bottom: 188px; font-size: 11px; max-width: calc(100vw - 24px); } }
+.hud .charge-txt { font-size: 11px; }
+@media (max-height: 690px) and (min-width: 801px) {
+  .hud .hud-left, .hud .hud-right { top: 82px; bottom: 80px; }
+  .hud .hud-left { max-height: calc(100vh - 160px); gap: 8px; }
+  .hud .skill { min-height: 88px; grid-template-columns: 52px minmax(0,1fr); }
+  .skill-portrait { min-height: 80px; }
+  .skill-portrait img { height: 80px; }
+  .hud .skill-rule { -webkit-line-clamp: 2; line-clamp: 2; }
+  .hud .p-stats { gap: 10px; padding: 13px; }
+  .hud .stat { padding-bottom: 9px; }
+}
+@media (max-width: 800px) {
+  .battle-brand { top: 12px; left: 12px; font-size: 17px; }
+  .hud .boss-bar { top: 36px; width: calc(100vw - 28px); }
+  .hud .hud-right { top: 74px; left: 12px; right: 12px; width: auto; bottom: auto; }
+  .hud .p-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; padding: 6px 10px; }
+  .hud .stat { border: 0; padding: 0; }
+  .hud .stat b, .hud .stat--shots b, .hud .stat--time b, .hud .stat--energy b { font-size: 16px; }
+  .hud .stat > span { font-size: 10px; }
+  .hud .ball-state { grid-column: 1 / -1; margin: 0; }
+  .hud .hud-left { top: auto; bottom: 56px; left: 10px; right: 10px; width: auto; height: 124px; padding: 6px; overflow: hidden; }
+  .hud .battle-heading, .hud .battle-links, .hud .battle-link-note, .hud .fever-bar { display: none; }
+  /* 竖屏放不下的两格：下一颗球的增益和 buff 列表。翻板是常驻的，这两格可以走 */
+  .hud .stat--next, .hud .buffs { display: none; }
+  .hud .battle-help .battle-links { display: flex; }
+  .hud .p-skills { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 5px; }
+  .hud .skill { display: flex; gap: 5px; min-height: 108px; padding: 3px; align-items: flex-start; }
+  .skill-portrait { flex: 0 0 38px; min-height: 94px; }
+  .skill-portrait img { height: 94px; }
+  .hud .skill-name { font-size: 12px; }
+  .skill-title { font-size: 10px; }
+  .hud .skill-rule { font-size: 9px; -webkit-line-clamp: 3; line-clamp: 3; }
+  .hud .p-hint { bottom: 76px; max-width: calc(100vw - 140px); font-size: 9px; }
+  .battle-help { left: 10px; bottom: 10px; font-size: 10px; }
+  .battle-help summary, .battle-exit { padding: 5px; }
+  .battle-exit { right: 10px; bottom: 10px; font-size: 10px; }
+  .hud .charge-ui { bottom: 188px; }
+}
+
+/* Reset desktop fixed widths before laying out the narrow-screen controls. */
+@media (max-width: 800px) {
+  .hud .p-stats {
+    position: static; width: 100%; min-width: 0;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-areas: "shots time energy mult" "state state state state";
+    gap: 5px; padding: 7px 9px;
+  }
+  .hud .stat { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .hud .stat--shots { grid-area: shots; }
+  .hud .stat--time { grid-area: time; }
+  .hud .stat--energy { grid-area: energy; }
+  .hud .stat--mult { grid-area: mult; }
+  .hud .stat > span { white-space: nowrap; font-size: 10px; }
+  .hud .stat b { white-space: nowrap; font-size: 16px; }
+  .hud .ball-state { grid-area: state; font-size: 11px; }
+  .hud .p-skills { position: static; width: 100%; min-width: 0; }
+  .hud .skill { display: grid; grid-template-columns: 32px minmax(0,1fr); min-width: 0; min-height: 108px; gap: 5px; align-items: center; }
+  .hud .skill-portrait { min-width: 0; width: 32px; min-height: 88px; }
+  .hud .skill-portrait img { width: 32px; height: 88px; }
+  .hud .skill-rule { display: -webkit-box; font-size: 10px; line-height: 1.4; }
+  .hud .p-stats { grid-template-areas: "shots time energy mult" "bounces bounces recovery recovery" "state state state state" "track track track track"; }
+  .hud .stat--next, .hud .recovery-help { display: none; }
+  .hud .stat--bounces { grid-area: bounces; }
+  .hud .stat--recovery { grid-area: recovery; }
+  .hud .stat--bounces, .hud .stat--recovery { flex-direction: row; justify-content: space-between; align-items: center; gap: 5px; }
+  .hud .stat--bounces b, .hud .stat--recovery b { font-size: 14px; }
+  .hud .recovery-track { grid-area: track; margin: 0; height: 6px; }
+}

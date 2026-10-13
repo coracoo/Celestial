@@ -1,0 +1,63 @@
+{
+  "id": "suchao",
+  "number": 19,
+  "name": "索超",
+  "title": "急先锋",
+  "rarity": "SR",
+  "wuxing": "fire",
+  "role": "突进",
+  "color": "#b5432a",
+  "accent": "#ff9a6a",
+  "tagline": "金蘸斧出手，从不等第二下",
+  "lore": "大名府先锋。性急到出列前斧子已经举起来了，她不管阵型不管走位，只知道第一个冲。",
+  "base": {
+    "hp": 112,
+    "atk": 15,
+    "def": 7,
+    "speed": 15
+  },
+  "skill": {
+    "id": "suchao_vanguard",
+    "name": "急先锋",
+    "rule": "给球一记向上的冲量，并把重力改缓一拍",
+    "desc": "释放瞬间给当前弹珠一记强力上冲（power 9），5 秒内重力 ×0.7、球速 ×1.45。她把你刚打进钉堆的球重新抛起来——然后让它更狠地砸回来。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0.35,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "gravity",
+        "value": 0.7,
+        "duration": 5
+      },
+      {
+        "key": "speed",
+        "value": 1.45,
+        "duration": 5
+      },
+      {
+        "key": "bounce",
+        "value": 1.2,
+        "duration": 5
+      }
+    ],
+    "impulse": {
+      "dx": 0,
+      "dy": 1,
+      "power": 9
+    },
+    "fx": "dash"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "axe"
+  },
+  "bonds": [
+    "huyanzhuo",
+    "qinming"
+  ]
+}

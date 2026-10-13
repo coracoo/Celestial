@@ -1,0 +1,57 @@
+{
+  "id": "liying",
+  "number": 11,
+  "name": "李应",
+  "title": "扑天雕",
+  "rarity": "SR",
+  "wuxing": "metal",
+  "role": "破防",
+  "color": "#8a6d3b",
+  "accent": "#e8c98a",
+  "tagline": "金背雕弓，扑天而落",
+  "lore": "李家庄的三庄主。别人上场拼刀，她站在后面算距离——一箭过去，护甲先破，剩下的交给别人。",
+  "base": {
+    "hp": 108,
+    "atk": 15,
+    "def": 7,
+    "speed": 13
+  },
+  "skill": {
+    "id": "liying_skyfall",
+    "name": "扑天雕",
+    "rule": "消除逆势伤害惩罚，并为全队即时技能与 Boss 输出提供增益",
+    "desc": "一箭标出破绽：6 秒内全队逆势伤害倍率设为 1.0，消除默认 ×0.7 的惩罚；共享即时技能伤害 ×1.5，Boss 承伤 ×1.25。即时增益由队友的武器、贯穿、拔钉或连锁技能消费；她自身不附带即时攻击，也不直接削减护甲。",
+    "trigger": {
+      "on": "spearHit",
+      "minIntensity": 0.2,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "attrLose",
+        "value": 1.0,
+        "duration": 6
+      },
+      {
+        "key": "burst",
+        "value": 1.5,
+        "duration": 6
+      }
+    ],
+    "bossVuln": {
+      "factor": 1.25,
+      "duration": 6
+    },
+    "fx": "pierceWeak"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "hawk"
+  },
+  "bonds": [
+    "huarong",
+    "xuning"
+  ]
+}

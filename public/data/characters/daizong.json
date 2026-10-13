@@ -1,0 +1,63 @@
+{
+  "id": "daizong",
+  "number": 20,
+  "name": "戴宗",
+  "title": "神行太保",
+  "rarity": "SR",
+  "wuxing": "wood",
+  "role": "极速",
+  "color": "#c0392b",
+  "accent": "#ff8a6a",
+  "tagline": "甲马拴在腿上",
+  "lore": "一昼夜能跑八百里的人。梁山的消息从他嘴里过，从来不会凉。他不需要赢，他只需要球别停。",
+  "base": {
+    "hp": 106,
+    "atk": 12,
+    "def": 7,
+    "speed": 15
+  },
+  "skill": {
+    "id": "daizong_sprint",
+    "name": "甲马日夜奔",
+    "rule": "把阻尼砍到四成并给球一个速度下限",
+    "desc": "6 秒内球速 ×1.42、阻尼 ×0.42、重力 ×0.9，并额外给球一个 5.0 的速度下限——球速掉到这个数以下会被硬推回去。球在盘上根本停不下来。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0.05,
+      "charges": 9,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "speed",
+        "value": 1.42,
+        "duration": 6
+      },
+      {
+        "key": "damping",
+        "value": 0.42,
+        "duration": 6
+      },
+      {
+        "key": "gravity",
+        "value": 0.9,
+        "duration": 6
+      },
+      {
+        "key": "speedFloor",
+        "value": 5,
+        "duration": 6
+      }
+    ],
+    "fx": "dash"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "talisman"
+  },
+  "bonds": [
+    "chaijin",
+    "linchong"
+  ]
+}

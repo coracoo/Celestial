@@ -1,0 +1,58 @@
+{
+  "id": "ruanxiaoqi",
+  "number": 31,
+  "name": "阮小七",
+  "title": "活阎罗",
+  "rarity": "R",
+  "wuxing": "water",
+  "role": "蛮力",
+  "color": "#2f5f6b",
+  "accent": "#88c0c8",
+  "tagline": "阎王点卯，多晚都得来",
+  "lore": "阮家三雄里最小的一个，也是最不像水军的一个。她不潜水，她直接踩着水走过去。",
+  "base": {
+    "hp": 110,
+    "atk": 13,
+    "def": 7,
+    "speed": 12
+  },
+  "skill": {
+    "id": "ruanxiaoqi_yama",
+    "name": "活阎罗",
+    "rule": "给球一记下压的重力，同时抬高它反弹的次数",
+    "desc": "6 秒内重力 ×1.3、弹性 ×1.5、反弹伤害 ×1.3。球被她压得更沉、弹得更远——盘面自己会把它甩下去。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0.2,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "gravity",
+        "value": 1.3,
+        "duration": 6
+      },
+      {
+        "key": "bounce",
+        "value": 1.5,
+        "duration": 6
+      },
+      {
+        "key": "bounceDamage",
+        "value": 1.3,
+        "duration": 6
+      }
+    ],
+    "fx": "shockRing"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "oar"
+  },
+  "bonds": [
+    "ruanxiaoer",
+    "ruanxiaowu"
+  ]
+}

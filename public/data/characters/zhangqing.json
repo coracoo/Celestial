@@ -1,0 +1,63 @@
+{
+  "id": "zhangqing",
+  "number": 16,
+  "name": "张清",
+  "title": "没羽箭",
+  "rarity": "SR",
+  "wuxing": "water",
+  "role": "点杀",
+  "color": "#2f7f8f",
+  "accent": "#8fe8f0",
+  "tagline": "一石破万法，专打硬的",
+  "lore": "东昌府猛将，一袋飞石从不虚发。她不跟球较劲，她盯着盘上那几颗最硬的钉——砸碎了，剩下的一盘就不成阵。",
+  "base": {
+    "hp": 110,
+    "atk": 16,
+    "def": 7,
+    "speed": 14
+  },
+  "skill": {
+    "id": "zhangqing_nofeat",
+    "name": "没羽箭",
+    "rule": "只砸高价值目标，会心只作收尾",
+    "desc": "6 秒内每击中一次敌人就结算一次独立飞石伤害 78（吃水属性相生相克）；期间会心率 +14%、会心倍率 ×1.25、弹性 ×1.2。她靠的是每发都砸准，不是靠暴击——专治护甲厚的。",
+    "trigger": {
+      "on": "enemyKill",
+      "minIntensity": 0,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "critChance",
+        "value": 0.14,
+        "duration": 6
+      },
+      {
+        "key": "critMult",
+        "value": 1.25,
+        "duration": 6
+      },
+      {
+        "key": "bounce",
+        "value": 1.2,
+        "duration": 6
+      }
+    ],
+    "chain": {
+      "radius": 2.6,
+      "damage": 78,
+      "wuxing": "water"
+    },
+    "fx": "crit"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "stone"
+  },
+  "bonds": [
+    "gongsunsheng",
+    "liutang"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "zhangheng",
+  "number": 28,
+  "name": "张横",
+  "title": "船火儿",
+  "rarity": "R",
+  "wuxing": "fire",
+  "role": "连锁",
+  "color": "#8f4a2f",
+  "accent": "#e8a07a",
+  "tagline": "一条火船撞进阵里",
+  "lore": "揭阳岭的船老大。别人打一盘，她打的是「盘里那一片」——烧的是连着的，所以省火。",
+  "base": {
+    "hp": 108,
+    "atk": 13,
+    "def": 7,
+    "speed": 11
+  },
+  "skill": {
+    "id": "zhangheng_fireboat",
+    "name": "火船冲阵",
+    "rule": "命中即把伤害弹给半径内其它敌人，弹得越多越快",
+    "desc": "6 秒内每次碰撞在 3.0 半径内引发火属性连锁伤害 52；期间弹性 ×1.25、即时伤害 ×1.3。她烧的是连片，不是单点。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0.1,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "bounce",
+        "value": 1.25,
+        "duration": 6
+      },
+      {
+        "key": "burst",
+        "value": 1.3,
+        "duration": 6
+      }
+    ],
+    "chain": {
+      "radius": 3,
+      "damage": 52,
+      "wuxing": "fire"
+    },
+    "fx": "detonate"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "boat"
+  },
+  "bonds": [
+    "zhangshun",
+    "suchao"
+  ]
+}

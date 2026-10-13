@@ -1,0 +1,56 @@
+{
+  "id": "zhutong",
+  "number": 12,
+  "name": "朱仝",
+  "title": "美髯公",
+  "rarity": "R",
+  "wuxing": "earth",
+  "role": "稳打",
+  "color": "#7a5a3a",
+  "accent": "#d8b088",
+  "tagline": "重髯如铁，面善心热",
+  "lore": "马兵都头，鬓角长得能当人看。她不出挑，也不掉队——队伍需要有人把每一发都稳稳吃掉，她就是那个人。",
+  "base": {
+    "hp": 116,
+    "atk": 12,
+    "def": 8,
+    "speed": 10
+  },
+  "skill": {
+    "id": "zhutong_ironbeard",
+    "name": "重髯如铁",
+    "rule": "把落槽收益做成一球比一球贵的叠增",
+    "desc": "5 秒内每次落槽结算后落槽倍率继续往上叠（每次 +0.08，最多叠到 1.6），并给一层底增益 ×1.2。她慢，但她每一下都算数。",
+    "trigger": {
+      "on": "slotEnter",
+      "minIntensity": 0,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "slot",
+        "value": 1.2,
+        "duration": 5,
+        "perEvent": 0.08,
+        "maxValue": 1.6,
+        "stackOn": "slotEnter"
+      },
+      {
+        "key": "damping",
+        "value": 0.8,
+        "duration": 5
+      }
+    ],
+    "fx": "slot"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "beard"
+  },
+  "bonds": [
+    "yangzhi",
+    "muhong"
+  ]
+}

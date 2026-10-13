@@ -1,0 +1,190 @@
+.story-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  /*
+   * 居中靠这一层，跟 .modal / .veil 同一套 grid 惯例。.story-map 以前是
+   * `height:100% + margin:auto` 借「确定高度」吃掉 auto 外边距才居中的，现在它改成
+   * height:auto（面板贴着内容、和自由模式一样），auto 外边距就失效了，面板会贴左上角。
+   * 对白页不受影响：它的直接子元素（.story-dialogue-header / .story-scene /
+   * .story-portrait / .story-dialogue-box）全是 position:absolute，不进流、不成为网格项。
+   */
+  display: grid;
+  place-content: center;
+  overflow: hidden;
+  color: #f8edd9;
+  background: radial-gradient(ellipse at 50% 38%, #3c2524 0%, #171218 54%, #090a10 100%);
+  font-family: var(--font-ui, "Microsoft YaHei", sans-serif);
+  isolation: isolate;
+  pointer-events: auto;
+}
+.story-overlay[hidden] { display: none; }
+.story-overlay * { box-sizing: border-box; }
+.story-overlay button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; }
+.story-overlay button:disabled { cursor: default; }
+.story-overlay button:focus-visible { outline: 2px solid #ffe1a0; outline-offset: 4px; }
+.story-overlay button { -webkit-tap-highlight-color: transparent; }
+.story-kicker { color: #d8b375; font-size: 11px; letter-spacing: .2em; }
+.story-button {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid #b18c54;
+  border-radius: 3px;
+  background: #312123;
+  font-size: 14px;
+}
+.story-button:hover { background: #50332b; }
+.story-quiet { border-color: #735644; background: #171217e6; }
+.story-map {
+  /*
+   * 选关面板跟自由模式用同一套外框（--screen-*），不再各写一份。
+   * 以前这里是 1320px、不带边框、标题 38px，而自由模式是 1240px 带框、26px，
+   * 两屏来回切面板边缘会在视线里跳一下。宽度/边框/圆角/底色/标题全走共用变量。
+   */
+  width: var(--screen-w, min(1180px, 94vw));
+  max-width: none;
+  height: auto;
+  max-height: 92vh;
+  display: flex; flex-direction: column;
+  padding: var(--screen-pad, 30px 28px);
+  gap: 14px;
+  border: 1px solid var(--screen-line, rgba(255, 206, 128, 0.2));
+  border-radius: var(--screen-radius, 4px);
+  background: var(--screen-bg);
+  box-shadow: var(--screen-shadow);
+  overflow: hidden;
+}
+.story-map-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-shrink: 0; }
+.story-title { font: var(--screen-title-size, 26px) var(--font-cn, serif); letter-spacing: var(--screen-title-track, .22em); margin: 0; color: #ffe2a2; }
+.story-map-intro { display: flex; justify-content: space-between; align-items: center; gap: 24px; color: #ddd0bb; font-size: 14px; }
+.story-map-intro p { margin: 0; line-height: 1.6; }
+.story-progress { white-space: nowrap; color: #f2c97c; border: 1px solid #70543f; padding: 9px 14px; border-radius: 30px; }
+.story-chapter-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; min-height: 0; overflow-y: auto; padding: 5px; align-content: start; scrollbar-color: #96704b #1a1317; }
+/*
+ * 章节卡的卡面外壳跟自由模式的 .stage-card 用同一套：同样的 1px 边、左侧 3px 亮条、
+ * 同样的底色渐变、同样的圆角和悬停位移。两屏都是「选一关进下一关」，
+ * 卡壳却一套深棕一套橙紫，玩家会当成两种东西。
+ */
+.story-chapter { border: 1px solid var(--screen-line); border-left: 3px solid rgba(255, 154, 46, 0.35); background: linear-gradient(180deg, rgba(46, 18, 16, 0.6), rgba(20, 10, 12, 0.7)); border-radius: 3px; min-width: 0; }
+.story-chapter:hover:not(.is-locked) { transform: translateY(-2px); border-color: rgba(255, 206, 128, 0.4); border-left-color: var(--gold); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5); }
+.story-chapter.is-current, .story-chapter.is-cleared { border-color: rgba(255, 154, 46, 0.6); border-left-color: var(--orange); box-shadow: 0 0 0 1px rgba(255, 154, 46, 0.28), 0 10px 26px rgba(0, 0, 0, 0.5); }
+.story-chapter-start { display: block; width: 100%; height: 100%; text-align: left; padding: 14px 18px; border: 0; background: none; }
+.story-chapter-start:hover:not(:disabled) { background: #a06b2d18; }
+.story-chapter-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.story-chapter-number { color: #d3a166; font: 24px Georgia, serif; }
+.story-badge { font-size: 11px; color: #e8cc94; }
+.story-chapter h2 { font: 20px var(--font-cn, serif); margin: 9px 0 7px; color: #ffdfa0; }
+.story-location { color: #c6b29c; font-size: 11px; margin: 0; }
+.story-summary { color: #ded0be; font-size: 13px; line-height: 1.65; margin: 9px 0; }
+.story-chapter-cta { display: block; color: #f2ca81; font-size: 12px; padding-top: 4px; }
+.story-chapter.is-locked { border-color: #463b35; background: #18151a; }
+.story-chapter.is-locked h2, .story-chapter.is-locked .story-chapter-number { color: #b2a492; }
+.story-chapter.is-locked .story-summary, .story-chapter.is-locked .story-badge, .story-chapter.is-locked .story-chapter-cta { color: #b5aa9c; }
+.story-chapter.is-cleared { border-color: #8a7044; }
+.story-chapter.is-cleared .story-chapter-start { height: auto; }
+.story-replay { border: 0; border-top: 1px solid #66513b; min-height: 38px; display: block; width: 100%; padding: 8px; background: #22191ce6; color: #e7c17b !important; font-size: 12px !important; }
+.story-map-note { margin: 0; color: #ad9c85; font-size: 11px; flex-shrink: 0; }
+/* 页脚 + 返回按钮：跟自由模式 .sheet--stages 底部那条 .btn 同一套外观。
+   选择器写成 .story-overlay .story-back 是为了压过上面那条 `.story-overlay button
+   { color:inherit; font-size:inherit }`（对白页要让按钮继承浮层排版）。那条特异性
+   (0,1,1)，光写 .story-back (0,1,0) 会被它吃掉颜色和字号 —— 量出来就是 16px/#f8edd9
+   对 15px/var(--text)，肉眼是两枚按钮。 */
+.story-map-foot { display: flex; align-items: center; justify-content: flex-start; gap: 18px; flex-shrink: 0; flex-wrap: wrap; }
+.story-overlay .story-back {
+  appearance: none;
+  border: 1px solid rgba(255, 206, 128, 0.34);
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(60, 27, 35, 0.92), rgba(20, 10, 16, 0.92));
+  color: var(--text, #e8eeff);
+  font-family: var(--font-ui, "Microsoft YaHei", sans-serif);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  padding: 13px 30px;
+  min-height: 46px;
+  /* 与 .menu 同一个数（--action-w），别单独写死 */
+  width: var(--action-w, 268px);
+  white-space: nowrap;
+  transition: transform 0.14s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.story-back:hover { transform: translateY(-1px); border-color: rgba(255, 206, 128, 0.7); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45); }
+.story-dialogue-header { position: absolute; top: 0; left: 0; right: 0; z-index: 3; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 34px; background: linear-gradient(#0d0b11f5, #0d0b1166, transparent); }
+.story-dialogue-title h1 { font: 26px var(--font-cn, serif); letter-spacing: .12em; margin: 7px 0 0; color: #ffe2aa; }
+.story-dialogue-controls { display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+.story-line-count { color: #d7bd95; font-size: 12px; white-space: nowrap; }
+.story-scene { position: absolute; inset: 85px 0 0; overflow: hidden; }
+.story-scene-ring { position: absolute; height: 65vmin; width: 65vmin; border: 1px solid #a37b3836; outline: 1px solid #a37b3829; outline-offset: 30px; border-radius: 50%; left: 50%; top: 28%; transform: translate(-50%, -50%); box-shadow: 0 0 100px #d6832522, inset 0 0 100px #b4782011; }
+.story-scene-ring::after { content: '金 · 木 · 水 · 火 · 土'; position: absolute; width: 100%; top: 44%; text-align: center; letter-spacing: .55em; font: 14px var(--font-cn, serif); color: #b992624a; }
+.story-scene-motif { position: absolute; left: 50%; top: 7%; transform: translateX(-50%); writing-mode: vertical-rl; letter-spacing: .6em; color: #e2ba7866; font: 18px var(--font-cn, serif); z-index: 1; }
+.story-portrait { position: absolute; top: 0; bottom: 140px; width: 48%; opacity: .58; transition: opacity .2s; }
+/*
+ * 角色层画在**出血画布**上（1280×1920，比卡面大 128×192，四边各留一圈），
+ * 而这里要的是当年那张 1024×1536 的构图。出血两向都恰好 1.25 倍，所以图放大
+ * 125%、往左上各挪 12.5%，正好把出血裁掉，构图不变。倍数只有一个出处：
+ * `core/figureLayer.ts` 的 FIGURE_BLEED_SCALE，这三个数别单独改。
+ */
+.story-left { left: 0; }
+.story-right { right: 0; }
+.story-portrait.is-speaking, .story-portrait.is-narration { opacity: 1; }
+.story-portrait-image { position: absolute; left: -12.5%; top: -12.5%; width: 125%; height: 125%; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 12px 25px #0008); }
+.story-portrait-image[hidden] { display: none; }
+.story-portrait-name { position: absolute; bottom: 82px; left: 50%; transform: translateX(-50%); background: #110d14d9; color: #eed0a3; border: 1px solid #91693e; padding: 6px 16px; font-size: 13px; white-space: nowrap; }
+.story-dialogue-box { position: absolute; z-index: 4; bottom: 24px; left: 5%; right: 5%; min-height: 188px; border: 1px solid #b39259; border-radius: 4px; background: linear-gradient(145deg, #352024f7, #100e16fc); box-shadow: 0 12px 40px #0009, inset 0 0 0 4px #a57a2920; padding: 20px 28px 16px; }
+.story-speaker-plate { display: flex; align-items: baseline; flex-wrap: wrap; gap: 15px; }
+.story-speaker { color: #ffe2a5; font: 23px var(--font-cn, serif); }
+.story-speaker-title { font-size: 12px; color: #ccb084; }
+.story-dialogue-text { margin: 13px 0 18px; font-size: clamp(17px, 1.55vw, 22px); line-height: 1.8; letter-spacing: .035em; color: #fff0db; }
+.story-dialogue-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.story-input-hint { color: #c2aa89; font-size: 12px; }
+.story-next { background: #8b5b27; border-color: #e3b875; color: #fff6df !important; min-width: 140px; }
+.story-next:hover { background: #a87136; }
+@media (max-width: 780px) {
+  .story-map { padding: 22px 20px 16px; }
+  .story-chapter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .story-dialogue-header { padding: 18px 20px; }
+  .story-dialogue-title h1 { font-size: 22px; }
+  .story-dialogue-controls { gap: 7px; }
+  .story-dialogue-controls .story-button { padding: 9px 10px; font-size: 12px; }
+  .story-dialogue-box { left: 3%; right: 3%; padding: 18px 22px 14px; }
+  .story-portrait { width: 53%; }
+}
+@media (max-width: 520px) {
+  .story-map { padding: 20px 14px 14px; gap: 15px; }
+  .story-title { font-size: 30px; }
+  .story-map-intro { align-items: flex-start; gap: 10px; font-size: 13px; }
+  .story-progress { padding: 7px 9px; font-size: 11px; }
+  .story-chapter-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 5px; }
+  .story-chapter-start { padding: 16px; }
+  .story-map-note { line-height: 1.6; font-size: 10px; }
+  .story-dialogue-header { padding: 16px 14px 10px; align-items: flex-start; gap: 10px; }
+  .story-dialogue-title { flex: 1; min-width: 0; }
+  .story-dialogue-title .story-kicker { font-size: 9px; letter-spacing: .1em; }
+  .story-dialogue-title h1 { font-size: 21px; line-height: 1.5; }
+  .story-dialogue-controls { max-width: 158px; flex-wrap: wrap; gap: 6px; }
+  .story-line-count { width: 100%; text-align: right; }
+  .story-dialogue-controls .story-button { min-height: 40px; padding: 8px 9px; font-size: 11px; }
+  .story-scene { top: 112px; }
+  .story-scene-ring { width: 80vw; height: 80vw; top: 28%; }
+  .story-scene-motif { top: 2%; font-size: 14px; letter-spacing: .4em; }
+  .story-portrait { bottom: 240px; width: 67%; }
+  .story-left { left: -14%; }
+  .story-right { right: -14%; }
+  .story-portrait-name { bottom: 6px; padding: 5px 11px; font-size: 11px; }
+  .story-dialogue-box { bottom: max(14px, env(safe-area-inset-bottom)); min-height: 236px; max-height: 49%; overflow-y: auto; left: 14px; right: 14px; padding: 18px 19px 14px; }
+  .story-speaker { font-size: 22px; }
+  .story-speaker-title { font-size: 11px; }
+  .story-dialogue-text { font-size: 18px; line-height: 1.8; margin: 13px 0 18px; }
+  .story-dialogue-footer { align-items: flex-end; gap: 10px; }
+  .story-input-hint { font-size: 10px; line-height: 1.7; max-width: 145px; }
+  .story-next { min-width: 113px; padding: 10px 13px; font-size: 13px; }
+}
+@media (max-height: 540px) and (min-width: 521px) {
+  .story-dialogue-header { padding: 12px 22px; }
+  .story-scene { top: 65px; }
+  .story-dialogue-box { bottom: 12px; min-height: 160px; padding: 13px 22px 10px; }
+  .story-dialogue-text { margin: 8px 0 10px; font-size: 17px; }
+  .story-portrait { bottom: 125px; }
+  .story-portrait-name { bottom: 35px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-overlay *, .story-overlay *::before, .story-overlay *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

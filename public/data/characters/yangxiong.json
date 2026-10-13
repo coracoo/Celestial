@@ -1,0 +1,58 @@
+{
+  "id": "yangxiong",
+  "number": 32,
+  "name": "杨雄",
+  "title": "病关索",
+  "rarity": "R",
+  "wuxing": "metal",
+  "role": "稳打",
+  "color": "#5f6b7a",
+  "accent": "#b0c0d0",
+  "tagline": "关索拖刀，慢却难断",
+  "lore": "两院押狱兼刽子手。她的刀不快，但很少落空——她做事有个习惯，先看清楚再下刀。",
+  "base": {
+    "hp": 114,
+    "atk": 12,
+    "def": 8,
+    "speed": 10
+  },
+  "skill": {
+    "id": "yangxiong_draggingblade",
+    "name": "病关索",
+    "rule": "抬落槽与减伤，不动球的运动",
+    "desc": "7 秒内落槽 ×1.4、相克倍率 ×1.25、阻尼 ×0.85。她不打乱节奏，她让每一次落槽都更值钱。",
+    "trigger": {
+      "on": "slotEnter",
+      "minIntensity": 0,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "slot",
+        "value": 1.4,
+        "duration": 7
+      },
+      {
+        "key": "attrWin",
+        "value": 1.25,
+        "duration": 7
+      },
+      {
+        "key": "damping",
+        "value": 0.85,
+        "duration": 7
+      }
+    ],
+    "fx": "slot"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "chain"
+  },
+  "bonds": [
+    "shixiu",
+    "zhutong"
+  ]
+}

@@ -1,0 +1,249 @@
+[
+  {
+    "id": "link_jingyang",
+    "name": "景阳枪魂",
+    "tier": "dual",
+    "members": ["wusong", "linchong"],
+    "color": "#ff7a5c",
+    "desc": "醉打山山把重力压缓、球在半空赖着不走时，林冲枪意已成：整面钉阵在 5 秒内对弹珠失去作用，弹珠加速下坠，落槽伤害 ×1.8，Boss 额外承伤 ×1.35。",
+    "require": {
+      "mode": "all",
+      "conditions": [{ "c": "modActive", "key": "gravity" }, { "c": "gaugeFull", "charId": "linchong" }],
+      "energy": 0
+    },
+    "effect": {
+      "kind": "formationBreak",
+      "duration": 6.0,
+      "ghostDuration": 5.0,
+      "speedScale": 1.28,
+      "slotFactor": 1.8,
+      "destroyRadius": 0,
+      "impulse": 0,
+      "bossVulnFactor": 1.35,
+      "bossVulnDuration": 6.0,
+      "chainDetonate": false,
+      "detonateDamage": 0,
+      "fx": "linkBreak"
+    }
+  },
+  {
+    "id": "link_shuiliang",
+    "name": "倒拔垂杨",
+    "tier": "dual",
+    "members": ["wusong", "luzhishen"],
+    "color": "#ffb454",
+    "desc": "花和尚一禅杖把地面砸开时，武松正醉在半空：半径 5.5 内的钉板被整体拔出，弹珠被冲击波向上抛起，落槽伤害 ×1.6。",
+    "require": {
+      "mode": "all",
+      "conditions": [{ "c": "modActive", "key": "bounce" }, { "c": "gaugeFull", "charId": "wusong" }],
+      "energy": 0
+    },
+    "effect": {
+      "kind": "boardBurst",
+      "duration": 5.0,
+      "ghostDuration": 0,
+      "speedScale": 1.15,
+      "slotFactor": 1.6,
+      "destroyRadius": 5.5,
+      "impulse": 7.0,
+      "bossVulnFactor": 1.2,
+      "bossVulnDuration": 4.0,
+      "chainDetonate": false,
+      "detonateDamage": 0,
+      "fx": "linkBurst"
+    }
+  },
+  {
+    "id": "link_huasheng",
+    "name": "花和尚破阵",
+    "tier": "dual",
+    "members": ["linchong", "luzhishen"],
+    "color": "#7ad7ff",
+    "desc": "雪拥枪法提速的同时禅杖蓄满：每穿过一枚钉板都会引爆其半径 1.9 内的邻居，连锁伤害直接结算到 Boss。",
+    "require": {
+      "mode": "all",
+      "conditions": [{ "c": "modActive", "key": "speed" }, { "c": "gaugeFull", "charId": "luzhishen" }],
+      "energy": 0
+    },
+    "effect": {
+      "kind": "chainDetonate",
+      "duration": 7.0,
+      "ghostDuration": 0,
+      "speedScale": 1.0,
+      "slotFactor": 1.3,
+      "destroyRadius": 1.9,
+      "impulse": 0,
+      "bossVulnFactor": 1.0,
+      "bossVulnDuration": 0,
+      "chainDetonate": true,
+      "detonateDamage": 26,
+      "fx": "linkChain"
+    }
+  },
+  {
+    "id": "link_qingzhu",
+    "name": "倒拔擎天柱",
+    "tier": "triple",
+    "members": ["wusong", "linchong", "luzhishen"],
+    "color": "#b184ff",
+    "desc": "三势同满并献出 60 能量：全盘钉阵在 8 秒内彻底失效，弹珠贯穿并连锁引爆，落槽伤害 ×2.2，Boss 破防 ×1.8。",
+    "require": {
+      "mode": "all",
+      "conditions": [
+        { "c": "gaugeFull", "charId": "wusong" },
+        { "c": "gaugeFull", "charId": "linchong" },
+        { "c": "gaugeFull", "charId": "luzhishen" }
+      ],
+      "energy": 60
+    },
+    "effect": {
+      "kind": "ultimateWipe",
+      "duration": 8.0,
+      "ghostDuration": 8.0,
+      "speedScale": 1.35,
+      "slotFactor": 2.2,
+      "destroyRadius": 0,
+      "impulse": 5.0,
+      "bossVulnFactor": 1.8,
+      "bossVulnDuration": 8.0,
+      "chainDetonate": true,
+      "detonateDamage": 18,
+      "fx": "linkUltimate"
+    }
+  },
+  {
+    "id": "link_zhaoxian",
+    "name": "及时招贤",
+    "tier": "dual",
+    "members": ["songjiang", "chaijin"],
+    "color": "#7fc4ff",
+    "desc": "雨泽八方遇上庄上好客：相生收益直接乘到极限（全场相生 ×1.45 ×1.55），并补满 40 能量，落槽伤害 ×1.5。",
+    "require": {
+      "mode": "all",
+      "conditions": [{ "c": "modActive", "key": "attrGen" }, { "c": "gaugeFull", "charId": "chaijin" }],
+      "energy": 0
+    },
+    "effect": {
+      "kind": "boardBurst",
+      "duration": 6.0,
+      "ghostDuration": 0,
+      "speedScale": 1.1,
+      "slotFactor": 1.5,
+      "destroyRadius": 0,
+      "impulse": 0,
+      "bossVulnFactor": 1.25,
+      "bossVulnDuration": 6.0,
+      "chainDetonate": false,
+      "detonateDamage": 0,
+      "fx": "linkBurst"
+    }
+  },
+  {
+    "id": "link_lianhuan",
+    "name": "烈焰连环",
+    "tier": "dual",
+    "members": ["qinming", "huyanzhuo"],
+    "color": "#ff7a45",
+    "desc": "双鞭把弹性拉满时火鸦正落：连锁引爆每枚额外烧掉 34 点，Boss 破防 ×1.3，落槽伤害 ×1.45。",
+    "require": {
+      "mode": "all",
+      "conditions": [{ "c": "modActive", "key": "bounce" }, { "c": "gaugeFull", "charId": "qinming" }],
+      "energy": 0
+    },
+    "effect": {
+      "kind": "chainDetonate",
+      "duration": 6.0,
+      "ghostDuration": 0,
+      "speedScale": 1.12,
+      "slotFactor": 1.45,
+      "destroyRadius": 2.2,
+      "impulse": 0,
+      "bossVulnFactor": 1.3,
+      "bossVulnDuration": 6.0,
+      "chainDetonate": true,
+      "detonateDamage": 34,
+      "fx": "linkChain"
+    }
+  },
+  {
+    "id": "link_shenji",
+    "name": "算尽天机",
+    "tier": "dual",
+    "members": ["wuyong", "huarong"],
+    "color": "#c6a6ff",
+    "desc": "智多星算好的那一箭：克制倍率再乘一档（×1.9 ×1.35），会心率额外 +20%，Boss 破防 ×1.5，持续 6 秒。",
+    "require": {
+      "mode": "all",
+      "conditions": [{ "c": "modActive", "key": "attrWin" }, { "c": "gaugeFull", "charId": "huarong" }],
+      "energy": 20
+    },
+    "effect": {
+      "kind": "formationBreak",
+      "duration": 6.0,
+      "ghostDuration": 3.0,
+      "speedScale": 1.05,
+      "slotFactor": 1.6,
+      "destroyRadius": 0,
+      "impulse": 0,
+      "bossVulnFactor": 1.5,
+      "bossVulnDuration": 6.0,
+      "chainDetonate": false,
+      "detonateDamage": 0,
+      "fx": "linkBreak"
+    }
+  },
+  {
+    "id": "link_lianquan",
+    "name": "双鞭青锋",
+    "tier": "dual",
+    "members": ["huyanzhuo", "yangzhi"],
+    "color": "#f0dcae",
+    "desc": "两杆兵刃同时开锋：每多弹一次的加成再乘一档，全盘敌人钉的每次命中都更疼，落槽伤害 ×1.4，Boss 破防 ×1.3。",
+    "require": {
+      "mode": "all",
+      "conditions": [{ "c": "modActive", "key": "bounceDamage" }, { "c": "gaugeFull", "charId": "huyanzhuo" }],
+      "energy": 0
+    },
+    "effect": {
+      "kind": "formationBreak",
+      "duration": 5.0,
+      "ghostDuration": 0,
+      "speedScale": 1.12,
+      "slotFactor": 1.4,
+      "destroyRadius": 0,
+      "impulse": 0,
+      "bossVulnFactor": 1.3,
+      "bossVulnDuration": 5.0,
+      "chainDetonate": false,
+      "detonateDamage": 0,
+      "fx": "linkBreak"
+    }
+  },
+  {
+    "id": "link_jiama",
+    "name": "甲马夜奔",
+    "tier": "dual",
+    "members": ["daizong", "likui"],
+    "color": "#ff8a6a",
+    "desc": "神行太保替黑旋风趟开一条直线：全盘钉阵 4 秒内对弹珠失效，两斧清盘半径抬到 4.6，落槽伤害 ×1.5。",
+    "require": {
+      "mode": "all",
+      "conditions": [{ "c": "modActive", "key": "speedFloor" }, { "c": "gaugeFull", "charId": "likui" }],
+      "energy": 0
+    },
+    "effect": {
+      "kind": "formationBreak",
+      "duration": 5.0,
+      "ghostDuration": 4.0,
+      "speedScale": 1.3,
+      "slotFactor": 1.5,
+      "destroyRadius": 4.6,
+      "impulse": 9.0,
+      "bossVulnFactor": 1.35,
+      "bossVulnDuration": 5.0,
+      "chainDetonate": false,
+      "detonateDamage": 0,
+      "fx": "linkBreak"
+    }
+  }
+]

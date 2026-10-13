@@ -1,0 +1,63 @@
+{
+  "id": "wuyong",
+  "number": 3,
+  "name": "吴用",
+  "title": "智多星",
+  "rarity": "SSR",
+  "wuxing": "metal",
+  "role": "军师",
+  "color": "#7a4fd0",
+  "accent": "#c6a6ff",
+  "tagline": "算尽天机，只差一步",
+  "lore": "她从不先动手，她先把你会怎么动手算完。你以为自己在选，其实选项早被她摆好了。",
+  "base": {
+    "hp": 124,
+    "atk": 18,
+    "def": 9,
+    "speed": 12
+  },
+  "skill": {
+    "id": "wuyong_foresight",
+    "name": "算尽天机",
+    "rule": "提高克制与相生伤害，逆势攻击不再减伤",
+    "desc": "释放后 7 秒内，克制攻击倍率升到 ×1.9，相生升到 ×1.8，逆势攻击由 ×0.7 提升到 ×1.0；同时落槽 ×1.15。军师改写的是弹珠对敌人的伤害结算。",
+    "trigger": {
+      "on": "slotEnter",
+      "minIntensity": 0,
+      "charges": 7,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "attrWin",
+        "value": 1.9,
+        "duration": 7
+      },
+      {
+        "key": "attrLose",
+        "value": 1.0,
+        "duration": 7
+      },
+      {
+        "key": "attrGen",
+        "value": 1.8,
+        "duration": 7
+      },
+      {
+        "key": "slot",
+        "value": 1.15,
+        "duration": 7
+      }
+    ],
+    "fx": "gaugeFull"
+  },
+  "card": {
+    "rarity": "SSR",
+    "holo": "auto",
+    "motif": "abacus"
+  },
+  "bonds": [
+    "songjiang",
+    "huyanzhuo"
+  ]
+}

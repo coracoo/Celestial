@@ -1,0 +1,65 @@
+{
+  "id": "zhangshun",
+  "number": 30,
+  "name": "张顺",
+  "title": "浪里白条",
+  "rarity": "SSR",
+  "wuxing": "water",
+  "role": "极速",
+  "color": "#2f6b8f",
+  "accent": "#a8e0f0",
+  "tagline": "白条入浪，影都不见",
+  "lore": "水军里游得最快的一个。浪里白条这四个字不是夸她厉害，是说她太快，慢一点的人根本看不见她。",
+  "base": {
+    "hp": 122,
+    "atk": 16,
+    "def": 9,
+    "speed": 15
+  },
+  "skill": {
+    "id": "zhangshun_whitebar",
+    "name": "浪里白条",
+    "rule": "整局把球按在水面上滑，一路不减速",
+    "desc": "全程球速 ×1.7、重力 ×0.65、阻尼 ×0.55，追加 1 颗弹珠；落槽 ×1.4。她从不停下，所以你也停不下来。",
+    "trigger": {
+      "on": "zoneSkill",
+      "minIntensity": 0,
+      "charges": 1,
+      "perHit": 1,
+      "auto": true
+    },
+    "mods": [
+      {
+        "key": "speed",
+        "value": 1.7,
+        "duration": 0
+      },
+      {
+        "key": "gravity",
+        "value": 0.65,
+        "duration": 0
+      },
+      {
+        "key": "damping",
+        "value": 0.55,
+        "duration": 0
+      },
+      {
+        "key": "slot",
+        "value": 1.4,
+        "duration": 0
+      }
+    ],
+    "bonusBalls": 1,
+    "fx": "dash"
+  },
+  "card": {
+    "rarity": "SSR",
+    "holo": "gold",
+    "motif": "wave"
+  },
+  "bonds": [
+    "lijun",
+    "gongsunsheng"
+  ]
+}

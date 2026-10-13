@@ -1,0 +1,60 @@
+{
+  "id": "xiezhen",
+  "number": 34,
+  "name": "解珍",
+  "title": "两头蛇",
+  "rarity": "R",
+  "wuxing": "wood",
+  "role": "贯穿",
+  "color": "#4a7a52",
+  "accent": "#a0d8a8",
+  "tagline": "两头都带毒，碰哪头都一样",
+  "lore": "登州猎户出身，手上一把铁叉。绰号两头蛇不是说他心狠，是他走哪儿都带着两件家伙——前头一叉，后头一叉。",
+  "base": {
+    "hp": 108,
+    "atk": 13,
+    "def": 7,
+    "speed": 12
+  },
+  "skill": {
+    "id": "xiezhen_twinfang",
+    "name": "两头穿",
+    "rule": "给球开一次低强度的持续贯穿",
+    "desc": "6 秒内弹珠贯穿钉板时每穿过一枚即时结算 34 点贯穿伤害，期间球速 ×1.3、即时伤害 ×1.25。前面扎穿一个，后面再扎一个。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0.15,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "speed",
+        "value": 1.3,
+        "duration": 6
+      },
+      {
+        "key": "burst",
+        "value": 1.25,
+        "duration": 6
+      }
+    ],
+    "pierce": {
+      "kinds": [
+        "normal",
+        "destructible"
+      ],
+      "damagePerPeg": 34
+    },
+    "fx": "pierceHit"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "fang"
+  },
+  "bonds": [
+    "xiebao",
+    "shijin"
+  ]
+}

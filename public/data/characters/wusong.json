@@ -1,0 +1,76 @@
+{
+  "id": "wusong",
+  "number": 14,
+  "name": "武松",
+  "title": "行者",
+  "rarity": "SSR",
+  "wuxing": "fire",
+  "role": "滚雪球",
+  "color": "#d84a2a",
+  "accent": "#ffb454",
+  "tagline": "三碗不过冈",
+  "lore": "她的强不是一拳的强，是越打越强的强。你想打断她的节奏，唯一办法是让她一次都撞不上。",
+  "base": {
+    "hp": 132,
+    "atk": 18,
+    "def": 10,
+    "speed": 12
+  },
+  "skill": {
+    "id": "wusong_drunk",
+    "name": "醉打山神",
+    "rule": "双刀横扫敌阵，再以减缓重力与碰撞叠层延续攻势",
+    "desc": "按住预览双刀横线，松开对范围内敌人各造成110点基础伤害，重叠只算一次，按武松的火属性与共享爆伤修正。5秒内重力×0.78、球速×1.15；落槽从×1.55起，每撞钉+0.035，上限×3.2。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0.1,
+      "charges": 8,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "gravity",
+        "value": 0.78,
+        "duration": 5
+      },
+      {
+        "key": "speed",
+        "value": 1.15,
+        "duration": 5
+      },
+      {
+        "key": "slot",
+        "value": 1.55,
+        "duration": 5,
+        "perEvent": 0.035,
+        "maxValue": 3.2,
+        "stackOn": "pegHit"
+      }
+    ],
+    "fx": "berserk",
+    "strike": {
+      "shape": "line",
+      "radius": 6,
+      "halfWidth": 0.6,
+      "angleDeg": 0,
+      "repeat": {
+        "times": 2,
+        "offset": 1.2
+      },
+      "damage": 110,
+      "origin": "ball",
+      "kinds": [
+        "enemy"
+      ]
+    }
+  },
+  "card": {
+    "rarity": "SSR",
+    "holo": "gold",
+    "motif": "tiger"
+  },
+  "bonds": [
+    "linchong",
+    "luzhishen"
+  ]
+}

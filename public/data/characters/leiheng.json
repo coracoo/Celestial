@@ -1,0 +1,57 @@
+{
+  "id": "leiheng",
+  "number": 25,
+  "name": "雷横",
+  "title": "插翅虎",
+  "rarity": "R",
+  "wuxing": "wood",
+  "role": "机动",
+  "color": "#4a6b3a",
+  "accent": "#a8d888",
+  "tagline": "双肩生翅，跳得起来",
+  "lore": "郓城步兵都头。轻功好，人也躁，她习惯从人堆顶上落下来——所以她打的位置总是别人够不到的地方。",
+  "base": {
+    "hp": 104,
+    "atk": 13,
+    "def": 6,
+    "speed": 15
+  },
+  "skill": {
+    "id": "leiheng_wings",
+    "name": "插翅",
+    "rule": "给球一记横向持续外力，并抬高移动速度",
+    "desc": "5 秒内给球一个恒定横向加速度（ax 26），球速 ×1.5、弹性 ×1.25。她把球一路抽离原路，让它去你没准备的位置。",
+    "trigger": {
+      "on": "pegImpact",
+      "minIntensity": 0.2,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "speed",
+        "value": 1.5,
+        "duration": 5
+      },
+      {
+        "key": "bounce",
+        "value": 1.25,
+        "duration": 5
+      }
+    ],
+    "force": {
+      "ax": 26,
+      "ay": 0
+    },
+    "fx": "dash"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "tiger"
+  },
+  "bonds": [
+    "muhong",
+    "daizong"
+  ]
+}

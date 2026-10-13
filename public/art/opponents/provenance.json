@@ -1,0 +1,1267 @@
+{
+  "count": 42,
+  "expected": 42,
+  "missing": [],
+  "cards": [
+    {
+      "id": "metal_sentry",
+      "source": "cards\\opponents\\sources\\metal_sentry.png",
+      "sourceSha256": "5676a169dfef2dd39dca9dbaa344e4d1fba2ef2d49a5a42ff19f7b3cdf248292",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 123098,
+          "sha256": "8d2b7415339b92148e5e36f8667198868a7c4453d90b73b959b79520ff2dec89"
+        },
+        "portrait.webp": {
+          "bytes": 158466,
+          "sha256": "04aef1d899e43b4c76c2c4c7c77fb64b4158a16f7cef88b3a5b623fe9b51f8e6"
+        },
+        "subject.webp": {
+          "bytes": 147052,
+          "sha256": "0532ca41ce62dcc10a3a2fc6a0dc8ca384a83d90b86feb5451437b0aae7bfb53"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "卢俊义"
+    },
+    {
+      "id": "metal_swordswoman",
+      "source": "cards\\opponents\\sources\\metal_swordswoman.png",
+      "sourceSha256": "c9e1dd9481b0c42399fd154238ff4211459352f16fc7c818308da8b15f7df3fd",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 111944,
+          "sha256": "54bd53652d12720383ac853f5c441383cad0dcb2580b9d21ea3c4e0fb19018a3"
+        },
+        "portrait.webp": {
+          "bytes": 147728,
+          "sha256": "573f96100766aed6211f5a957334240888a1dffead22384429089422c242d3a8"
+        },
+        "subject.webp": {
+          "bytes": 142194,
+          "sha256": "a2bff4f622f8294df22d5cfc3c31ae7ed7ce34e112afbffd568264a846e956fc"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "卢俊义"
+    },
+    {
+      "id": "metal_halberd",
+      "source": "cards\\opponents\\sources\\metal_halberd.png",
+      "sourceSha256": "8a28de0aa9660c893fb3b8d590e233c792a74967fa3980d7e3f648598c45339f",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 112452,
+          "sha256": "066541281b895b42975ed9c3dd2328c658a0566673e825b7a99b70fb5af30634"
+        },
+        "portrait.webp": {
+          "bytes": 160052,
+          "sha256": "9d0f415c108c068ec683363c1dc6be4dd9cf0b8af20e6a005fd3f33355efd9c4"
+        },
+        "subject.webp": {
+          "bytes": 151886,
+          "sha256": "f96edefab21b93511e092cc90bee0fee21d7fb80d5c20997d342f266eb8d24e5"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "卢俊义"
+    },
+    {
+      "id": "metal_crossbow",
+      "source": "cards\\opponents\\sources\\metal_crossbow.png",
+      "sourceSha256": "ffb711f02cc1d8bb8e72a3bede725ad71ecb08963d7fc0d31cde84ac89df5e7f",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 105222,
+          "sha256": "675bf333c27e85fe3244e4a44529226d0e0167745575e1cd3e765f73d681e2cb"
+        },
+        "portrait.webp": {
+          "bytes": 122966,
+          "sha256": "318d0d35536135f63c9ca73eaeca19a024efc9f8f0e8c1bb07b11dbfa6acbaea"
+        },
+        "subject.webp": {
+          "bytes": 116650,
+          "sha256": "81ab92d1da1ecdf51edc6637a27b856eeea179ca98f5e8157b87a9818d3ace51"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "卢俊义"
+    },
+    {
+      "id": "metal_chain",
+      "source": "cards\\opponents\\sources\\metal_chain.png",
+      "sourceSha256": "ecaaf77b495ba6f2e729d7155082a70f45b46612e40cc958f45e20dcf4b78d61",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 102630,
+          "sha256": "fb115117b091c10f7a39fa79b5c877690b9ac3356cc584b03c867ba06e8ffc05"
+        },
+        "portrait.webp": {
+          "bytes": 144306,
+          "sha256": "b1f87afc19ca0213f550c9e6dc66e3ee4ec428a428feb51ef20fdabb01cd9576"
+        },
+        "subject.webp": {
+          "bytes": 139536,
+          "sha256": "a49a76f2c02ca1a9d4d8b7b08f8099b2dc2d273275e2dba0db0221453bdde440"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "卢俊义"
+    },
+    {
+      "id": "metal_banner",
+      "source": "cards\\opponents\\sources\\metal_banner.png",
+      "sourceSha256": "fc71a9dd6bb5cd339992338a0ff3d9ac619e8e3dae6c4f780e585345a0088fa9",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 112212,
+          "sha256": "9c61eca58e988bdb8783eeb3b623b93da2d1dc605aff237238ff000e2c4d3747"
+        },
+        "portrait.webp": {
+          "bytes": 142838,
+          "sha256": "e70081b5613423529a4e24506484cdaabfdea2a977ce74a6223c4135df971527"
+        },
+        "subject.webp": {
+          "bytes": 138030,
+          "sha256": "104bda9ecbbff11b616364dd4ced2452f1531bdcbd0933788150728ef6c02054"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "卢俊义"
+    },
+    {
+      "id": "wood_archer",
+      "source": "cards\\opponents\\sources\\wood_archer.png",
+      "sourceSha256": "c6e45ac61685c644f1ef4f33ad0fd189e0b16fc4557fde8e0f7ad58c9565d70c",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 109474,
+          "sha256": "cfdd685dcea2cff6897acf7a614a9dee58b24bf2b68f6923bf2782012ee8b615"
+        },
+        "portrait.webp": {
+          "bytes": 158120,
+          "sha256": "d1cda20150cc6971f2e493b90fe69e14f98722ffe1383e8b88b6433fa83410a0"
+        },
+        "subject.webp": {
+          "bytes": 149792,
+          "sha256": "a15a2a40aacb9d2dea1a20f27daf58f17704ed877beaf68223582f7da7dccc44"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "柴进"
+    },
+    {
+      "id": "wood_healer",
+      "source": "cards\\opponents\\sources\\wood_healer.png",
+      "sourceSha256": "9a610b097e1514ce52bddbcfe0cfc470ae3f77f5b29bb25d7d7fad64c6f3864d",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 92796,
+          "sha256": "b987a721ed8452412ed7e60837feb5295f7542091ebb662ca34e998db992e99f"
+        },
+        "portrait.webp": {
+          "bytes": 147518,
+          "sha256": "72486f707c63ea3cc45f8588a32bb2a0ff17c29d562f22626824b0f025836c5d"
+        },
+        "subject.webp": {
+          "bytes": 141100,
+          "sha256": "c839cdd38f598a78595eae7529f336f42f390e1574486de505ec355851b07b4c"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "柴进"
+    },
+    {
+      "id": "wood_thorn",
+      "source": "cards\\opponents\\sources\\wood_thorn.png",
+      "sourceSha256": "2f86e66a07d2dac35763bbff5fadd066efeb33e708347ea729aa301e287129b1",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 83200,
+          "sha256": "b309b0216bffc58914749d35870162641671808570ce06cd19804d61aaf47e63"
+        },
+        "portrait.webp": {
+          "bytes": 133184,
+          "sha256": "4c5df8660a2601827c6eb78e2ace0431936a2288b9e1837fadc4a174160d0d38"
+        },
+        "subject.webp": {
+          "bytes": 124868,
+          "sha256": "5c3e3f9fefd480f85217a03460ae334ae0b20c7bc5da168321ce7156a5869a26"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "柴进"
+    },
+    {
+      "id": "wood_dancer",
+      "source": "cards\\opponents\\sources\\wood_dancer.png",
+      "sourceSha256": "2cf5f7e08932bc514b9f42408163b3463ce49490e74a9addc75a9b88f287a7c5",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 81206,
+          "sha256": "8a55995934e0f4e540ed9ca9180323729bec3be4f38fa1f24f7283945b2574aa"
+        },
+        "portrait.webp": {
+          "bytes": 130756,
+          "sha256": "b83deda2b2073513500a1adf7f1fea911b1faa8d490628d71c8a7f0474706465"
+        },
+        "subject.webp": {
+          "bytes": 125324,
+          "sha256": "eb355987a7143d1b9ebeaac285c1130544a7ddceaaee59138b17951d8dc80129"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "柴进"
+    },
+    {
+      "id": "wood_scout",
+      "source": "cards\\opponents\\sources\\wood_scout.png",
+      "sourceSha256": "07c2d78088fe097e5548eee547ec75a13f7915952913bb8abd2396546c24c09b",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 87804,
+          "sha256": "33eca58c3322578bfc2bdb17dd4b876924d5fb6236c74334473c0ab0e8209bc7"
+        },
+        "portrait.webp": {
+          "bytes": 122318,
+          "sha256": "3e89318ca136191598bc8b39358c36337f4fe823dca85e9d1d9220751676da58"
+        },
+        "subject.webp": {
+          "bytes": 119076,
+          "sha256": "7b0af511db16b1f38d9fb8c3a416f13e578cdde74d5973be552431cff704c918"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "柴进"
+    },
+    {
+      "id": "wood_summoner",
+      "source": "cards\\opponents\\sources\\wood_summoner.png",
+      "sourceSha256": "e179e4c5ad6848c70461a0bd71673e4817e11756d77f18894b9c4c32cba2eaa9",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 94786,
+          "sha256": "f1437c312b261031f07ed7a44b0588ef5478dbb4afcf09d1c4a3750ca85c0ce9"
+        },
+        "portrait.webp": {
+          "bytes": 143902,
+          "sha256": "2325188a3be7f33d994d2dd9d7ffc709e0fd808885a292458a3edb3a8a3a8c9b"
+        },
+        "subject.webp": {
+          "bytes": 140594,
+          "sha256": "ee6cd98cc588aa8d9ea7e1c17a0ea388f818946393354a6ac71be731f5c5266a"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "柴进"
+    },
+    {
+      "id": "water_raider",
+      "source": "cards\\opponents\\sources\\water_raider.png",
+      "sourceSha256": "f5db5cc8eb9db150562b56227e0da1c8d5cd9d1658b049ebcf8200c4edcc3a57",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 109008,
+          "sha256": "bf06f2cb6701fb20d0fb665640b6e2f2b6cb1707fffbeca9dccccf3f856358f7"
+        },
+        "portrait.webp": {
+          "bytes": 156480,
+          "sha256": "321430a7a4ef151eeef82b2b036eded43b483aa87a22566262380490933f3bff"
+        },
+        "subject.webp": {
+          "bytes": 147110,
+          "sha256": "82e73387b4f087706c4e9e4e359c8a349ff5cfa1f0f51b4eea897bdbc72499c8"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "张顺"
+    },
+    {
+      "id": "water_mage",
+      "source": "cards\\opponents\\sources\\water_mage.png",
+      "sourceSha256": "8b7698439e3887c63a1aeea22a4e3195f77a013302d8c7f8ceebe49578d3194a",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 106062,
+          "sha256": "f2921c6f24aef32c7c4c7721e03f6f87771a8a547218b6596d8f5e4acedb3aae"
+        },
+        "portrait.webp": {
+          "bytes": 183676,
+          "sha256": "bc8abcd22d57e3a335455a150b6de4ca96caa73a59fadb15741b46ce20aa23ed"
+        },
+        "subject.webp": {
+          "bytes": 175190,
+          "sha256": "16f84a8021685d2a75120aab9e5a91cb79cfe19fbe6ba1135e4a89575b5e1100"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "张顺"
+    },
+    {
+      "id": "water_assassin",
+      "source": "cards\\opponents\\sources\\water_assassin.png",
+      "sourceSha256": "be49cccd7c96585cf6d50fead9799549dd1e9d00db95cc37d68c76e2b93a8d46",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 94408,
+          "sha256": "ecc6a1bc5452043f91796eeefb62b6e6bb0accbdf21afec42e200d46aa864839"
+        },
+        "portrait.webp": {
+          "bytes": 134670,
+          "sha256": "764aa23febae96c2449452c358b8201985b480451d501bb333a83c65aa7523e8"
+        },
+        "subject.webp": {
+          "bytes": 127186,
+          "sha256": "9c70c12cc96934d79e5de077cce09ed705cfbd16f1de7e4839614407a31cddb2"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "张顺"
+    },
+    {
+      "id": "water_oarswoman",
+      "source": "cards\\opponents\\sources\\water_oarswoman.png",
+      "sourceSha256": "922489ece484029e188de5814d2d2d12004b7600942bb5e1d6bf1a34537bce46",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 97518,
+          "sha256": "a4fcc93ff8b332b87cb0beb2c41effaabc57bdc77e6e41519f5b83aea9ddc83a"
+        },
+        "portrait.webp": {
+          "bytes": 140498,
+          "sha256": "fe1df895cae14b7cb98a7d538231d0217b877e5d4a9371d173161a956d96d79a"
+        },
+        "subject.webp": {
+          "bytes": 135138,
+          "sha256": "e8cbbba49589e4ca9002d20c04f10123263f8cf01fe296e49b7db0a07d1db29c"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "张顺"
+    },
+    {
+      "id": "water_lancer",
+      "source": "cards\\opponents\\sources\\water_lancer.png",
+      "sourceSha256": "bcbc7d74ea01483c21d3e88cd47c708f41e5fc188cbc696b4ab69dd0507690a7",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 100406,
+          "sha256": "b75c7650660af95288e6175b9becae914b62e67746e0f514038a5df9b1c8a923"
+        },
+        "portrait.webp": {
+          "bytes": 158918,
+          "sha256": "f075efa19fc05ead2f91fa9da3e521bd49f59f6f8fd3f29eb7b7ed37cacb6beb"
+        },
+        "subject.webp": {
+          "bytes": 154122,
+          "sha256": "86954319b7e926888b1e84481dff301fd337db3ab8b22721a12b1a518ba5220f"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "张顺"
+    },
+    {
+      "id": "water_siren",
+      "source": "cards\\opponents\\sources\\water_siren.png",
+      "sourceSha256": "19680d455507187f3bb375fcebe56381240d93fcdb46e4768535d616f159d342",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 99032,
+          "sha256": "ef45eedd771b838474e87e4948e9db7b7d8dae6af65b827da19b14f59cf5a95d"
+        },
+        "portrait.webp": {
+          "bytes": 162410,
+          "sha256": "5235748c9e664cf29744b4610a12bb38ff10f4bf826d44d2cfb31f7f358c5689"
+        },
+        "subject.webp": {
+          "bytes": 159056,
+          "sha256": "9520d68fe6a75b9a280a75de1054b491c21660a18c360e96a0cd71e6665924b8"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "张顺"
+    },
+    {
+      "id": "fire_blade",
+      "source": "cards\\opponents\\sources\\fire_blade.png",
+      "sourceSha256": "ee84ebe13be493d8355d9cf75631ba6579a7cc7aa972d3153cdc815e29600a52",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 113956,
+          "sha256": "ddfc2d0e1ef0311ff3921ca87215e02028cdc2d0e472f9df59bd3a6c272e7771"
+        },
+        "portrait.webp": {
+          "bytes": 177200,
+          "sha256": "effdbe156eed97c928a44b0a0b385306d59de3b4f9d9afd5ac508244d54e68ce"
+        },
+        "subject.webp": {
+          "bytes": 162358,
+          "sha256": "741eef467ba5f0fd8f3f6263de8277e5e30619a10b4ec643e47e3fa6bd91644a"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "秦明"
+    },
+    {
+      "id": "fire_hammer",
+      "source": "cards\\opponents\\sources\\fire_hammer.png",
+      "sourceSha256": "502e4d9dbc025d9895744e5714614ad97821fbbde0bd5c976282bf3757dbc7ac",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 93036,
+          "sha256": "fddf14be0a9ff94500cbd6707336da6f0da446b58034a6a9a63b44fa762db313"
+        },
+        "portrait.webp": {
+          "bytes": 136598,
+          "sha256": "2e4853f02c925f81b614d583ae46f9845d3aafd356e1a54d6bfdd58914418466"
+        },
+        "subject.webp": {
+          "bytes": 131984,
+          "sha256": "184a1b135938b1e44ddcb419068f1957e483fa8a0132afeeddf023a157bba5a0"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "秦明"
+    },
+    {
+      "id": "fire_dancer",
+      "source": "cards\\opponents\\sources\\fire_dancer.png",
+      "sourceSha256": "4fb743fbe812fc1312d36c7597b34c94e8bf470262440266f5f1d986b2f3d725",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 104318,
+          "sha256": "39c6c94d37a8b606ada8be61964fd189e92677422c9b75cf96781f9ecefca5eb"
+        },
+        "portrait.webp": {
+          "bytes": 173842,
+          "sha256": "2d03c944742fb2363d965ee4de85286009e355eecfe366db7e355b3f02f1d46b"
+        },
+        "subject.webp": {
+          "bytes": 167928,
+          "sha256": "4236590252820a4b740bfd0daf98b6323304733891870cfbdf85bbb90eb44a7b"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "秦明"
+    },
+    {
+      "id": "fire_archer",
+      "source": "cards\\opponents\\sources\\fire_archer.png",
+      "sourceSha256": "a64d1dc169abdf51999e464eac01e5cb46f534feee8dccd6bd357bd66845ce04",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 76412,
+          "sha256": "e6fcf3498c49ae867b8b8cc1d7dd71252bf688bc0411bda0cc452e906deb8ab5"
+        },
+        "portrait.webp": {
+          "bytes": 116794,
+          "sha256": "79c560c54b6878f7837837a543086ee481d3dc9c240d5f126d0c2c9fcb074de8"
+        },
+        "subject.webp": {
+          "bytes": 111446,
+          "sha256": "f025d6807ce4b62488f42ea7ccb0cbe3c9c848c5ebedaddc57ae17c3cdca95b0"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "秦明"
+    },
+    {
+      "id": "fire_lancer",
+      "source": "cards\\opponents\\sources\\fire_lancer.png",
+      "sourceSha256": "2e80a6898d07ae5e9ed2593a1211bacff9128feeeda9d9e9f311b3e37b1c9820",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 84662,
+          "sha256": "a0f121feeb2cd472b0e28d80b0c43eb27db8d18eb9ad971f9a88ce0748ca666a"
+        },
+        "portrait.webp": {
+          "bytes": 149494,
+          "sha256": "9b93ef7d6ec4d0d340af93d98fa56fc731fca12038b30d5589276eda1ed21752"
+        },
+        "subject.webp": {
+          "bytes": 144612,
+          "sha256": "a242d054db13bfe75af2338847a9b43077174283db249f29bbf28ee0805bb1dc"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "秦明"
+    },
+    {
+      "id": "fire_cultist",
+      "source": "cards\\opponents\\sources\\fire_cultist.png",
+      "sourceSha256": "558786877dd2a8ee28d1ac0c4e07fff374a4225edc59028b621ca4c1122e7c29",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 95380,
+          "sha256": "f14b3d264700d016484d1b20553948d7eee05ad1079bae590ebc02ad2bc4ab5c"
+        },
+        "portrait.webp": {
+          "bytes": 157164,
+          "sha256": "b6960d5abc74e445a91154458512a78698135463e4f3f24b6cccc7dc8e297a51"
+        },
+        "subject.webp": {
+          "bytes": 151048,
+          "sha256": "9acffb66ad0ca40510e14262c5f7e7fec78a200b106d84616d2c26666fd51a64"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "秦明"
+    },
+    {
+      "id": "earth_guard",
+      "source": "cards\\opponents\\sources\\earth_guard.png",
+      "sourceSha256": "86677ce2c01e3b065abf9b297b533e0c24df2b10e9e57c985ef233f20ed91c5c",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 129386,
+          "sha256": "506dade6ec1bce9dc8d9289536caa2c6d400a1e00d3add5bec3eaee1747b7475"
+        },
+        "portrait.webp": {
+          "bytes": 157706,
+          "sha256": "1ca8d4d96c62b10010dfd0c542e29624d5c1d08db68d6968ac3e4a8fd03b9564"
+        },
+        "subject.webp": {
+          "bytes": 144038,
+          "sha256": "5acc5ce1137aca1c3588c47e5bdb770655fd5bb922404d58858ed1ff64a87a47"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "鲁智深"
+    },
+    {
+      "id": "earth_monk",
+      "source": "cards\\opponents\\sources\\earth_monk.png",
+      "sourceSha256": "93bc2a50b2f430288157c5bf7a240a6bcb4c8275d827d617cebcf529cc4d2620",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 93812,
+          "sha256": "210ab24d9a1a49a99a37ede99376c27250d971b69a2501793f04038730b62776"
+        },
+        "portrait.webp": {
+          "bytes": 108298,
+          "sha256": "bc97da9f98c07b41445b16736f17a34a19fa1193ffecbf3d1728edae74fde2e1"
+        },
+        "subject.webp": {
+          "bytes": 104314,
+          "sha256": "f6a7af3c3e043910ac1a0f7b5c9bbb426da3e0d58036fedfc0031e08bb460eb3"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "鲁智深"
+    },
+    {
+      "id": "earth_sand",
+      "source": "cards\\opponents\\sources\\earth_sand.png",
+      "sourceSha256": "34eebabb332318606981835bb63b042a37d5a23cadc9fd977b0e221d56ca53d6",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 102204,
+          "sha256": "3d4d8daf891ff228b5532c7b154e7df391e89cff3400991ffc81bb4dd38aa0ca"
+        },
+        "portrait.webp": {
+          "bytes": 129706,
+          "sha256": "2bd38ce9d08101ba8b531b49db03710014f56d5b4a40f395bf23449a7af3aa56"
+        },
+        "subject.webp": {
+          "bytes": 121050,
+          "sha256": "419e421e7e93cd835d89d50dd84ca03505496add982c6f68ef0adb2871c7c1fe"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "鲁智深"
+    },
+    {
+      "id": "earth_shield",
+      "source": "cards\\opponents\\sources\\earth_shield.png",
+      "sourceSha256": "d9b671f2da808c98e8509a4da9ac73b02cd49ffdfe3024de99720c65dd26ce00",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 107202,
+          "sha256": "4c1c3e1bc051b02eaf82d42f8396594c3ead308e74b35843051a15adee3bac54"
+        },
+        "portrait.webp": {
+          "bytes": 127130,
+          "sha256": "18019738eb2ac6acd61c80ac52f520b2696afac81e136e555b2dcd4dbca35da1"
+        },
+        "subject.webp": {
+          "bytes": 120274,
+          "sha256": "7b71000970115ceb07864f3484cbe11b600559aa8fa29d12dc8dfeb2235b065f"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "鲁智深"
+    },
+    {
+      "id": "earth_mason",
+      "source": "cards\\opponents\\sources\\earth_mason.png",
+      "sourceSha256": "54172f2ec7aa0e04d818d4a64c19c665ef60b6b066416c70f37ee018f56ff3ba",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 103728,
+          "sha256": "42c9649897055a52a048cd5cf1d5335d8c06dc702a26807b8cba66ee31f27094"
+        },
+        "portrait.webp": {
+          "bytes": 130620,
+          "sha256": "819cd08da7694cc9d0b6382475afaee64556b5d402bb52a573bb27edbdf956f9"
+        },
+        "subject.webp": {
+          "bytes": 124530,
+          "sha256": "af12e361bfaadbba36f567ec2b12e68ab87f1d88ed7d0f34efef044dbb7f95d2"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "鲁智深"
+    },
+    {
+      "id": "earth_cavalry",
+      "source": "cards\\opponents\\sources\\earth_cavalry.png",
+      "sourceSha256": "f5331dc1690b433bbcf927066dbc40b456bc6c3d2dcba253da4cff12940a72df",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 99744,
+          "sha256": "77d84ed1120cf322c225c631652f57aa9358738d4230507733960d855299e7a8"
+        },
+        "portrait.webp": {
+          "bytes": 123930,
+          "sha256": "7d279769b29e156a90e43ba1f8785b94450f2fec18d8d77771e769f6eb614572"
+        },
+        "subject.webp": {
+          "bytes": 119376,
+          "sha256": "ad09545fb2566ffe0bae0d0f4112c3c64bdaae91e7adb203528e5104109fc2f1"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "鲁智深"
+    },
+    {
+      "id": "boss_jingyang",
+      "source": "cards\\opponents\\sources\\boss_jingyang.png",
+      "sourceSha256": "b7a598786bae9bd98642e55e575f432885101337841bc6d5697a57c4d842b332",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 119822,
+          "sha256": "152e00e95862a7aa6a4854e26b7c1c53d67c5c9f8af35a3593f0a7cd7b7daaf9"
+        },
+        "portrait.webp": {
+          "bytes": 144042,
+          "sha256": "acae3db1a6a3d6750648af4ea62bc5ed6abb844b966638951463a40d21695c45"
+        },
+        "subject.webp": {
+          "bytes": 140502,
+          "sha256": "66fd227a9b9512f9bed1444c4b4318e9fdbc2cbdd3a7b3d9873aed7c71c7cfab"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_zhengtu",
+      "source": "cards\\opponents\\sources\\boss_zhengtu.png",
+      "sourceSha256": "ff17779383755d4459da01c3877c478e90fc374d7b4dcaf102db9687ae15eceb",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 116964,
+          "sha256": "5214b00e2304085700ef401e2a608c34aec0fdbef9c8ed33e90c2096be2e0758"
+        },
+        "portrait.webp": {
+          "bytes": 136770,
+          "sha256": "0cc110b77679c99ccf29db3f59d93145a7d6150fa0f77cfbfd999a685b652db4"
+        },
+        "subject.webp": {
+          "bytes": 132826,
+          "sha256": "9b98d43113facc68cb728a4515c1a44e9c36026381e53aac9ab9fcedb0623b59"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_linjiao",
+      "source": "cards\\opponents\\sources\\boss_linjiao.png",
+      "sourceSha256": "eb70be01c33af375e0e056980012cc70641f6cdf779fe4baf6242f211a3961d9",
+      "reusedHero": "linchong",
+      "alpha": [
+        0,
+        253
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 109896,
+          "sha256": "e8b7e29973d721beb7600013e95e2e5743e79e0525b90112221672eeb0c3bc9d"
+        },
+        "portrait.webp": {
+          "bytes": 157704,
+          "sha256": "44acda54d7564c4e39f45bc58e2fd104234661c0403de90b39e836b2fa5c31c8"
+        },
+        "subject.webp": {
+          "bytes": 147302,
+          "sha256": "cc0e2ac2b0ce4a069b8849803bce3304cebb2597e1a2f829d2d76c12ed23f119"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_shengchengang",
+      "source": "cards\\opponents\\sources\\boss_shengchengang.png",
+      "sourceSha256": "5720bd45ec52027b4add3166b26cd4dd031b4d5b73145499e57419f3ee4c7bea",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 108000,
+          "sha256": "a2f4abb45d4b1b6b0cde0df557410eaeac43f037cc52e8f9276e00eeb464bd25"
+        },
+        "portrait.webp": {
+          "bytes": 127798,
+          "sha256": "a60c1b7159ebca0ebada3113c380db5ddd0b0947b44994857a1bb9c96f745de4"
+        },
+        "subject.webp": {
+          "bytes": 121006,
+          "sha256": "a028be3f49d5677961dddd67a6d72d02e1ac5bf4346bd3efb8a09239952dfaad"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_chongyi",
+      "source": "cards\\opponents\\sources\\boss_chongyi.png",
+      "sourceSha256": "afeb31e16cad27c4f601668a0797554bdbde340a35931b8497ae4005aee9da9e",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 94708,
+          "sha256": "c0c179fe0a2aad83337ed4464ce148581877771cc558104f19435e66cb04b256"
+        },
+        "portrait.webp": {
+          "bytes": 112120,
+          "sha256": "baf3a5bd8a496b4fb99af88d14d0bf116ef9fb1e624f710b52d2a4e7530d6679"
+        },
+        "subject.webp": {
+          "bytes": 109668,
+          "sha256": "c354927714f90272a990c8520e5bae91ec26d1639c9515c6254384ff269649c0"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_zhujiazhuang",
+      "source": "cards\\opponents\\sources\\boss_zhujiazhuang.png",
+      "sourceSha256": "715897e0ae0cfd12d703a98c923aabedc34b1ec171e9f20de52d5019324bb9a6",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 119064,
+          "sha256": "604de488ad5f74e3208c4c55959aa2eada469210a8c5f96534e2ce9852ea0ef1"
+        },
+        "portrait.webp": {
+          "bytes": 156956,
+          "sha256": "fc41decd65c4944a834c4376fc61326d781e35811ddee02d2210aadbc3b9cb61"
+        },
+        "subject.webp": {
+          "bytes": 147042,
+          "sha256": "0d31fc44058bf526cfc423f3f86bc4c3764d7460cb5a1f76b590371c16acd2e5"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_lujunyi",
+      "source": "cards\\opponents\\sources\\boss_lujunyi.png",
+      "sourceSha256": "87e2ad500271b7c803a2b5196980dac18e4623cee2351ecba287dce663dd5e56",
+      "reusedHero": "lujunyi",
+      "alpha": [
+        0,
+        255
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 127596,
+          "sha256": "7ac32d401e5e2ecc0886f77cfa61e0ff5ff2e0ba1ee6de9ef7cb48baf795a8cf"
+        },
+        "portrait.webp": {
+          "bytes": 152732,
+          "sha256": "0c93b510944df27d565a539d498d51dd6def753998c608308d6e090345975dda"
+        },
+        "subject.webp": {
+          "bytes": 162742,
+          "sha256": "16c7c4834d4f4c542b85e3409fc86a74eb06076b22e84532373e94e637fb5795"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_huangwenbing",
+      "source": "cards\\opponents\\sources\\boss_huangwenbing.png",
+      "sourceSha256": "7d179990b1e13bb4f306209ed346c7dc4bd2b413ea2d726a594b7453d6f17393",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 92836,
+          "sha256": "74f9deff942acd010bfd94f9b0f7dbbb4089fce143eb01df58d47b9d0ae6ee01"
+        },
+        "portrait.webp": {
+          "bytes": 100222,
+          "sha256": "17dbc2baa65ffd540b635835041f5e9d6371723c4a20f1ddf06a5eb895e8c935"
+        },
+        "subject.webp": {
+          "bytes": 94090,
+          "sha256": "23d7c758858571577d3c0ff9540f0231a738f5d1f590290b3496557f089a11c4"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_likui",
+      "source": "cards\\opponents\\sources\\boss_likui.png",
+      "sourceSha256": "e1fae2324bd722263adaba75d119fb43397888a37b9e2d10424d71218ede7d98",
+      "reusedHero": "likui",
+      "alpha": [
+        0,
+        255
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 106854,
+          "sha256": "0088b101a49173a5057c1dd1addff21b3e33d31146d253d7f4d0fbcdf572a94c"
+        },
+        "portrait.webp": {
+          "bytes": 120702,
+          "sha256": "c33526704b3235d6eb66c5c937fefdeff0661bb0be5c6f60ae314298ab689464"
+        },
+        "subject.webp": {
+          "bytes": 137280,
+          "sha256": "a968323da998b115b9ad87b4b8360380c76a7834d3b82d7c3d6a0dd77b477d14"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_chongge",
+      "source": "cards\\opponents\\sources\\boss_chongge.png",
+      "sourceSha256": "28c7f2750eb32323828c64aa1d281f6efa4de7f7aa8e08a76bac99e485eaf998",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 113510,
+          "sha256": "2ba82237d0a9316fb62e06b9baa751a605d3075c22e21db2ab378f2bba350665"
+        },
+        "portrait.webp": {
+          "bytes": 145224,
+          "sha256": "23e84a6a950687807d05a2204ad24caf19c5de41846cde5136a4a1e268a4e7e2"
+        },
+        "subject.webp": {
+          "bytes": 140468,
+          "sha256": "149eb9e4eb33ff40a761257bf4a55f157af3e1f49ff4f8f7f9469169275215bc"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_caijing",
+      "source": "cards\\opponents\\sources\\boss_caijing.png",
+      "sourceSha256": "6c804b7786f2f8cf3ee7405264660d522a5283f1189cd312c8687d25de4b4783",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 108320,
+          "sha256": "a14d375baddc36e83d21ee2707ac5cf4f4769a5d12c0603a4946f0f288ce1cf0"
+        },
+        "portrait.webp": {
+          "bytes": 137430,
+          "sha256": "2c110d0f770e425197403811aa4ff41be69670f96f0e4a4ff0a8a94fed6f4b50"
+        },
+        "subject.webp": {
+          "bytes": 131230,
+          "sha256": "26ff1139c2c7bb992df8554354eff1e6b56f31025e5805961880da2924972431"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    },
+    {
+      "id": "boss_fangla",
+      "source": "cards\\opponents\\sources\\boss_fangla.png",
+      "sourceSha256": "c289064ec3c941a50f49074cec2b74ef145d304d896a28aa97a40b9bea7b594e",
+      "reusedHero": null,
+      "alpha": [
+        0,
+        254
+      ],
+      "runtimeSize": [
+        512,
+        768
+      ],
+      "files": {
+        "card.webp": {
+          "bytes": 123984,
+          "sha256": "a1a77768020254a43ca7cda0d7838ec6dab81ad402d8301a7468d159846dc443"
+        },
+        "portrait.webp": {
+          "bytes": 196316,
+          "sha256": "41c459b4ed2ba599a103e579667620c81545c188a59c6fd9ec50b074e8e68780"
+        },
+        "subject.webp": {
+          "bytes": 185912,
+          "sha256": "4b5bb90e07f4290d0104586e170b4cdda4a860db68f0a46d721c952dacae52d9"
+        }
+      },
+      "frameOpacity": 0.32,
+      "frameDonor": "宋江"
+    }
+  ]
+}

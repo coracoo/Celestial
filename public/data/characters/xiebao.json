@@ -1,0 +1,53 @@
+{
+  "id": "xiebao",
+  "number": 35,
+  "name": "解宝",
+  "title": "一双尾",
+  "rarity": "R",
+  "wuxing": "earth",
+  "role": "爆发",
+  "color": "#6b5a3a",
+  "accent": "#c0a880",
+  "tagline": "一尾铜锤，砸了就散",
+  "lore": "解珍的弟弟。一身好力气，可惜用不到刀刃上——他更擅长把东西砸散，而不是切开。",
+  "base": {
+    "hp": 110,
+    "atk": 14,
+    "def": 7,
+    "speed": 11
+  },
+  "skill": {
+    "id": "xiebao_hammer",
+    "name": "一尾锤",
+    "rule": "给一记即时重击，并把落槽收益抬高",
+    "desc": "释放瞬间对全场敌人结算一次 96 点震荡伤害（土属性），6 秒内落槽 ×1.5、弹性 ×1.35。砸完这一下，接下来几发都算她的。",
+    "trigger": {
+      "on": "heavyImpact",
+      "minIntensity": 0.35,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "slot",
+        "value": 1.5,
+        "duration": 6
+      },
+      {
+        "key": "bounce",
+        "value": 1.35,
+        "duration": 6
+      }
+    ],
+    "fx": "shockRing"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "hammer"
+  },
+  "bonds": [
+    "xiezhen",
+    "yangzhi"
+  ]
+}

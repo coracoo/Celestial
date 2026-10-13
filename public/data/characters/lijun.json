@@ -1,0 +1,63 @@
+{
+  "id": "lijun",
+  "number": 26,
+  "name": "李俊",
+  "title": "混江龙",
+  "rarity": "SR",
+  "wuxing": "water",
+  "role": "滚雪球",
+  "color": "#2f5f8f",
+  "accent": "#7ab8e8",
+  "tagline": "江里长大的，水上不倒",
+  "lore": "梁山水军头领，揭阳岭的江豚都认得她。她在水上待得太久，养出一个习惯：球掉下来她不躲，她跟着一起掉。",
+  "base": {
+    "hp": 118,
+    "atk": 14,
+    "def": 8,
+    "speed": 12
+  },
+  "skill": {
+    "id": "lijun_riverflow",
+    "name": "混江龙",
+    "rule": "让球一直保持移动——下限 + 阻尼 + 速度三件一起上",
+    "desc": "8 秒内给球 3.4 bu/s 速度下限、阻尼 ×0.6、球速 ×1.3，落槽 ×1.28。球不再有「停」这个状态，只有「慢下来」。",
+    "trigger": {
+      "on": "slotEnter",
+      "minIntensity": 0,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "speedFloor",
+        "value": 3.4,
+        "duration": 8
+      },
+      {
+        "key": "damping",
+        "value": 0.6,
+        "duration": 8
+      },
+      {
+        "key": "speed",
+        "value": 1.3,
+        "duration": 8
+      },
+      {
+        "key": "slot",
+        "value": 1.28,
+        "duration": 8
+      }
+    ],
+    "fx": "bounceMilestone"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "wave"
+  },
+  "bonds": [
+    "zhangshun",
+    "gongsunsheng"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "id": "yanqing",
+  "number": 36,
+  "name": "燕青",
+  "title": "浪子",
+  "rarity": "SSR",
+  "wuxing": "metal",
+  "role": "全能",
+  "color": "#3f6b8f",
+  "accent": "#b8d8f0",
+  "tagline": "相扑摔跤，弩箭也准",
+  "lore": "天罡最后一个。论单挑不是最强的，论什么都会一点的全场只此一个。他那张脸生得让人生不出恶念——这在刀口上比刀还管用。",
+  "base": {
+    "hp": 126,
+    "atk": 16,
+    "def": 10,
+    "speed": 16
+  },
+  "skill": {
+    "id": "yanqing_nomad",
+    "name": "浪子无定",
+    "rule": "整局把全队相性拧成相克，并把球的路彻底换掉",
+    "desc": "全程相克倍率 ×1.6、相生倍率 ×0.8（她只挑打得过的打），球速 ×1.35、弹性 ×1.3，追加 1 颗弹珠。Boss 承伤 ×1.25。",
+    "trigger": {
+      "on": "zoneSkill",
+      "minIntensity": 0,
+      "charges": 1,
+      "perHit": 1,
+      "auto": true
+    },
+    "mods": [
+      {
+        "key": "attrWin",
+        "value": 1.6,
+        "duration": 0
+      },
+      {
+        "key": "attrGen",
+        "value": 0.8,
+        "duration": 0
+      },
+      {
+        "key": "speed",
+        "value": 1.35,
+        "duration": 0
+      },
+      {
+        "key": "bounce",
+        "value": 1.3,
+        "duration": 0
+      }
+    ],
+    "bonusBalls": 1,
+    "bossVuln": {
+      "factor": 1.25,
+      "duration": 6
+    },
+    "fx": "skillCast"
+  },
+  "card": {
+    "rarity": "SSR",
+    "holo": "auto",
+    "motif": "bow"
+  },
+  "bonds": [
+    "lujunyi",
+    "linchong",
+    "songjiang"
+  ]
+}

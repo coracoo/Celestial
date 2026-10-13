@@ -1,0 +1,58 @@
+{
+  "id": "chaijin",
+  "number": 10,
+  "name": "柴进",
+  "title": "小旋风",
+  "rarity": "R",
+  "wuxing": "wood",
+  "role": "辅助",
+  "color": "#c9922a",
+  "accent": "#ffdc8a",
+  "tagline": "庄上好客，来者不拒",
+  "lore": "后周皇族，家有万贯。她自己不怎么打架，她做的是让你有得打——粮草、盘缠、还有替你说好话的那个位置。",
+  "base": {
+    "hp": 104,
+    "atk": 11,
+    "def": 7,
+    "speed": 11
+  },
+  "skill": {
+    "id": "chaijin_hospitality",
+    "name": "庄上好客",
+    "rule": "补满共享能量并抬高相生收益——她给的是资源不是伤害",
+    "desc": "一场打得久了缺的不是爆发，是连携的启动能量。释放后立刻回 48 点共享能量并把能量上限拉满 5 秒，期间相生倍率 ×1.55、落槽 ×1.18。她救的是队伍。",
+    "trigger": {
+      "on": "slotEnter",
+      "minIntensity": 0,
+      "charges": 6,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "energy",
+        "value": 48,
+        "duration": 0
+      },
+      {
+        "key": "attrGen",
+        "value": 1.55,
+        "duration": 5
+      },
+      {
+        "key": "slot",
+        "value": 1.18,
+        "duration": 5
+      }
+    ],
+    "fx": "zone_energy"
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "coin"
+  },
+  "bonds": [
+    "wuyong",
+    "daizong"
+  ]
+}

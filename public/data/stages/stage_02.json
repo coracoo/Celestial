@@ -1,0 +1,683 @@
+{
+  "id": "stage_02",
+  "name": "渭州 · 镇关西",
+  "subtitle": "三拳打不死，反倒惹了官司",
+  "story": "鲁提辖为金翠莲三拳打死镇关西。盘子窄得像酒馆的一条巷子，两把雪炮从两侧把球往中间赶。",
+  "layoutNote": "窄盘 14。雪炮双翼架在中场，张开的臂把球一路往盘心推，落进中央破绽口。",
+  "board": {
+    "width": 14,
+    "height": 32,
+    "gravity": -74,
+    "walls": [],
+    "deflectors": [
+      {
+        "id": "trk_mid_l",
+        "x": -3.744,
+        "y": 6.809,
+        "w": 2.867,
+        "h": 0.2,
+        "rotDeg": -20,
+        "role": "deflector"
+      },
+      {
+        "id": "trk_mid_r",
+        "x": 3.744,
+        "y": 6.809,
+        "w": 2.867,
+        "h": 0.2,
+        "rotDeg": 20,
+        "role": "deflector"
+      },
+      {
+        "id": "d_mid_l",
+        "x": -2.972,
+        "y": 22.736464758633275,
+        "w": 1.3,
+        "h": 0.16,
+        "rotDeg": -15,
+        "role": "deflector"
+      },
+      {
+        "id": "d_mid_r",
+        "x": 2.972,
+        "y": 22.736464758633275,
+        "w": 1.3,
+        "h": 0.16,
+        "rotDeg": 15,
+        "role": "deflector"
+      },
+      {
+        "id": "d_low_l",
+        "x": -2.982,
+        "y": 14.257260187900247,
+        "w": 1.4,
+        "h": 0.16,
+        "rotDeg": -28,
+        "role": "deflector"
+      },
+      {
+        "id": "d_low_r",
+        "x": 2.982,
+        "y": 14.257260187900247,
+        "w": 1.4,
+        "h": 0.16,
+        "rotDeg": 28,
+        "role": "deflector"
+      },
+      {
+        "id": "flip_left",
+        "x": -2.063,
+        "y": 5.449527912099094,
+        "w": 1.2,
+        "h": 0.16,
+        "rotDeg": -22,
+        "role": "deflector",
+        "flip": "left"
+      },
+      {
+        "id": "guide_left",
+        "x": -3.25,
+        "y": 4.324527912099095,
+        "w": 0.07499999999999996,
+        "h": 0.16,
+        "rotDeg": 0,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_left",
+        "x": -5.088,
+        "y": 3.141453633809915,
+        "w": 1.8754849570340304,
+        "h": 0.16,
+        "rotDeg": -20,
+        "role": "deflector"
+      },
+      {
+        "id": "flip_right",
+        "x": 2.063,
+        "y": 5.449527912099094,
+        "w": 1.2,
+        "h": 0.16,
+        "rotDeg": 22,
+        "role": "deflector",
+        "flip": "right"
+      },
+      {
+        "id": "guide_right",
+        "x": 3.25,
+        "y": 4.324527912099095,
+        "w": 0.07499999999999996,
+        "h": 0.16,
+        "rotDeg": 0,
+        "role": "deflector"
+      },
+      {
+        "id": "funnel_right",
+        "x": 5.088,
+        "y": 3.141453633809915,
+        "w": 1.8754849570340304,
+        "h": 0.16,
+        "rotDeg": 20,
+        "role": "deflector"
+      }
+    ],
+    "pegRows": [
+      {
+        "y": 26.5,
+        "step": 2.7,
+        "fromX": -5.4,
+        "toX": 5.4,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 1.8
+          }
+        ]
+      },
+      {
+        "y": 22.6,
+        "step": 2.4,
+        "fromX": -5.8,
+        "toX": 5.8,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": true,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 2
+          }
+        ]
+      },
+      {
+        "y": 14.2,
+        "step": 2.2,
+        "fromX": -5.8,
+        "toX": 5.8,
+        "r": 0.26,
+        "kind": "armored",
+        "stagger": true,
+        "gaps": [
+          {
+            "x": -3,
+            "r": 1.2
+          },
+          {
+            "x": 3,
+            "r": 1.2
+          }
+        ]
+      },
+      {
+        "y": 9,
+        "step": 2.7,
+        "fromX": -5.6,
+        "toX": 5.6,
+        "r": 0.27,
+        "kind": "destructible",
+        "stagger": false,
+        "gaps": [
+          {
+            "x": 0,
+            "r": 1.5
+          }
+        ]
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000007,
+        "fromX": 4.35,
+        "toX": 5.4,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000003,
+        "fromX": 3.2999999999999994,
+        "toX": 4.35,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000003,
+        "fromX": 2.249999999999999,
+        "toX": 3.2999999999999994,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000003,
+        "fromX": 1.1999999999999988,
+        "toX": 2.249999999999999,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000003,
+        "fromX": 0.14999999999999858,
+        "toX": 1.1999999999999988,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000003,
+        "fromX": -0.9000000000000017,
+        "toX": 0.14999999999999858,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000003,
+        "fromX": -1.950000000000002,
+        "toX": -0.9000000000000017,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000003,
+        "fromX": -3.000000000000002,
+        "toX": -1.950000000000002,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000003,
+        "fromX": -4.0500000000000025,
+        "toX": -3.000000000000002,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000007,
+        "fromX": -5.100000000000003,
+        "toX": -4.0500000000000025,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000007,
+        "fromX": -6.150000000000004,
+        "toX": -5.100000000000003,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      },
+      {
+        "y": 26.5,
+        "step": 1.0500000000000007,
+        "fromX": 5.4,
+        "toX": 6.450000000000001,
+        "r": 0.27,
+        "kind": "normal",
+        "stagger": false,
+        "gaps": []
+      }
+    ],
+    "pegFormations": [
+      {
+        "id": "cannon_l",
+        "shape": "chevron",
+        "cx": -4.2,
+        "cy": 17.6,
+        "r": 0.27,
+        "kind": "spear",
+        "count": 4,
+        "angleDeg": 58,
+        "label": "cannon_l"
+      },
+      {
+        "id": "cannon_r",
+        "shape": "chevron",
+        "cx": 4.2,
+        "cy": 17.6,
+        "r": 0.27,
+        "kind": "spear",
+        "count": 4,
+        "angleDeg": 58,
+        "label": "cannon_r"
+      },
+      {
+        "id": "rail_m",
+        "shape": "wall",
+        "cx": 0,
+        "cy": 12.2,
+        "r": 0.26,
+        "kind": "armored",
+        "count": 6,
+        "label": "rail_m"
+      },
+      {
+        "id": "gold_l",
+        "shape": "cross",
+        "cx": -4.8,
+        "cy": 13.4,
+        "r": 0.27,
+        "kind": "golden",
+        "arms": 4,
+        "label": "gold_l"
+      },
+      {
+        "id": "gold_r",
+        "shape": "cross",
+        "cx": 4.8,
+        "cy": 13.4,
+        "r": 0.27,
+        "kind": "golden",
+        "arms": 4,
+        "label": "gold_r"
+      },
+      {
+        "id": "en_water_0",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -3.416,
+        "cy": 23.8,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 166,
+        "wuxing": "water",
+        "score": 282,
+        "label": "water"
+      },
+      {
+        "id": "en_fire_1",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 0.084,
+        "cy": 23.8,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 188,
+        "wuxing": "fire",
+        "score": 319,
+        "label": "fire"
+      },
+      {
+        "id": "en_wood_2",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 4.284,
+        "cy": 21,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 133,
+        "wuxing": "wood",
+        "score": 225,
+        "label": "wood"
+      },
+      {
+        "id": "en_metal_3",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 0.084,
+        "cy": 19.8,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 210,
+        "wuxing": "metal",
+        "score": 357,
+        "label": "metal"
+      },
+      {
+        "id": "en_earth_4",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 0.084,
+        "cy": 17.8,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 177,
+        "wuxing": "earth",
+        "score": 301,
+        "label": "earth"
+      },
+      {
+        "id": "en_water_5",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 4.634,
+        "cy": 16.6,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 166,
+        "wuxing": "water",
+        "score": 282,
+        "label": "water"
+      },
+      {
+        "id": "en_fire_6",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -3.066,
+        "cy": 16.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 188,
+        "wuxing": "fire",
+        "score": 319,
+        "label": "fire"
+      },
+      {
+        "id": "en_wood_7",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": -0.966,
+        "cy": 16.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 133,
+        "wuxing": "wood",
+        "score": 225,
+        "label": "wood"
+      },
+      {
+        "id": "en_metal_8",
+        "shape": "lattice",
+        "count": 1,
+        "rows": 1,
+        "cx": 2.534,
+        "cy": 16.2,
+        "r": 0.55,
+        "kind": "enemy",
+        "hp": 210,
+        "wuxing": "metal",
+        "score": 357,
+        "label": "metal"
+      }
+    ],
+    "zones": [
+      {
+        "id": "z_energy",
+        "x": -4.375,
+        "y": 14.2,
+        "w": 3,
+        "h": 1.5,
+        "kind": "energy",
+        "label": "路过 · 充能 +26"
+      },
+      {
+        "id": "z_boss",
+        "x": 4.375,
+        "y": 14.2,
+        "w": 3,
+        "h": 1.5,
+        "kind": "boss",
+        "label": "路过 · 破绽标记 ×1.5"
+      },
+      {
+        "id": "z_combo",
+        "x": 0,
+        "y": 14.2,
+        "w": 3.4,
+        "h": 1.5,
+        "kind": "combo",
+        "label": "路过 · 连击 +4"
+      },
+      {
+        "id": "z_skill",
+        "x": -2.1,
+        "y": 16,
+        "w": 3.4,
+        "h": 1.6,
+        "kind": "skill",
+        "label": "路过 · 技能充能 +1"
+      },
+      {
+        "id": "z_multiplier",
+        "x": 4.288,
+        "y": 17.6,
+        "w": 3,
+        "h": 1.6,
+        "kind": "multiplier",
+        "label": "路过 · 落槽 ×1.6"
+      }
+    ],
+    "slots": [
+      {
+        "id": "slot_coin",
+        "x": -3.472,
+        "y": 1.65,
+        "w": 1.54,
+        "h": 1.7,
+        "kind": "normal",
+        "label": "铜钱",
+        "value": 70,
+        "role": "加分 70"
+      },
+      {
+        "id": "slot_energy",
+        "x": -1.736,
+        "y": 1.65,
+        "w": 1.54,
+        "h": 1.7,
+        "kind": "energy",
+        "label": "聚气",
+        "value": 0,
+        "role": "充能量 +32"
+      },
+      {
+        "id": "slot_weak",
+        "x": 0,
+        "y": 1.65,
+        "w": 1.54,
+        "h": 1.7,
+        "kind": "boss",
+        "label": "破绽",
+        "value": 210,
+        "role": "扣 Boss 血 · 正中 ×2　带标记 ×1.5"
+      },
+      {
+        "id": "slot_combo",
+        "x": 1.736,
+        "y": 1.65,
+        "w": 1.54,
+        "h": 1.7,
+        "kind": "combo",
+        "label": "连斩",
+        "value": 120,
+        "role": "连击不中断"
+      },
+      {
+        "id": "slot_gold",
+        "x": 3.472,
+        "y": 1.65,
+        "w": 1.54,
+        "h": 1.7,
+        "kind": "multiplier",
+        "label": "万金",
+        "value": 95,
+        "role": "下颗球 ×2.5"
+      }
+    ]
+  },
+  "boss": {
+    "id": "boss_zhengtu",
+    "name": "镇关西",
+    "title": "渭州 · 屠户",
+    "maxHp": 4000,
+    "armor": 0.08,
+    "weakPoint": {
+      "x": 0,
+      "y": 3.1,
+      "r": 1.2
+    },
+    "phases": [
+      {
+        "at": 1,
+        "name": "横肉",
+        "deprive": [
+          "aim"
+        ],
+        "desc": "一盆酒泼在盘子中央，球走到哪儿他跟到哪儿。落槽整排漂移加倍，破绽口跟着它跑。"
+      },
+      {
+        "at": 0.6,
+        "name": "泼皮",
+        "deprive": [
+          "aim"
+        ],
+        "desc": "泼皮一叉腰，落槽开始自己跑。落槽整排漂移加倍，破绽口跟着它跑。"
+      },
+      {
+        "at": 0.3,
+        "name": "发飙",
+        "deprive": [
+          "aim"
+        ],
+        "desc": "抡起板斧横劈，这颗球的时间也短了一截。落槽整排漂移加倍，破绽口跟着它跑。"
+      }
+    ],
+    "colors": {
+      "body": "#4a2a1c",
+      "trim": "#ffb347",
+      "glow": "#ff7043"
+    }
+  },
+  "rules": {
+    "balls": 30,
+    "comboWindow": 1.7,
+    "startingEnergy": 20,
+    "fever": {
+      "triggerSlot": "slot_weak",
+      "duration": 14,
+      "bonusBalls": 6,
+      "slotFactor": 1.2,
+      "chainStep": 0.2,
+      "chainMax": 6,
+      "gate": {
+        "w": 6.4,
+        "h": 1.1,
+        "y": 4.6
+      },
+      "armorRelief": 0.28,
+      "palette": {
+        "led": "#ffd24a",
+        "yakumono": "#ff9a2e",
+        "accent": "#fff0b8"
+      },
+      "glyph": "確"
+    },
+    "enemy": {
+      "baseDamage": 62,
+      "perBounce": 22,
+      "bounceMax": 12,
+      "attrWin": 1.5,
+      "attrGen": 1.2,
+      "attrLose": 0.7,
+      "critChance": 0.22,
+      "critMult": 2.2,
+      "killBoost": 4.4,
+      "perSweep": 0.1333,
+      "fullSweepDamage": 200,
+      "leftoverPenalty": 0.06
+    },
+    "reward": {
+      "silver": 360,
+      "stones": 100,
+      "shards": 2
+    },
+    "ballSeconds": 14.4
+  }
+}

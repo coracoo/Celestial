@@ -1,0 +1,69 @@
+{
+  "id": "liutang",
+  "number": 21,
+  "name": "刘唐",
+  "title": "赤发鬼",
+  "rarity": "SR",
+  "wuxing": "fire",
+  "role": "爆发",
+  "color": "#a83232",
+  "accent": "#ff8a7a",
+  "tagline": "一丈青的血，泼上去就着",
+  "lore": "赤发为记，朴刀在手。喝酒误事被发配之后一路跟到梁山，她做的还是老本行：第一个扑上去，扑到自己也烧起来为止。",
+  "base": {
+    "hp": 114,
+    "atk": 16,
+    "def": 7,
+    "speed": 13
+  },
+  "skill": {
+    "id": "liutang_wildfire",
+    "name": "赤发鬼火",
+    "rule": "横刀扫过一条线，再把球速推到很高",
+    "desc": "按朴刀的路数来：按住预览横线（长 7），松开对命中敌人造成 115 点基础伤害，按她的火属性与共享爆伤修正；随后 5 秒球速 ×1.6、即时伤害 ×1.5、反弹伤害 ×1.35。她的火是越烧越旺的那种：球越快，伤害越高。",
+    "trigger": {
+      "on": "heavyImpact",
+      "minIntensity": 0.3,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "speed",
+        "value": 1.6,
+        "duration": 5
+      },
+      {
+        "key": "burst",
+        "value": 1.5,
+        "duration": 5
+      },
+      {
+        "key": "bounceDamage",
+        "value": 1.35,
+        "duration": 5
+      }
+    ],
+    "fx": "detonate",
+    "strike": {
+      "shape": "line",
+      "radius": 7,
+      "halfWidth": 0.7,
+      "angleDeg": 0,
+      "damage": 115,
+      "origin": "ball",
+      "kinds": [
+        "enemy"
+      ]
+    }
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "blade"
+  },
+  "bonds": [
+    "shijin",
+    "zhangqing"
+  ]
+}

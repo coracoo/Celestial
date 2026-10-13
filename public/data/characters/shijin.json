@@ -1,0 +1,56 @@
+{
+  "id": "shijin",
+  "number": 23,
+  "name": "史进",
+  "title": "九纹龙",
+  "rarity": "SR",
+  "wuxing": "wood",
+  "role": "滚雪球",
+  "color": "#3f7a52",
+  "accent": "#8fe0a8",
+  "tagline": "身上九条青纹，越打越亮",
+  "lore": "九纹龙。身上刺着九条青龙纹，她自己说那是师父刺的、说那是本事。她不挑对手，她挑「还没倒下的那一堆」。",
+  "base": {
+    "hp": 116,
+    "atk": 15,
+    "def": 8,
+    "speed": 13
+  },
+  "skill": {
+    "id": "shijin_ninescale",
+    "name": "九纹缠身",
+    "rule": "每次落槽后继续把落槽倍率往上叠，像滚雪球",
+    "desc": "6 秒内每次落槽结算，落槽倍率额外 +0.1，最多叠到 1.8；初始 ×1.2。她不怕第一发，怕的是第八发。",
+    "trigger": {
+      "on": "slotEnter",
+      "minIntensity": 0,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "slot",
+        "value": 1.2,
+        "duration": 6,
+        "perEvent": 0.1,
+        "maxValue": 1.8,
+        "stackOn": "slotEnter"
+      },
+      {
+        "key": "bounceDamage",
+        "value": 1.25,
+        "duration": 6
+      }
+    ],
+    "fx": "bounceMilestone"
+  },
+  "card": {
+    "rarity": "SR",
+    "holo": "auto",
+    "motif": "scale"
+  },
+  "bonds": [
+    "liutang",
+    "luzhishen"
+  ]
+}

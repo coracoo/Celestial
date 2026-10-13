@@ -1,0 +1,69 @@
+{
+  "id": "ruanxiaowu",
+  "number": 29,
+  "name": "阮小五",
+  "title": "短命二郎",
+  "rarity": "R",
+  "wuxing": "fire",
+  "role": "爆发",
+  "color": "#a04a2a",
+  "accent": "#ff9a70",
+  "tagline": "短命归短命，打起来没完",
+  "lore": "阮家三雄里的老二。命短这件事她比谁都清楚，所以出手从不含糊——她不打算慢慢来。",
+  "base": {
+    "hp": 102,
+    "atk": 14,
+    "def": 6,
+    "speed": 14
+  },
+  "skill": {
+    "id": "ruanxiaowu_flash",
+    "name": "短命一击",
+    "rule": "短刀从一个点扎进去，会心只作辅助",
+    "desc": "命短，出手就不含糊。按住预览短刀线（长 2.4），松开对命中敌人造成 90 点基础伤害，按她的火属性与共享爆伤修正；随后 3 秒会心率 +14%、会心倍率 ×1.2、即时伤害 ×1.6。她赌的不是暴击，是这一下扎得够准。",
+    "trigger": {
+      "on": "heavyImpact",
+      "minIntensity": 0.45,
+      "charges": 5,
+      "perHit": 1
+    },
+    "mods": [
+      {
+        "key": "critChance",
+        "value": 0.14,
+        "duration": 3
+      },
+      {
+        "key": "critMult",
+        "value": 1.2,
+        "duration": 3
+      },
+      {
+        "key": "burst",
+        "value": 1.6,
+        "duration": 3
+      }
+    ],
+    "fx": "crit",
+    "strike": {
+      "shape": "line",
+      "radius": 2.4,
+      "halfWidth": 0.85,
+      "angleDeg": 0,
+      "damage": 90,
+      "origin": "ball",
+      "kinds": [
+        "enemy"
+      ]
+    }
+  },
+  "card": {
+    "rarity": "R",
+    "holo": "none",
+    "motif": "spark"
+  },
+  "bonds": [
+    "ruanxiaoer",
+    "ruanxiaoqi"
+  ]
+}
